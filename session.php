@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "andresspak", "maoch7zo", "andresspak_vs14");
+include('conn.php');
 if(isset($_SESSION['login_user'])){
 	$user_check = $_SESSION['login_user'];
 	$ses_sql = "SELECT username, profile_image, code FROM login WHERE username='$user_check'";

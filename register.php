@@ -15,7 +15,6 @@
 		</form>
 <?php
 if(isset($_POST['submit'])){
-	$conn = new mysqli("localhost", "andresspak", "maoch7zo", "andresspak_vs14");
 	
 	$username = $_POST["username"];
 	$password = $_POST["password"];
