@@ -9,8 +9,6 @@ if (isset($_POST['submit'])) {
 		$username=$_POST['username'];
 		$password=$_POST['password'];
 
-		$conn = new mysqli("localhost", "andresspak", "maoch7zo", "andresspak_vs14");
-
 		$username = stripslashes($username);
 		$password = stripslashes($password);
 
