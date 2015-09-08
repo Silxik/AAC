@@ -4,7 +4,7 @@ include('conn.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+	<title>AAC - Register</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -25,16 +25,16 @@ if(isset($_POST['submit'])){
 	$password = stripslashes($password);
 	$username = $conn->real_escape_string($username);
 	$password = $conn->real_escape_string($password);
-	
+
+	$sql = "INSERT INTO user (username, password) VALUES('$username', '$password')";
+
 	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
 	$row_cnt = $rows->num_rows;
-	
-	$sql = "INSERT INTO user (username, password) VALUES('$username', '$password')";
-	
-	if($username == "" || $password == ""){
+
+	if(empty($username) || empty($password)){
 		echo "Please enter a valid Username or Password";
 		mysqli_close($conn);
-	}else if($row_cnt == 1){
+	}else if($row_cnt === 1){
 		echo "This username already exists.";
 		mysqli_close($conn);
 	}else if(strlen($username) < 3){
