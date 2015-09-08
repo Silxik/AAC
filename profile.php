@@ -37,7 +37,7 @@
 			<h2>Online:</h2>
 			<div id="online">
 			<?php
-			$user_sql = "SELECT username, profile_image FROM login WHERE log='in'";
+			$user_sql = "SELECT username, profile_image FROM user WHERE log='in'";
 			$user_result = $conn->query($user_sql);
 			while($userRow = $user_result->fetch_assoc()) {
 				echo '<div class="user"><a href="profile_try.php">' . $userRow["username"]. '</a>' . '<span class="small_icon" style="background-image:url('. $userRow["profile_image"].');"></span></div>';

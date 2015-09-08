@@ -27,7 +27,7 @@ $temp = explode(".",$_FILES["iconUpload"]["name"]);
 $newfilename = $login_session . "_icon_thumb" . '.' . end($temp);
 $file_path = $target_dir . $login_session . "_icon_thumb" . '.' . end($temp);
 if($uploadOk == 1 && move_uploaded_file($_FILES["iconUpload"]["tmp_name"],$file_path)){
-	$sql = "UPDATE login SET profile_image = '$file_path' WHERE username = '$login_session'";
+	$sql = "UPDATE user SET profile_image = '$file_path' WHERE username = '$login_session'";
 	
 	if ($conn->query($sql) === TRUE) {
 		echo "New record created successfully" . "<br>";

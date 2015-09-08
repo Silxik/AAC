@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
 	$username = $conn->real_escape_string($username);
 	$password = $conn->real_escape_string($password);
 	
-	$rows = $conn->query("SELECT * FROM login WHERE username='$username'");
+	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
 	$row_cnt = $rows->num_rows;
 	
 	$content = '<div id="main">
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 	</div>';
 	$content = addslashes($content);
 	
-	$sql = "INSERT INTO login (username, password, code) VALUES('$username', '$password', '$content')";
+	$sql = "INSERT INTO user (username, password, code) VALUES('$username', '$password', '$content')";
 	
 	if($username == "" || $password == ""){
 		echo "Please enter a valid Username or Password";
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
 	}
 	else{
 		$conn->query($sql);
-		$conn->query("UPDATE login SET log = 'in' WHERE username='$username'");
+		$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
 		$_SESSION['login_user'] = $username;
 		header("location: index.php");
 	}
