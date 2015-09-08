@@ -29,12 +29,7 @@ if(isset($_POST['submit'])){
 	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
 	$row_cnt = $rows->num_rows;
 	
-	$content = '<div id="main">
-	<div id="html_text"></div>
-	</div>';
-	$content = addslashes($content);
-	
-	$sql = "INSERT INTO user (username, password, code) VALUES('$username', '$password', '$content')";
+	$sql = "INSERT INTO user (username, password) VALUES('$username', '$password')";
 	
 	if($username == "" || $password == ""){
 		echo "Please enter a valid Username or Password";
