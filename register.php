@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+include('conn.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
