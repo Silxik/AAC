@@ -1,3 +1,3 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "mydb")
+$conn = new mysqli("localhost", "root", "", "aac")
 ?>
