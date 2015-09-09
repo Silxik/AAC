@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
 
 	$sql = "INSERT INTO user ( username, password ) VALUES({$username}, {$password})";
 
-	$rows = $conn->query("SELECT * FROM user WHERE username={$username}");
+	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
 	$row_cnt = $rows->num_rows;
 
 	if(empty($username) || empty($password)){
