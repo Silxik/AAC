@@ -21,13 +21,12 @@ if(isset($_POST['submit'])){
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 	
-	$username = addslashes($username);
-	$password = addslashes($password);
-
+	$username = stripslashes($username);
+	$password = stripslashes($password);
 	$username = $conn->real_escape_string($username);
 	$password = $conn->real_escape_string($password);
 
-	$sql = "INSERT INTO user ( username, password ) VALUES({$username}, {$password})";
+	$sql = "INSERT INTO user (username, password) VALUES('$username', '$password')";
 
 	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
 	$row_cnt = $rows->num_rows;
@@ -35,7 +34,7 @@ if(isset($_POST['submit'])){
 	if(empty($username) || empty($password)){
 		echo "Please enter a valid Username or Password";
 		mysqli_close($conn);
-	}else if($row_cnt == 1){
+	}else if($row_cnt === 1){
 		echo "This username already exists.";
 		mysqli_close($conn);
 	}else if(strlen($username) < 3){
@@ -43,14 +42,10 @@ if(isset($_POST['submit'])){
 		mysqli_close($conn);
 	}
 	else{
-		if($conn->query($sql) == TRUE){
-			$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
-			$_SESSION['login_user'] = $username;
-			header("location: index.php");
-		} else{
-			echo $conn->error;
-		}
-
+		$conn->query($sql);
+		$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
+		$_SESSION['login_user'] = $username;
+		header("location: index.php");
 	}
 }
 ?>
