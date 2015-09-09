@@ -29,8 +29,28 @@ if(isset($_POST['submit'])){
 
 	$sql = "INSERT INTO user ( username, password ) VALUES({$username}, {$password})";
 
-	if($conn->query($sql) === TRUE){
-		header('location: index.php');
+	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
+	$row_cnt = $rows->num_rows;
+
+	if(empty($username) || empty($password)){
+		echo "Please enter a valid Username or Password";
+		mysqli_close($conn);
+	}else if($row_cnt == 1){
+		echo "This username already exists.";
+		mysqli_close($conn);
+	}else if(strlen($username) < 3){
+		echo "Username is too short!";
+		mysqli_close($conn);
+	}
+	else{
+		if($conn->query($sql) == TRUE){
+			$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
+			$_SESSION['login_user'] = $username;
+			header("location: index.php");
+		} else{
+			echo $conn->error;
+		}
+
 	}
 }
 ?>
