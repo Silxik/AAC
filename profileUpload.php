@@ -31,7 +31,7 @@ if($uploadOk == 1 && move_uploaded_file($_FILES["iconUpload"]["tmp_name"],$file_
 	
 	if ($conn->query($sql) === TRUE) {
 		echo "New record created successfully" . "<br>";
-		header('location: profile.php');
+		header('location: index.php');
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;
 	}
