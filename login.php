@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 		$username = $conn->real_escape_string($username);
 		$password = $conn->real_escape_string($password);
 
-		$query = $conn->query("SELECT username, password FROM user WHERE password='$password' AND username='$username'");
+		$query = $conn->query("SELECT username, password FROM user WHERE password= sha('$password') AND username='$username'");
 		$rows = $query->num_rows;
 		if ($rows == 1) {
 			$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
