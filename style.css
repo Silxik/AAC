@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url(pildid/background.png);
+    background-image: url(res/img/background.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -294,7 +294,7 @@ input{color:black;}
 #submit{
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 16px;
-    border:1px solid inset;
+    border:1px inset;
     color: rgb(255, 255, 255);
 }
 

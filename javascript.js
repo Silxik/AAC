@@ -2,7 +2,7 @@ document.getElementById('nav').innerHTML =
     '<ul><li><a href="index.php">Home</a></li><li><a href="#">Anime</a></li><li><a href="#">Events</a></li><li><a href="#">Discussion</a></li><li><a href="#">Our group</a></li><li><a href="#">Contact</a></li></ul>';
 
 document.getElementById('header').innerHTML =
-    '<h1>Anime Addicts Continue~!</h1><img class="logo" src="pildid/AAC_logo.png">';
+    '<h1>Anime Addicts Continue~!</h1><img class="logo" src="res/img/AAC_logo.png">';
 
 $('#html_editor').keyup(function(){
   document.getElementById("html_text").innerHTML= $('textarea').val();
@@ -34,6 +34,6 @@ $('#EditorToggler').click(function(){
   });
 });
 
-$('#profile span.icon').click(function(){
+$('#profile').click(function(){
   $('#iconUpload').toggle();
 });

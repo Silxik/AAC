@@ -1,10 +1,9 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title><?php echo $_SESSION['login_user'];?> Page</title>
-	<link rel="shortcut icon" type="image/x-icon" href="pildid/icon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="res/img/favicon.ico" />
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
@@ -20,7 +19,7 @@
 		
 		<div id="header">
 			<h1>Anime Addicts Continue~!</h1>
-			<img class="logo" src="pildid/AAC_logo.png" alt="logo">
+			<img class="logo" src="res/img/AAC_logo.png" alt="logo">
 		</div>
 
 		<div id="nav"></div>
