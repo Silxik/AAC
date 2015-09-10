@@ -17,14 +17,8 @@ include('conn.php');
 		</form>
 <?php
 if(isset($_POST['submit'])){
-	
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-	
-	$username = stripslashes($username);
-	$password = stripslashes($password);
-	$username = $conn->real_escape_string($username);
-	$password = $conn->real_escape_string($password);
+	$username = $conn->real_escape_string($_POST["username"]);
+	$password = $conn->real_escape_string($_POST["password"]);
 
 	$sql = "INSERT INTO user (username, password) VALUES('$username', '$password')";
 
@@ -33,20 +27,18 @@ if(isset($_POST['submit'])){
 
 	if(empty($username) || empty($password)){
 		echo "Please enter a valid Username or Password";
-		mysqli_close($conn);
 	}else if($row_cnt === 1){
 		echo "This username already exists.";
-		mysqli_close($conn);
 	}else if(strlen($username) < 3){
 		echo "Username is too short!";
-		mysqli_close($conn);
-	}
-	else{
+	}else{
 		$conn->query($sql);
 		$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
 		$_SESSION['login_user'] = $username;
 		header("location: index.php");
 	}
+
+	mysqli_close($conn);
 }
 ?>
 	</div>

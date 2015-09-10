@@ -17,7 +17,7 @@
 		
 		<div id="profile">
 			<?php if(isset($_SESSION['login_user'])){?>
-				<b id="welcome">Welcome : <a href="profile.php"><?php echo $login_session; ?></a></b>
+				<b id="welcome">Welcome : <a href="profile.php"><?php echo stripslashes($login_session); ?></a></b>
 				<span class="icon" style="background-image:url('<?php	echo $row["profile_image"]; ?>');"></span>
 				<b id="logout"><a href="logout.php">Log Out</a></b>
 				<form id="iconUpload" action="profileUpload.php" method="post" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
 		</div>
 
 		<div id="main">
-			<h1>Hi <?php if(isset($_SESSION['login_user'])){echo "$login_session!";};?></h1>
+			<h1>Hi <?php if(isset($_SESSION['login_user'])){echo stripslashes($login_session). "!";};?></h1>
 			<h2>Welcome to Anime Addicts Continue!</h2>
 			<p>This site is currently under developement. Please stay in tune for further information!</p>
 		</div>
