@@ -1,3 +1,52 @@
+//---------------------------- Functions --------------------------------
+
+/**
+ * Sends an XMLHttpRequest to a url and returns the response
+ * to the callback function once it arrives
+ * @param {string} u Target url
+ * @param {function} c Callback function
+ * @param {string=} t Response type
+ * @return {object} XMLHttpRequest object
+ */
+var xhr = function(u, c, t) {
+    /**
+     * @type {XMLHttpRequest} r XMLHttpRequest object
+     */
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function() {
+        if (r.readyState == 4 && r.status == 200) {
+            c(r.response);
+        }
+    };
+    r.open("GET", u, true);
+    if (t) {r.responseType = t;}
+    r.overrideMimeType('text/plain');
+    r.send();
+    return r;
+}
+
+/*
+
+ http://stackoverflow.com/questions/824349/modify-the-url-without-reloading-the-page
+
+ function processAjaxData(response, urlPath){
+ document.getElementById("content").innerHTML = response.html;
+ document.title = response.pageTitle;
+ window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+ }
+
+ window.onpopstate = function(e){
+ if(e.state){
+ document.getElementById("content").innerHTML = e.state.html;
+ document.title = e.state.pageTitle;
+ }
+ };
+
+ */
+
+
+//---------------------------- Initialization --------------------------------
+
 window.onload = function(){
 
     document.getElementById('nav').innerHTML =

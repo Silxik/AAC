@@ -5,7 +5,7 @@ include('main.php');
 <html>
 <head>
 	<title>AAC - Register</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="../res/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="register">
