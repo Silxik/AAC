@@ -175,6 +175,15 @@ input{color:black;}
     display:block;
 }
 
+#main .br{
+    display:block;
+    margin:10px 10px 10px 0px;
+}
+
+#main select, #main select option, #main textarea{
+    color:#000000;
+}
+
 #currentlyOnline{
     display: inline-block;
     width: 200px;
