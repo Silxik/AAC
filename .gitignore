@@ -1,1 +1,2 @@
-PHP_errors.log
+uploads/*
+.idea
