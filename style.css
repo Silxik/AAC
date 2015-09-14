@@ -148,36 +148,6 @@ input{color:black;}
     background: rgba(0,0,0,0.7);
 }
 
-#currentlyOnline{
-    display: inline-block;
-    width: 200px;
-    padding: 20px;
-    margin-bottom:20px;
-    text-align: center;
-    float: right;
-    background: rgba(0,0,0,0.7);
-    clear:both;
-}
-#currentlyOnline h2{
-    margin-bottom:20px;
-}
-
-#online{text-align:left;}
-
-#online p:before{
-    content:"";
-    position:relative;
-    display:inline-block;
-    width:5px;
-    height:5px;
-    margin-right:5px;
-    background-color:lightgreen;
-    border:1px inset white;
-    border-radius:100%;
-    bottom:2px;
-}
-
-
 #welcome{
     font-size: 20px;
     margin-bottom: 20px;
@@ -302,4 +272,19 @@ textarea, pre {
     -moz-tab-size : 2;
     -o-tab-size : 2;
     tab-size : 2;
+}
+
+.warning{
+    max-width:450px;
+    margin:0px auto;
+    border:3px solid #000000;
+    background:rgba(0,0,0,0.7);
+    padding:20px;
+}
+.err-img{
+    display:block;
+    width:100%;
+    background:white;
+    border-bottom:3px solid #000000;
+    margin-bottom:20px;
 }

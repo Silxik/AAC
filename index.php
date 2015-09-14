@@ -17,7 +17,7 @@
 		<div id="profile">
 			<?php if($loggedIn){?>
 				<b id="welcome">Welcome : <a href="profile.php"><?php echo stripslashes($login_session); ?></a></b>
-				<span class="icon" style="background-image:url('<?php	echo $row["profile_image"]; ?>');"></span>
+				<span class="icon" style="background-image:url('<?php echo $row["profile_image"]; ?>');"></span>
 				<b id="logout"><a href="logout.php">Log Out</a></b>
 				<form id="iconUpload" action="profileUpload.php" method="post" enctype="multipart/form-data">
 					<input type="file" name="iconUpload" value="Choose image">
