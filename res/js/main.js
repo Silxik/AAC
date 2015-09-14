@@ -1,5 +1,5 @@
 document.getElementById('nav').innerHTML =
-    '<ul><li><a href="index.php">Home</a></li><li><a href="#">Anime</a></li><li><a href="#">Events</a></li><li><a href="#">Discussion</a></li><li><a href="#">Our group</a></li><li><a href="#">Contact</a></li></ul>';
+    '<ul><li><a href="../../index.php">Home</a></li><li><a href="#">Anime</a></li><li><a href="#">Events</a></li><li><a href="#">Discussion</a></li><li><a href="#">Our group</a></li><li><a href="#">Contact</a></li></ul>';
 
 document.getElementById('header').innerHTML =
     '<h1>Anime Addicts Continue~!</h1><img class="logo" src="res/img/AAC_logo.png">';
@@ -34,6 +34,6 @@ $('#EditorToggler').click(function(){
   });
 });
 
-$('#profile').click(function(){
+$('.icon').click(function(){
   $('#iconUpload').toggle();
 });

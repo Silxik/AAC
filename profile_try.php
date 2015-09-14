@@ -1,7 +1,5 @@
-<?php
-session_start();
-include("session.php");
-?>
+<? include('system/main.php');?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +64,6 @@ include("session.php");
 	</div>
 	<div id="footer"><p>Andres.spak@khk.ee. All rights reserved.</p></div>
 </div>
-	<script src="javascript.js" type="text/javascript"></script>
+	<script src="res/js/main.js" type="text/javascript"></script>
 </body>
 </html>

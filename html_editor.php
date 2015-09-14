@@ -1,6 +1,5 @@
-<?php
-session_start();
-include('session.php');
+<?
+include('system/main.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$data = $_POST['html_editor'];

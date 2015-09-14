@@ -1,6 +1,5 @@
-<?php 
-session_start(); 
-include('session.php');
+<?
+include('system/main.php');
 
 $target_dir = "pildid/";
 $target_file = $target_dir . basename($_FILES["iconUpload"]["tmp_name"]);

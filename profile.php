@@ -1,3 +1,5 @@
+<? include('system/main.php');?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,6 @@
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<?php include('session.php'); ?>
 	<div id="WebEditor">
 		<textarea spellcheck="false" id="html_editor" name="html_editor"></textarea>
 		<input class="html_post button" type="button" value="Save">
@@ -69,6 +70,6 @@
 
 		<div id="footer"><p>Andres.spak@khk.ee. All rights reserved.</p></div>
 	</div>
-<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="res/js/main.js"></script>
 </body>
 </html>
