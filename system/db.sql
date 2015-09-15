@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Sept 14, 2015 kell 10:51 EL
+-- Loomise aeg: Sept 15, 2015 kell 09:23 EL
 -- Serveri versioon: 5.6.24
 -- PHP versioon: 5.5.24
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Andmebaas: `aac`
 --
+CREATE DATABASE IF NOT EXISTS `aac` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `aac`;
 
 -- --------------------------------------------------------
 
@@ -34,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(225) CHARACTER SET utf8 NOT NULL,
   `birthday` date NOT NULL,
   `bio` text CHARACTER SET utf8 NOT NULL,
-  `log` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `online` tinyint(1) NOT NULL,
   `location` varchar(200) NOT NULL,
   `date_joined` date NOT NULL,
   `gender` tinyint(1) NOT NULL,
@@ -46,9 +49,40 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Andmete tõmmistamine tabelile `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `profile_image`, `email`, `birthday`, `bio`, `log`, `location`, `date_joined`, `gender`, `ip_joined`, `ip_last`) VALUES
-(1, 'Test', '', 'pildid/Test_icon_thumb.jpg', '', '0000-00-00', '', 'in', '', '0000-00-00', 0, '', ''),
-(2, 'Test''2', '', '', '', '0000-00-00', '', 'out', '', '0000-00-00', 0, '', '');
+INSERT INTO `user` (`user_id`, `username`, `password`, `profile_image`, `email`, `birthday`, `bio`, `online`, `location`, `date_joined`, `gender`, `ip_joined`, `ip_last`) VALUES
+  (1, 'Kurikutsu', 'd7e3d7cdb2f4cdb48b5df9ec26f2a08644cde461', 'pildid/Test_icon_thumb.jpg', '', '0000-00-00', '', 0, '', '0000-00-00', 0, '', ''),
+  (2, 'Test''2', '', '', '', '0000-00-00', '', 0, '', '0000-00-00', 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Tabeli struktuur tabelile `userpost`
+--
+
+CREATE TABLE IF NOT EXISTS `userpost` (
+  `post_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `text` text CHARACTER SET utf8 NOT NULL,
+  `postImage` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `post_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabeli struktuur tabelile `version`
+--
+
+CREATE TABLE IF NOT EXISTS `version` (
+  `version_nr` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Andmete tõmmistamine tabelile `version`
+--
+
+INSERT INTO `version` (`version_nr`) VALUES
+  ('1');
 
 --
 -- Indeksid tõmmistatud tabelitele
@@ -58,7 +92,13 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `profile_image`, `email`,
 -- Indeksid tabelile `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indeksid tabelile `userpost`
+--
+ALTER TABLE `userpost`
+ADD PRIMARY KEY (`post_id`);
 
 --
 -- AUTO_INCREMENT tõmmistatud tabelitele
@@ -68,7 +108,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT tabelile `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT tabelile `userpost`
+--
+ALTER TABLE `userpost`
+MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

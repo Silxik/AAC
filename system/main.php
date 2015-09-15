@@ -29,7 +29,7 @@ if (isset($_SERVER['PATH_INFO'])) {
 //Session related code
 session_start();
 $loggedIn = isset($_SESSION['user']);
-$user = $_SESSION['user'];
+$user = stripslashes($_SESSION['user']);
 /*
     if ($loggedIn) {
 
