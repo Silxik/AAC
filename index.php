@@ -54,6 +54,15 @@
         <h2>Welcome to Anime Addicts Continue!</h2>
 
         <p>This site is currently under developement. Please stay in tune for further information!</p>
+        <pre>
+            Kasutaja 1
+            Kasutajanimi: Kurikutsu
+            Parool: Test
+
+            Kasutaja 2
+            Kasutajanimi: Test
+            Parool:
+        </pre>
     </div>
 
 

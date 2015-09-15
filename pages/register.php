@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
 		echo "Username is too short!";
 	}else{
 		$db->query($sql);
-		$db->query("UPDATE user SET log = 'in' WHERE username='$username'");
+		$db->query("UPDATE user SET online = '1' WHERE username='$username'");
 		$_SESSION['login_user'] = $username;
 		header("location: index.php");
 	}

@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 		$query = $db->query("SELECT username, password FROM user WHERE password= sha('$password') AND username='$username'");
 		$rows = $query->num_rows;
 		if ($rows == 1) {
-			$db->query("UPDATE user SET log = 'in' WHERE username='$username'");
+			$db->query("UPDATE user SET online = '1' WHERE username='$username'");
 			$_SESSION['user'] = $username;
 			header("location: index.php");
 		} else {

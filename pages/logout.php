@@ -1,8 +1,8 @@
 <?
-include('system/main.php');
+include('../system/main.php');
 
 if(session_destroy()){
-	$conn->query("UPDATE user SET log = 'out' WHERE username='$login_session'");
+	$db->query("UPDATE user SET online = '0' WHERE username='$user'");
 	header("Location: index.php");
 }
 ?>

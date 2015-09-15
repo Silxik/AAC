@@ -51,4 +51,7 @@ $db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
 
+//User related code
+$user_q = $db->query("SELECT * from user WHERE username='$user'");
+$user_d = $user_q->fetch_assoc();
 ?>
