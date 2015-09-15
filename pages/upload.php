@@ -1,4 +1,4 @@
-<?php
+<?
 $target_dir = "pildid/upload/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;

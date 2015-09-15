@@ -1,5 +1,5 @@
-<?php session_start();
-include('main.php');
+<? session_start();
+include('system/main.php');
 ?>
 <!DOCTYPE html>
 <html>

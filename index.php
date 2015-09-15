@@ -17,15 +17,15 @@
     <div id="nav"></div>
 
     <div id="profile">
-        <?php if ($loggedIn) { ?>
-            <b id="welcome">Welcome : <a href="pages/profile.php"><?php echo stripslashes($login_session); ?></a></b>
-            <span class="icon" style="background-image:url('<?php echo $row["profile_image"]; ?>');"></span>
+        <? if ($loggedIn) { ?>
+            <b id="welcome">Welcome : <a href="pages/profile.php"><? echo stripslashes($login_session); ?></a></b>
+            <span class="icon" style="background-image:url('<? echo $row["profile_image"]; ?>');"></span>
             <b id="logout"><a href="pages/logout.php">Log Out</a></b>
             <form id="iconUpload" action="pages/profileUpload.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="iconUpload" value="Choose image">
                 <input class="button" type="submit" value="Upload Image" name="submit">
             </form>
-        <?php } else { ?>
+        <? } else { ?>
             <form action="pages/login.php" method="post" autocomplete="off">
                 <label for="username">UserName :</label>
                 <input id="name" name="username" placeholder="username" type="text">
@@ -34,7 +34,7 @@
                 <input class="button" name="submit" type="submit" value=" Login ">
                 <a class="button" href="register">Register</a>
             </form>
-        <?php } ?>
+        <? } ?>
 
     </div>
 
@@ -47,7 +47,7 @@
     </div>
 
     <div id="main">
-        <h1>Hi <?php if ($loggedIn) {
+        <h1>Hi <? if ($loggedIn) {
                 echo stripslashes($login_session) . "!";
             }; ?></h1>
 

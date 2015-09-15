@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><?php echo $_SESSION['login_user'];?> Page</title>
+	<title><? echo $_SESSION['login_user'];?> Page</title>
 	<link rel="shortcut icon" type="image/x-icon" href="../res/img/favicon.ico" />
 	<link href="../res/css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -24,7 +24,7 @@
 
 		<div id="nav"></div>
 		<div id="profile">
-			<b id="welcome">Welcome : <a href="profile.php"><?php echo $login_session; ?></a></b>
+			<b id="welcome">Welcome : <a href="profile.php"><? echo stripslashes($login_session); ?></a></b>
 			<span class="icon" style="background-image:url('<?php	echo $row["profile_image"]; ?>');"></span>
 			<b id="logout"><a href="logout.php">Log Out</a></b>
 			<form id="iconUpload" action="profileUpload.php" method="post" enctype="multipart/form-data">
@@ -35,7 +35,7 @@
 		<div id="currentlyOnline">
 			<h2>Online:</h2>
 			<div id="online">
-			<?php
+			<?
 			$user_sql = "SELECT username, profile_image FROM user WHERE log='in'";
 			$user_result = $conn->query($user_sql);
 			while($userRow = $user_result->fetch_assoc()) {
@@ -53,7 +53,7 @@
 				</form>
 			</div>
 			<div id="imageContainer">
-				<?php
+				<?
 				$target_dir = "pildid/upload/";
 				$file_display = array('jpg', 'jpeg', 'png', 'gif');
 				$dir_contents = scandir($target_dir);

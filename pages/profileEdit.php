@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-    <link rel="shortcut icon" type="image/x-icon" href="res/img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../res/img/favicon.ico" />
     <title>Home Page</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
         </form>
     </div>
 </div>
-<script type="text/javascript" src="res/js/main.js"></script>
+<script type="text/javascript" src="../res/js/main.js"></script>
 </body>
 </html>
 
