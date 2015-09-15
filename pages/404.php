@@ -13,7 +13,7 @@
     <div id="header"><h1>Anime Addicts Continue~!</h1><img class="logo" src="../res/img/AAC_logo.png"></div>
 
     <div class="warning">
-        <img class="err-img" src="res/img/404.png"></img>
+        <img class="err-img" src="../res/img/404.png"></img>
         <h1>404 - Not Found</h1>
         <p>The page you're searching does not exist. Please visit either our <a href="../index.php">website</a> or contact the <a href="contact.php">administrater</a>.</p>
     </div>
