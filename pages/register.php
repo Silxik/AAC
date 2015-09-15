@@ -1,6 +1,4 @@
-<? session_start();
-include('system/main.php');
-?>
+<? include('../system/main.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +15,12 @@ include('system/main.php');
 		</form>
 <?php
 if(isset($_POST['submit'])){
-	$username = $conn->real_escape_string($_POST["username"]);
-	$password = $conn->real_escape_string($_POST["password"]);
+	$username = $db->real_escape_string($_POST["username"]);
+	$password = $db->real_escape_string($_POST["password"]);
 
-	$sql = "INSERT INTO user (username, password) VALUES('$username', sha('$password'))";
+	$sql = "INSERT INTO user (username, password, date_joined) VALUES('$username', sha('$password'), CUR_DATE())";
 
-	$rows = $conn->query("SELECT * FROM user WHERE username='$username'");
+	$rows = $db->query("SELECT * FROM user WHERE username='$username'");
 	$row_cnt = $rows->num_rows;
 
 	if(empty($username) || empty($password)){
@@ -32,13 +30,13 @@ if(isset($_POST['submit'])){
 	}else if(strlen($username) < 3){
 		echo "Username is too short!";
 	}else{
-		$conn->query($sql);
-		$conn->query("UPDATE user SET log = 'in' WHERE username='$username'");
+		$db->query($sql);
+		$db->query("UPDATE user SET log = 'in' WHERE username='$username'");
 		$_SESSION['login_user'] = $username;
 		header("location: index.php");
 	}
 
-	mysqli_close($conn);
+	mysqli_close($db);
 }
 ?>
 	</div>

@@ -29,8 +29,10 @@ if (isset($_SERVER['PATH_INFO'])) {
 //Session related code
 session_start();
 $loggedIn = isset($_SESSION['user']);
-if ($loggedIn) {
-    /*
+$user = $_SESSION['user'];
+/*
+    if ($loggedIn) {
+
         $inactive = 600;
         if (!isset($_SESSION['timeout']))
             $_SESSION['timeout'] = time() + $inactive;
@@ -41,9 +43,9 @@ if ($loggedIn) {
             header("Location: index.php");
         }
         $_SESSION['timeout'] = time();
-    */
-}
 
+    }
+*/
 //Database related code
 $db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");

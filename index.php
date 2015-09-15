@@ -18,7 +18,7 @@
 
     <div id="profile">
         <? if ($loggedIn) { ?>
-            <b id="welcome">Welcome : <a href="pages/profile.php"><? echo stripslashes($login_session); ?></a></b>
+            <b id="welcome">Welcome : <a href="pages/profile.php"><? echo stripslashes($user); ?></a></b>
             <span class="icon" style="background-image:url('<? echo $row["profile_image"]; ?>');"></span>
             <b id="logout"><a href="pages/logout.php">Log Out</a></b>
             <form id="iconUpload" action="pages/profileUpload.php" method="post" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
 
     <div id="main">
         <h1>Hi <? if ($loggedIn) {
-                echo stripslashes($login_session) . "!";
+                echo stripslashes($user) . "!";
             }; ?></h1>
 
         <h2>Welcome to Anime Addicts Continue!</h2>

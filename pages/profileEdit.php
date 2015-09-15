@@ -1,4 +1,4 @@
-<? include("system/main.php") ?>
+<? include("../system/main.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +6,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../res/img/favicon.ico" />
     <title>Home Page</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../res/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="divWrapper">
@@ -41,6 +41,10 @@
             <input type="submit" name="update" class="button br" value="submit">
         </form>
     </div>
+
+    <div id="footer">
+        <p>AAC.com All rights reserved</p>
+    </div>
 </div>
 <script type="text/javascript" src="../res/js/main.js"></script>
 </body>
@@ -57,7 +61,7 @@ if(isset($_POST["update"])){
     $y = $_POST["year"];
     $bio = $db->real_escape_string($_POST["bio"]);
 
-    $sql = 'UPDATE user SET username="$newUsername", password="$newPassword", location="$l", birthday="$d-$m-$y", bio="$bio"';
+    $sql = 'UPDATE user SET username="$newUsername", password="$newPassword", location="$l", birthday="$y-$m-$d", bio="$bio"';
     if($db->query($sql)){
 
     }else{}

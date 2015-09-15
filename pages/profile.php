@@ -1,5 +1,4 @@
-<? include('system/main.php');?>
-
+<? include('../system/main.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,39 +31,35 @@
 				<input class="button" type="submit" name="submit">
 			</form>
 		</div>
+
 		<div id="currentlyOnline">
 			<h2>Online:</h2>
 			<div id="online">
 			<?
 			$user_sql = "SELECT username, profile_image FROM user WHERE log='in'";
-			$user_result = $conn->query($user_sql);
+			$user_result = $db->query($user_sql);
 			while($userRow = $user_result->fetch_assoc()) {
 				echo '<div class="user"><a href="profile_try.php">' . $userRow["username"]. '</a>' . '<span class="small_icon" style="background-image:url('. $userRow["profile_image"].');"></span></div>';
 			}
 			?>
 			</div>
 		</div>
+
+		<!-- Post handling -->
 		<div id="main">
-			<div id="html_text"></div>
-			<div id="uploadForm">
-				<form id="imageUpload" action="upload.php" method="post" enctype="multipart/form-data">
-					<label for="fileToUpload">Select image to upload: </label><input type="file" name="fileToUpload" id="fileToUpload">
-					<input class="button" type="submit" value="Upload Image" name="submit">
-				</form>
-			</div>
-			<div id="imageContainer">
-				<?
-				$target_dir = "pildid/upload/";
-				$file_display = array('jpg', 'jpeg', 'png', 'gif');
-				$dir_contents = scandir($target_dir);
-				foreach ($dir_contents as $file) {
-				  $file_type = strtolower(end(explode('.', $file)));
-					if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true){
-						echo '<img class="images" src="'. $target_dir. '/'. $file. '" alt="'. $file.'" />';
-					}
-				}
-				?>
-			</div>
+			<form method="POST" action="upload.php" enctype="multipart/form-data">
+				<textarea name="text"></textarea>
+				<input class="button" name="postImage" type="file">
+				<input class="button br" type="submit" name="newPost">
+			</form>
+
+			<?
+			$sql = "SELECT text, postImage FROM userpost";
+			$q = $db->query($sql);
+			while($r = $q->fetch_assoc()){
+				echo '<div class="post"><small>'. $r["post_date"] .'</small><pre>'. $r["text"] .'</pre><img class="postImg br" src="'. $r['postImage'] .'"></div>';
+			}
+			?>
 		</div>
 
 		<div id="footer"><p>Andres.spak@khk.ee. All rights reserved.</p></div>
