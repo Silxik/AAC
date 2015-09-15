@@ -8,6 +8,7 @@
     <title>Anime Addicts Continue</title>
     <link rel="shortcut icon" type="image/x-icon" href="res/img/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="res/css/style.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="res/js/main.js"></script>
 </head>
 <body>
@@ -57,11 +58,7 @@
         <pre>
             Kasutaja 1
             Kasutajanimi: Kurikutsu
-            Parool: Test
-
-            Kasutaja 2
-            Kasutajanimi: Test
-            Parool:
+            Parool: Proov
         </pre>
     </div>
 

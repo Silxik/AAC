@@ -29,7 +29,7 @@ if (isset($_SERVER['PATH_INFO'])) {
 //Session related code
 session_start();
 $loggedIn = isset($_SESSION['user']);
-$user = stripslashes($_SESSION['user']);
+
 /*
     if ($loggedIn) {
 
@@ -52,6 +52,9 @@ mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
 
 //User related code
-$user_q = $db->query("SELECT * from user WHERE username='$user'");
-$user_d = $user_q->fetch_assoc();
+if(isset($_SESSION['user'])){
+    $user = stripslashes($_SESSION['user']);
+    $user_q = $db->query("SELECT * from user WHERE username='$user'");
+    $user_d = $user_q->fetch_assoc();
+}
 ?>
