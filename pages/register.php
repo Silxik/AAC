@@ -13,7 +13,7 @@
 			<label for="password">Choose password: </label><input name="password" type="password" placeholder="Enter password here...">
 			<input class="button" name="submit" type="submit" value="Register">
 		</form>
-<?php
+<?
 if(isset($_POST['submit'])){
 	$username = $db->real_escape_string($_POST["username"]);
 	$password = $db->real_escape_string($_POST["password"]);

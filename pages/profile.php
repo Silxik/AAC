@@ -24,7 +24,7 @@
 		<div id="nav"></div>
 		<div id="profile">
 			<b id="welcome">Welcome : <a href="profile.php"><? echo stripslashes($user); ?></a></b>
-			<span class="icon" style="background-image:url('<?php	echo $row["profile_image"]; ?>');"></span>
+			<span class="icon" style="background-image:url('<?	echo $row["profile_image"]; ?>');"></span>
 			<b id="logout"><a href="logout.php">Log Out</a></b>
 			<form id="iconUpload" action="profileUpload.php" method="post" enctype="multipart/form-data">
 				<input type="file" name="iconUpload">

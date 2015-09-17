@@ -1,6 +1,8 @@
-<?php
+<?
+include('functions.php');
 
-function set_base_url() {
+function set_base_url()
+{
     $s = &$_SERVER;
     $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true : false;
     $sp = strtolower($s['SERVER_PROTOCOL']);
@@ -16,22 +18,24 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 set_base_url();
 
-
+$url = ['index'];
 if (isset($_SERVER['PATH_INFO'])) {
-    if ($path_info = explode('/', $_SERVER['PATH_INFO'])) {
-        array_shift($path_info);
-        $controller = isset($path_info[0]) ? array_shift($path_info) : 'index';
-        $action = isset($path_info[0]) && !empty($path_info[0]) ? array_shift($path_info) : 'index';
-        $params = isset($path_info[0]) ? $path_info : array();
-    }
+    $url = explode('/', $_SERVER['PATH_INFO']);
+    array_shift($url);
 }
 
 //Session related code
 session_start();
-$loggedIn = isset($_SESSION['user']);
+$user = &$_SESSION['user'];
+
+//Database related code
+$db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
+mysqli_query($db, "SET NAMES utf8");
+mysqli_query($db, "SET CHARACTER utf8");
+
 
 /*
-    if ($loggedIn) {
+    if ($user) {
 
         $inactive = 600;
         if (!isset($_SESSION['timeout']))
@@ -46,15 +50,12 @@ $loggedIn = isset($_SESSION['user']);
 
     }
 */
-//Database related code
-$db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
-mysqli_query($db, "SET NAMES utf8");
-mysqli_query($db, "SET CHARACTER utf8");
 
-//User related code
-if(isset($_SESSION['user'])){
+
+/*
+if (isset($_SESSION['user'])) {
     $user = stripslashes($_SESSION['user']);
     $user_q = $db->query("SELECT * from user WHERE username='$user'");
     $user_d = $user_q->fetch_assoc();
 }
-?>
+*/

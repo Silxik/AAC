@@ -1,5 +1,4 @@
 <? include('system/main.php'); ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,30 +12,39 @@
 </head>
 <body>
 <div id="divWrapper">
-    <div id="header"></div>
-
-    <div id="nav"></div>
-
+    <div id="header">
+        <h1>Anime Addicts Continue~!</h1>
+        <img class="logo" src="res/img/AAC_logo.png">
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="#">Anime</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Discussion</a></li>
+            <li><a href="#">Our group</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
     <div id="profile">
-        <? if ($loggedIn) { ?>
-            <b id="welcome">Welcome : <a href="pages/profile.php"><? echo stripslashes($user); ?></a></b>
+        <? if ($user) { ?>
+            <b id="welcome">Welcome : <a href="pages/profile.php"><? echo $user['username']; ?></a></b>
             <span class="icon" style="background-image:url('<? echo $row["profile_image"]; ?>');"></span>
-            <b id="logout"><a href="pages/logout.php">Log Out</a></b>
+            <b id="logout"><a href="logout">Log Out</a></b>
             <form id="iconUpload" action="pages/profileUpload.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="iconUpload" value="Choose image">
                 <input class="button" type="submit" value="Upload Image" name="submit">
             </form>
         <? } else { ?>
-            <form action="pages/login.php" method="post" autocomplete="off">
+            <form autocomplete="off">
                 <label for="username">UserName :</label>
-                <input id="name" name="username" placeholder="username" type="text">
+                <input id="username" name="username" placeholder="username" type="text">
                 <label for="password">Password :</label>
-                <input id="password" name="password" placeholder="**********" type="password">
-                <input class="button" name="submit" type="submit" value=" Login ">
+                <input id="password" name="password" placeholder="password" type="password">
+                <input class="button" onclick="login('<?= BASE_URL ?>')" name="submit" type="button" value="Login">
                 <a class="button" href="register">Register</a>
             </form>
         <? } ?>
-
     </div>
 
     <div id="currentlyOnline">
@@ -48,18 +56,13 @@
     </div>
 
     <div id="main">
-        <h1>Hi <? if ($loggedIn) {
-                echo stripslashes($user) . "!";
-            }; ?></h1>
-
-        <h2>Welcome to Anime Addicts Continue!</h2>
-
-        <p>This site is currently under developement. Please stay in tune for further information!</p>
-        <pre>
-            Kasutaja 1
-            Kasutajanimi: Kurikutsu
-            Parool: Proov
-        </pre>
+        <?
+        $page = 'pages/' . $url[0] . '.php';
+        if (!file_exists($page)) {
+            $page = 'pages/404.php';
+        }
+        include($page);
+        ?>
     </div>
 
 

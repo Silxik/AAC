@@ -1,4 +1,25 @@
-<? include('../system/main.php');
+<? include('main.php');
+
+if (isset($_POST['un'])) {
+	$un = $db->real_escape_string($_POST['un']);
+	$pw = $db->real_escape_string($_POST['pw']);
+	if (empty($un) || empty($pw)) {
+		exit('Username or Password is missing!');
+	} else {
+		$result = $db->query("SELECT * FROM user WHERE password = sha('$pw') AND username = '$un'")->fetch_assoc();
+		if ($result) {
+			$db->query("UPDATE user SET online = '1' WHERE username='$un'");
+			$_SESSION['user'] = $result;
+			exit('Ok');
+		} else {
+			exit('Invalid Username or Password');
+		}
+	}
+}
+
+/*
+$user = isset($_SESSION['user']) ? fetch("SELECT * from user WHERE username='$user'") : 0;
+
 $error='';
 if (isset($_POST['submit'])) {
 	if (empty($_POST['username']) || empty($_POST['password'])) {
@@ -18,4 +39,5 @@ if (isset($_POST['submit'])) {
 		}
 	}
 }
-?>
+
+*/

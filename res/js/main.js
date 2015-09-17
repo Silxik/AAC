@@ -4,25 +4,48 @@
  * Sends an XMLHttpRequest to a url and returns the response
  * to the callback function once it arrives
  * @param {string} u Target url
+ * @param {Object} p Parameters as JSON object
  * @param {function} c Callback function
- * @param {string=} t Response type
+ * @param {string=} t Response type (optional)
  * @return {object} XMLHttpRequest object
  */
-var xhr = function(u, c, t) {
+var xhr = function(u, p, c, t) {
     /**
      * @type {XMLHttpRequest} r XMLHttpRequest object
      */
-    var r = new XMLHttpRequest();
-    r.onreadystatechange = function() {
-        if (r.readyState == 4 && r.status == 200) {
-            c(r.response);
+    var req = new XMLHttpRequest(),
+        par = '';
+    // Generate request body from params
+    for (var key in p) {
+        par += par != '' ? '&' : '';
+        par += key + "=" + encodeURIComponent(p[key]);
+    }
+    req.open('POST', u, true);
+    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    req.setRequestHeader("Content-length", par.length);
+    req.setRequestHeader("Connection", "close");
+    req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+            c(req.response);
         }
     };
-    r.open("GET", u, true);
-    if (t) {r.responseType = t;}
-    r.overrideMimeType('text/plain');
-    r.send();
-    return r;
+    if (t) {req.responseType = t;}
+    req.send(par);
+    return req;
+}
+
+function $(string) {
+    return document.getElementById(string) || document.getElementsByTagName(string);
+}
+
+function login(base) {
+    xhr(base + 'system/login.php', {un: $('username').value, pw: $('password').value}, function(result) {
+        if (result == 'Ok') {
+            window.location = window.location;
+        } else {
+            console.log(result);
+        }
+    });
 }
 
 /*
@@ -48,12 +71,11 @@ var xhr = function(u, c, t) {
 //---------------------------- Initialization --------------------------------
 
 window.onload = function(){
-    var host = "http://"+window.location.hostname;
-    document.getElementById('nav').innerHTML =
-        '<ul><li><a href="index.php">Home</a></li><li><a href="#">Anime</a></li><li><a href="#">Events</a></li><li><a href="#">Discussion</a></li><li><a href="#">Our group</a></li><li><a href="#">Contact</a></li></ul>';
 
-    document.getElementById('header').innerHTML =
-        '<h1>Anime Addicts Continue~!</h1><img class="logo" src="'+host+'/AAC/res/img/AAC_logo.png">';
+    /*
+
+
+
 
     $('#html_editor').keyup(function(){
         document.getElementById("html_text").innerHTML= $('textarea').val();
@@ -88,4 +110,5 @@ window.onload = function(){
     $('#profile').click(function(){
         $('#iconUpload').toggle();
     });
+    */
 }
