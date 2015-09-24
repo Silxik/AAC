@@ -28,10 +28,10 @@
     </div>
     <div id="profile">
         <? if ($user) { ?>
-            <b id="welcome">Welcome : <a href="pages/profile.php"><? echo $user['username']; ?></a></b>
+            <b id="welcome">Welcome : <a href="profile"><? echo $user['username']; ?></a></b>
             <span class="icon" style="background-image:url('<? echo $row["profile_image"]; ?>');"></span>
             <b id="logout"><a href="logout">Log Out</a></b>
-            <form id="iconUpload" action="pages/profileUpload.php" method="post" enctype="multipart/form-data">
+            <form id="iconUpload" action="profileUpload" method="post" enctype="multipart/form-data">
                 <input type="file" name="iconUpload" value="Choose image">
                 <input class="button" type="submit" value="Upload Image" name="submit">
             </form>
