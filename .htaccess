@@ -3,9 +3,8 @@
 
 RewriteEngine On
 
-# Redirect /AAC folder to https
+# Redirect to https
 RewriteCond %{HTTPS} off
-RewriteCond %{REQUEST_URI} AAC
 RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteRule ^(classes) - [F,L]

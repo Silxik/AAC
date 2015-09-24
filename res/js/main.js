@@ -47,6 +47,15 @@ function login(base) {
         }
     });
 }
+function register(base, form) {
+    xhr(base + 'system/register.php', {un: $('regUsername').value, pw: $('regPassword').value, cap: $('captcha').value}, function(result) {
+        if (result == 'Ok') {
+            window.location = window.location;
+        } else {
+            console.log(result);
+        }
+    });
+}
 
 /*
 
