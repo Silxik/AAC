@@ -9,7 +9,7 @@
  * @param {string=} t Response type (optional)
  * @return {object} XMLHttpRequest object
  */
-var xhr = function(u, p, c, t) {
+var xhr = function (u, p, c, t) {
     /**
      * @type {XMLHttpRequest} r XMLHttpRequest object
      */
@@ -24,12 +24,14 @@ var xhr = function(u, p, c, t) {
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     req.setRequestHeader("Content-length", par.length);
     req.setRequestHeader("Connection", "close");
-    req.onreadystatechange = function() {
+    req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             c(req.response);
         }
     };
-    if (t) {req.responseType = t;}
+    if (t) {
+        req.responseType = t;
+    }
     req.send(par);
     return req;
 }
@@ -38,8 +40,8 @@ function $(string) {
     return document.getElementById(string) || document.getElementsByTagName(string);
 }
 
-function login(base) {
-    xhr(base + 'system/login.php', {un: $('username').value, pw: $('password').value}, function(result) {
+function login() {
+    xhr('system/login.php', {un: $('username').value, pw: $('password').value}, function (result) {
         if (result == 'Ok') {
             window.location = window.location;
         } else {
@@ -47,8 +49,12 @@ function login(base) {
         }
     });
 }
-function register(base, form) {
-    xhr(base + 'system/register.php', {un: $('regUsername').value, pw: $('regPassword').value, cap: $('captcha').value}, function(result) {
+function register() {
+    xhr('system/register.php', {
+        un: $('regUsername').value,
+        pw: $('regPassword').value,
+        cap: $('captcha').value
+    }, function (result) {
         if (result == 'Ok') {
             window.location = window.location;
         } else {
@@ -76,48 +82,61 @@ function register(base, form) {
 
  */
 
+//----------------------------Global variables---------------------------
+//var BASE_URL = 'localhost/AAC/';
+
 
 //---------------------------- Initialization --------------------------------
 
-window.onload = function(){
+window.onload = function () {
 
+    $('loginForm').onkeydown = function (e) {
+        if (e.which == 13) {    // Enter key
+            login();
+        }
+    }
+    $('registerForm').onkeydown = function (e) {
+        if (e.which == 13) {    // Enter key
+            register();
+        }
+    }
     /*
 
 
 
 
-    $('#html_editor').keyup(function(){
-        document.getElementById("html_text").innerHTML= $('textarea').val();
-    });
+     $('#html_editor').keyup(function(){
+     document.getElementById("html_text").innerHTML= $('textarea').val();
+     });
 
-// textarea tab override for space
-    $(document).delegate('#html_editor', 'keydown', function(e) {
-        var keyCode = e.keyCode || e.which;
+     // textarea tab override for space
+     $(document).delegate('#html_editor', 'keydown', function(e) {
+     var keyCode = e.keyCode || e.which;
 
-        if (keyCode == 9) {
-            e.preventDefault();
-            var start = $(this).get(0).selectionStart;
-            var end = $(this).get(0).selectionEnd;
+     if (keyCode == 9) {
+     e.preventDefault();
+     var start = $(this).get(0).selectionStart;
+     var end = $(this).get(0).selectionEnd;
 
-            // set textarea value to: text before caret + tab + text after caret
-            $(this).val($(this).val().substring(0, start)
-                + "\t"
-                + $(this).val().substring(end));
+     // set textarea value to: text before caret + tab + text after caret
+     $(this).val($(this).val().substring(0, start)
+     + "\t"
+     + $(this).val().substring(end));
 
-            // put caret at right position again
-            $(this).get(0).selectionStart =
-                $(this).get(0).selectionEnd = start + 1;
-        }
-    });
+     // put caret at right position again
+     $(this).get(0).selectionStart =
+     $(this).get(0).selectionEnd = start + 1;
+     }
+     });
 
-    $('#EditorToggler').click(function(){
-        $('#WebEditor').animate({
-            width: 'toggle'
-        });
-    });
+     $('#EditorToggler').click(function(){
+     $('#WebEditor').animate({
+     width: 'toggle'
+     });
+     });
 
-    $('#profile').click(function(){
-        $('#iconUpload').toggle();
-    });
-    */
+     $('#profile').click(function(){
+     $('#iconUpload').toggle();
+     });
+     */
 }

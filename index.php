@@ -36,12 +36,12 @@
                 <input class="button" type="submit" value="Upload Image" name="submit">
             </form>
         <? } else { ?>
-            <form autocomplete="off">
+            <form id="loginForm" autocomplete="off">
                 <label for="username">UserName :</label>
                 <input id="username" name="username" placeholder="username" type="text">
                 <label for="password">Password :</label>
                 <input id="password" name="password" placeholder="password" type="password">
-                <input class="button" onclick="login('<?= BASE_URL ?>')" name="submit" type="button" value="Login">
+                <input class="button" onclick="login()" name="submit" type="button" value="Login">
                 <a class="button" href="register">Register</a>
             </form>
         <? } ?>
