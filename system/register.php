@@ -18,8 +18,9 @@ if (isset($_POST['un'])) {
     if ($result->num_rows > 0) {
         exit('That username is taken!');
     }
-
-    $result = $db->query("INSERT INTO user (username, password) VALUES ('$un', sha('$pw'))");
+    var_dump($_SERVER['REMOTE_ADDR']);
+    $result = $db->query("INSERT INTO user (username, password, ip_joined, ip_last) VALUES
+                        ('$un', sha('$pw'), '{$_SERVER['REMOTE_ADDR']}', '{$_SERVER['REMOTE_ADDR']}')");
     if ($result) {
         $result = $db->query("SELECT * FROM user WHERE username = '$un'")->fetch_assoc();
         if ($result) {
@@ -30,6 +31,8 @@ if (isset($_POST['un'])) {
             exit('Invalid Username or Password');
         }
     } else {
-        exit('Mysql error: ' . $result);
+        exit('Mysql error: ' . $db->error);
     }
+} else {
+    exit('No data sent');
 }

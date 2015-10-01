@@ -1,6 +1,8 @@
 <?
 include('functions.php');
 
+//var_dump(filemtime('db.sql'));
+
 function set_base_url()
 {
     $s = &$_SERVER;
