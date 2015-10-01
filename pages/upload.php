@@ -1,19 +1,24 @@
 <?
-$target_dir = "/uploads/files";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-if(isset($_POST["submit"])) {
+$target_dir = "uploads/files";
+$target_file = $target_dir . basename($_FILES["post_attachment"]["name"]);
+if(isset($_POST["newPost"])) {
+    $id = $db->real_escape_string($_POST['id']);
+    $text = $db->real_escape_string($_POST['text']);
     // Check file size
-    if($_FILES["fileToUpload"]["size"] > 83886100) {
+    if($_FILES["post_attachment"]["size"] > 83886100) {
         exit("Sorry, your file is too large.");
     }
     elseif (file_exists($target_dir) == false) {
         exit('Directory \''. $target_dir. '\' not found!');
     } else {
-        $text = mysqli_real_escape_string($_POST['text']);
-        $id = mysqli_real_escape_string($_POST['id']);
-        $sql = "INSERT INTO userpost (user_id, text, file_id) VALUES ('$id', '$text', '')";
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            var_dump("The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.");
+        $i = "INSERT INTO userpost (user_id, text) VALUES ('$id', '$text')";
+        $s = "INSERT INTO files (file_name) VALUES ('$target_file')";
+        $u = "UPDATE userpost U, files F SET U.file_id = F.file_id WHERE U.user_id = '$id'";
+        if (move_uploaded_file($_FILES["post_attachment"]["tmp_name"], $target_file)) {
+            $db->query($i);
+            $db->query($s);
+            $db->query($u);
+            var_dump("The file ". basename( $_FILES["post_attachment"]["name"]). " has been uploaded.");
         }
     }
 }

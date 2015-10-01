@@ -238,6 +238,8 @@ input{color:black;}
     display:inline-block;
 }
 
+.postImg{width:100%;max-width:375px;}
+
 .icon{
     width:80px;
     height:80px;
