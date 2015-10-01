@@ -1,4 +1,24 @@
 <?
+$target_dir = "/uploads/files";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+if(isset($_POST["submit"])) {
+    // Check file size
+    if($_FILES["fileToUpload"]["size"] > 83886100) {
+        exit("Sorry, your file is too large.");
+    }
+    elseif (file_exists($target_dir) == false) {
+        exit('Directory \''. $target_dir. '\' not found!');
+    } else {
+        $text = mysqli_real_escape_string($_POST['text']);
+        $id = mysqli_real_escape_string($_POST['id']);
+        $sql = "INSERT INTO userpost (user_id, text, file_id) VALUES ('$id', '$text', '')";
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            var_dump("The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.");
+        }
+    }
+}
+
+/*
 $target_dir = "pildid/upload/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -56,4 +76,5 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
+*/
 ?>
