@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="res/css/style.css">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="res/js/main.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
 </head>
 <body>
 <div id="divWrapper">
@@ -47,13 +49,21 @@
         <? } ?>
     </div>
 
-    <div id="currentlyOnline">
-        <h2>Online:</h2>
+    <!-- Test FIRECHAT -->
+    <div id="chat_container">
+        <h2>Chat</h2>
 
-        <div id="online">
-
+        <div class='chat-toolbar'>
+            <label for="nameInput">Username:</label>
+            <input type='text' id='nameInput' placeholder='enter a username...'>
         </div>
+
+        <ul id='messages' class="chat-messages"></ul>
+
+        <input type='text' id='messageInput'  placeholder='Type a message...'>
+
     </div>
+    <!-- Test FIRECHAT -->
 
     <div id="main">
         <?
@@ -70,5 +80,47 @@
         <p>AAC.com All rights reserved</p>
     </div>
 </div>
+<script>
+    // CREATE A REFERENCE TO FIREBASE
+    var messagesRef = new Firebase('https://kurikutsu.firebaseio.com/');
+
+    // REGISTER DOM ELEMENTS
+    var messageField = $('#messageInput');
+    var nameField = $('#nameInput');
+    var messageList = $('#messages');
+
+    // LISTEN FOR KEYPRESS EVENT
+    messageField.keypress(function (e) {
+        if (e.keyCode == 13) {
+            //FIELD VALUES
+            var username = nameField.val();
+            var message = messageField.val();
+
+            //SAVE DATA TO FIREBASE AND EMPTY FIELD
+            messagesRef.push({name:username, text:message});
+            messageField.val('');
+        }
+    });
+
+    // Add a callback that is triggered for each chat message.
+    messagesRef.limitToLast(10).on('child_added', function (snapshot) {
+        //GET DATA
+        var data = snapshot.val();
+        var username = data.name || "anonymous";
+        var message = data.text;
+
+        //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+        var messageElement = $("<li>");
+        var nameElement = $("<strong class='chat-username'></strong>")
+        nameElement.text(username);
+        messageElement.text(message).prepend(nameElement);
+
+        //ADD MESSAGE
+        messageList.append(messageElement)
+
+        //SCROLL TO BOTTOM OF MESSAGE LIST
+        messageList[0].scrollTop = messageList[0].scrollHeight;
+    });
+</script>
 </body>
 </html>
