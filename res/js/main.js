@@ -37,7 +37,7 @@ var xhr = function (u, p, c, t) {
 }
 
 function _(string) {
-    return document.getElementById(string) || document.getElementsByTagName(string);
+    return document.getElementById(string) || document.getElementsByClassName(string) || document.getElementsByTagName(string);
 }
 
 function login() {
@@ -77,7 +77,19 @@ function delete_post() {
     });
 }
 */
-
+/* Upload avatar image preview for profileEdit */
+document.onready = function(){
+    var preview = document.getElementById("avatar");
+    _("file").onchange = function(e){
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e){
+            image_base64 = e.target.result;
+            preview.src = image_base64;
+        };
+        reader.readAsDataURL(file);
+    };
+};
 /*
 
  http://stackoverflow.com/questions/824349/modify-the-url-without-reloading-the-page

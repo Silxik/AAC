@@ -255,13 +255,7 @@ input{color:black;}
     -webkit-column-count:2;
     -moz-column-count:2;
 }
-.userlink{
-    background:none;
-    border:none;
-    display:inline-block;
-}
-
-.postImg{width:100%;max-width:375px;}
+.postImg{max-width:375px;}
 
 .icon{
     width:80px;
@@ -273,21 +267,6 @@ input{color:black;}
     border:3px inset white;
     border-radius:100%;
     margin-bottom: 20px;
-}
-.small_icon{
-    width:40px;
-    height:40px;
-    display:inline-block;
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
-    border:3px inset white;
-    border-radius:100%;
-    margin-left: 20px;
-}
-
-#iconUpload{
-    display:none;
 }
 
 .warning{

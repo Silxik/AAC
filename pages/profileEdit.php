@@ -8,8 +8,16 @@
 </div>
 
 <div class="content">
-    <form action="profileEdit" method="POST">
+    <form action="profileEdit" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
+
+        <!-- Image preview -->
+        <label for="avatar" class="br">Upload your avatar : </label><input id="file" name="avatar" type="file">
+        <div id="upload-preview">
+            <img id="avatar" />
+        </div>
+        <!-- ############# -->
+
         <label for="location" class="br">Location : </label><input type="text" name="location">
         <label for="gender" class="br">Gender : </label><select name="gender">
             <option value="0">Male</option>
@@ -37,6 +45,7 @@
 
     <?
     if (isset($_POST["update"])) {
+        $username = $user["username"];
         $id = $_POST["id"];
         $l = $db->real_escape_string($_POST["location"]);
         $g = $_POST["gender"];
@@ -46,12 +55,26 @@
         $date = $y . '-' . $m . '-' . $d;
         $bio = $db->real_escape_string($_POST["bio"]);
 
-        $sql = "UPDATE user SET location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = $id";
+        $sql = "UPDATE user SET";
 
-        if ($db->query($sql)) {
-            header('location: profileEdit');
-        } else {
-            echo 'Something went wrong! ' . $db->error;
+        $target_dir = "uploads/avatars/";
+        $target_file = $target_dir . basename($_FILES["avatar"]["tmp_name"]);
+        $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+        if($check === false){
+            exit("File is not an image.");
+        }
+        if($_FILES["avatar"]["size"] > 200000){
+            exit("Image is too large!");
+        }
+        $temp = explode(".",$_FILES["avatar"]["name"]);
+        $file_path = $target_dir . $username . "_avatar" . '.' . end($temp);
+        if(move_uploaded_file($_FILES["avatar"]["tmp_name"],$file_path)){
+            $sql = "UPDATE user SET profile_image = '$file_path', location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
+            if ($db->query($sql)) {
+                echo "Files saved";
+            } else {
+                echo 'Something went wrong! ' . $db->error;
+            }
         }
     }
     ?>

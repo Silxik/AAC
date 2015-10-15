@@ -4,7 +4,6 @@ include('system/main.php');
 $target_dir = "pildid/";
 $target_file = $target_dir . basename($_FILES["iconUpload"]["tmp_name"]);
 $uploadOk =1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 if(isset($_POST["submit"])){
 	$check = getimagesize($_FILES["iconUpload"]["tmp_name"]);

@@ -7,7 +7,6 @@
     <title>Anime Addicts Continue</title>
     <link rel="shortcut icon" type="image/x-icon" href="res/img/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="res/css/style.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="res/js/main.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
@@ -31,12 +30,8 @@
     <div id="profile">
         <? if ($user) { ?>
             <b id="welcome">Welcome : <a href="profile"><? echo $user['username']; ?></a></b>
-            <span class="icon" style="background-image:url('<? echo $row["profile_image"]; ?>');"></span>
+            <span class="icon" style="background-image: url('<?= $user['profile_image']; ?>')"></span>
             <b id="logout"><a href="logout">Log Out</a></b>
-            <form id="iconUpload" action="profileUpload" method="post" enctype="multipart/form-data">
-                <input type="file" name="iconUpload" value="Choose image">
-                <input class="button" type="submit" value="Upload Image" name="submit">
-            </form>
         <? } else { ?>
             <form id="loginForm" autocomplete="off">
                 <label for="username">UserName :</label>
