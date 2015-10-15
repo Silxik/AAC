@@ -49,7 +49,7 @@
         <? } ?>
     </div>
 
-    <!-- Test FIRECHAT -->
+    <!-- FIRECHAT -->
     <div id="chat_container">
         <h2>Chat</h2>
 
@@ -63,7 +63,6 @@
         <input type='text' id='messageInput'  placeholder='Type a message...'>
 
     </div>
-    <!-- Test FIRECHAT -->
 
     <div id="main">
         <?

@@ -36,12 +36,13 @@ var xhr = function (u, p, c, t) {
     return req;
 }
 
-function $(string) {
+function _(string) {
     return document.getElementById(string) || document.getElementsByTagName(string);
 }
 
 function login() {
-    xhr('system/login.php', {un: $('username').value, pw: $('password').value}, function (result) {
+    console.log(_('username'));
+    xhr('system/login.php', {un: _('username').value, pw: _('password').value}, function (result) {
         if (result == 'Ok') {
             window.location = window.location;
         } else {
@@ -51,9 +52,9 @@ function login() {
 }
 function register() {
     xhr('system/register.php', {
-        un: $('regUsername').value,
-        pw: $('regPassword').value,
-        cap: $('captcha').value
+        un: _('regUsername').value,
+        pw: _('regPassword').value,
+        cap: _('captcha').value
     }, function (result) {
         if (result == 'Ok') {
             window.location = window.location;
@@ -62,6 +63,20 @@ function register() {
         }
     });
 }
+/*
+function delete_post() {
+    xhr('pages/profile.php', {
+        u_id: _('userId').value,
+        p_id: _('postId').value
+    }, function(result) {
+        if (result == 'Ok'){
+            window.location = window.location;
+        } else {
+            console.log(result);
+        }
+    });
+}
+*/
 
 /*
 
@@ -90,12 +105,12 @@ function register() {
 
 window.onload = function () {
 
-    $('loginForm').onkeydown = function (e) {
+    _('loginForm').onkeydown = function (e) {
         if (e.which == 13) {    // Enter key
             login();
         }
     }
-    $('registerForm').onkeydown = function (e) {
+    _('registerForm').onkeydown = function (e) {
         if (e.which == 13) {    // Enter key
             register();
         }

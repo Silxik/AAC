@@ -8,7 +8,7 @@
 <form autocomplete="off" id="registerForm">
     <label for="username">Choose username: </label>
     <input id="regUsername" name="username" maxlength="20" placeholder="Username" type="text"><br/>
-    <label for="password">Choose password: </label>
+    <label for="regPassword">Choose password: </label>
     <input id="regPassword" name="password" placeholder="Password" type="password"><br/>
     <label for="captcha">Code below: </label>
     <input id="captcha" name="captcha" maxlength="4" placeholder="Code" type="text"><br/>

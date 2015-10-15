@@ -1,5 +1,5 @@
 <?
-$target_dir = "uploads/files";
+$target_dir = "uploads/files/";
 $target_file = $target_dir . basename($_FILES["post_attachment"]["name"]);
 if(isset($_POST["newPost"])) {
     $id = $db->real_escape_string($_POST['id']);
@@ -15,10 +15,11 @@ if(isset($_POST["newPost"])) {
         $s = "INSERT INTO files (file_name) VALUES ('$target_file')";
         $u = "UPDATE userpost U, files F SET U.file_id = F.file_id WHERE U.user_id = '$id'";
         if (move_uploaded_file($_FILES["post_attachment"]["tmp_name"], $target_file)) {
-            $db->query($i);
             $db->query($s);
+            $db->query($i);
             $db->query($u);
-            var_dump("The file ". basename( $_FILES["post_attachment"]["name"]). " has been uploaded.");
+            var_dump("The file ". basename( $_FILES["post_attachment"]["name"]). " has been uploaded. Page refresh in 3 seconds.");
+            header( "refresh:3;url=profile" );
         }
     }
 }

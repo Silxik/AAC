@@ -30,10 +30,16 @@ if (isset($_SERVER['PATH_INFO'])) {
 session_start();
 $user = &$_SESSION['user'];
 
+//userpost
+$u_id = $user['user_id'];
+
 //Database related code
 $db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
+
+// Userpost related code
+$u_post = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id")->fetch_assoc();
 
 
 /*
