@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <base href="<?= BASE_URL ?>">
     <title>Anime Addicts Continue</title>
@@ -12,10 +13,9 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
 </head>
 <body>
-<div id="divWrapper">
     <div id="header">
-        <h1>Anime Addicts Continue~!</h1>
-        <img class="logo" src="res/img/AAC_logo.png">
+        <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
+        <h1>Anime Addicts<br>Continue~!</h1>
     </div>
     <div id="nav">
         <ul>
@@ -27,53 +27,53 @@
             <li><a href="#">Contact</a></li>
         </ul>
     </div>
-    <div id="profile">
-        <? if ($user) { ?>
-            <b id="welcome">Welcome : <a href="profile"><? echo $user['username']; ?></a></b>
-            <span class="icon" style="background-image: url('<?= $user['profile_image']; ?>')"></span>
-            <b id="logout"><a href="logout">Log Out</a></b>
-        <? } else { ?>
-            <form id="loginForm" autocomplete="off">
-                <label for="username">UserName :</label>
-                <input id="username" name="username" placeholder="username" type="text">
-                <label for="password">Password :</label>
-                <input id="password" name="password" placeholder="password" type="password">
-                <input class="button" onclick="login()" name="submit" type="button" value="Login">
-                <a class="button" href="register">Register</a>
-            </form>
-        <? } ?>
-    </div>
 
-    <!-- FIRECHAT -->
-    <div id="chat_container">
-        <h2>Chat</h2>
-
-        <div class='chat-toolbar'>
-            <label for="nameInput">Username:</label>
-            <input type='text' id='nameInput' placeholder='enter a username...'>
+    <div id="divWrapper">
+        <div id="main">
+            <?
+            $page = 'pages/' . $url[0] . '.php';
+            if (!file_exists($page)) {
+                $page = 'pages/404.php';
+            }
+            include($page);
+            ?>
         </div>
 
-        <ul id='messages' class="chat-messages"></ul>
+        <div id="profile">
+            <? if ($user) { ?>
+                <b id="welcome">Welcome : <a href="profile"><? echo $user['username']; ?></a></b>
+                <span class="icon" style="background-image: url('<?= $user['profile_image']; ?>')"></span>
+                <b id="logout"><a href="logout">Log Out</a></b>
+            <? } else { ?>
+                <form id="loginForm" autocomplete="off">
+                    <label for="username">UserName :</label>
+                    <input id="username" name="username" placeholder="username" type="text">
+                    <label for="password">Password :</label>
+                    <input id="password" name="password" placeholder="password" type="password">
+                    <input class="button" onclick="login()" name="submit" type="button" value="Login">
+                    <a class="button" href="register">Register</a>
+                </form>
+            <? } ?>
+        </div>
 
-        <input type='text' id='messageInput'  placeholder='Type a message...'>
+        <!-- FIRECHAT -->
+        <div id="chat_container">
+            <h2>Chat</h2>
+            <div class='chat-toolbar'>
+                <label for="nameInput">Username:</label>
+                <input type='text' id='nameInput' placeholder='enter a username...'>
+            </div>
+            <ul id='messages' class="chat-messages"></ul>
+            <input type='text' id='messageInput'  placeholder='Type a message...'>
+        </div>
 
+        <div class="clearfix"></div>
     </div>
-
-    <div id="main">
-        <?
-        $page = 'pages/' . $url[0] . '.php';
-        if (!file_exists($page)) {
-            $page = 'pages/404.php';
-        }
-        include($page);
-        ?>
-    </div>
-
 
     <div id="footer">
         <p>AAC.com All rights reserved</p>
     </div>
-</div>
+
 <script>
     // CREATE A REFERENCE TO FIREBASE
     var messagesRef = new Firebase('https://kurikutsu.firebaseio.com/');

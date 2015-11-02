@@ -1,6 +1,6 @@
 <h1>Hi <? if ($user) {
-    echo stripslashes($user['username']) . "!";
-}; ?></h1>
+    echo stripslashes($user['username']);
+}; ?>!</h1>
 
     <h2>Welcome to Anime Addicts Continue!</h2>
 

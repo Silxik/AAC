@@ -1,8 +1,11 @@
     <div class="profile_nav">
-        <ul>
+        <ul class="left">
             <li><a>Timeline</a></li><span class="nav_line"></span>
             <li><a>About</a></li><span class="nav_line"></span>
             <li><a>Photos</a></li>
+        </ul>
+        <ul class="right">
+            <li><a href="profileEdit">Profile edit</a></li>
         </ul>
     </div>
 
