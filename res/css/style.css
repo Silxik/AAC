@@ -8,7 +8,7 @@ body {
     background-image: url(../img/bg_1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position:top center;
     background-attachment: scroll;
     background-attachment: fixed;
 }
@@ -224,9 +224,11 @@ body {
 }
 
 #footer{
-    padding:10px 20px;
+    width:100%;
     background-color:rgba(0,0,0,0.7);
-    clear:both;
+    position:absolute;
+    bottom:0px;
 }
+#footer p{margin:10px 20px;}
 
 .clearfix{clear:both;}
