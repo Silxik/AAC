@@ -11,6 +11,7 @@ body {
     background-position:top center;
     background-attachment: scroll;
     background-attachment: fixed;
+    margin: 0 0 40px;
 }
 #divWrapper{max-width:1050px;background:rgba(0,0,0,0.7);}
 
@@ -56,12 +57,6 @@ body {
     color:orange;
 }
 
-#main{
-    display: inline-block;
-    padding:20px;
-    max-width:810px;
-}
-
 #main textarea{
     max-width:400px;
     width:100%;
@@ -71,8 +66,9 @@ body {
     border-top-right-radius:16px;
     border-bottom-left-radius:16px;
 }
+#main input{color:black;}
 
-.button{
+#main .button, .button{
     text-decoration:none;
     color:white;
     background:rgba(0,0,0,0.4);
@@ -84,6 +80,7 @@ body {
 }
 #username, #password, #chat_container input{color:black;}
 
+/****** Login ******/
 #profile{
     display: inline-block;
     width: 200px;
@@ -131,6 +128,7 @@ body {
     color:#000000;
 }
 
+/****** FireChat ******/
 #chat_container{
     display: inline-block;
     width: 200px;
@@ -180,6 +178,25 @@ body {
 .profile_content{
     display:none;
 }
+
+/****** Discussion ******/
+.discussion{display:block;border-top:2px inset silver;border-bottom:2px inset silver;clear:both;padding:0px 20px;background:rgba(0,0,0,0.7);height:100px;}
+.discussion .disc_name{
+    display:inline-block;
+    padding:20px;
+}.disc_name h2{font-size:27px;}
+
+.discussion .disc_img{
+    display:inline-block;
+    height:100px;
+    width:120px;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    float:right;
+}
+
+/****** Profile ******/
 #main .profile_content:nth-child(2){
     display:block;
 }
@@ -187,7 +204,16 @@ body {
     white-space: pre-line;
     word-break: break-all;
 }
-#avatar{max-width:450px;width:100%;}
+#main .post{
+    border:1px inset grey;
+    border-left:none;
+    background:rgba(0,0,0,0.7);
+}
+
+#avatar, #disc_img{
+    max-width:450px;
+    width:100%;
+}
 
 .user{
     column-count:2;
@@ -226,8 +252,11 @@ body {
 #footer{
     width:100%;
     background-color:rgba(0,0,0,0.7);
-    position:absolute;
-    bottom:0px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow:hidden;
+    border-top:2px inset silver;
 }
 #footer p{margin:10px 20px;}
 

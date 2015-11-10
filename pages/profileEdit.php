@@ -10,14 +10,10 @@
 <div class="content">
     <form action="profileEdit" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
-
-        <!-- Image preview -->
         <label for="avatar" class="br">Upload your avatar : </label><input id="file" name="avatar" type="file">
         <div id="upload-preview">
             <img id="avatar" />
         </div>
-        <!-- ############# -->
-
         <label for="location" class="br">Location : </label><input type="text" name="location">
         <label for="gender" class="br">Gender : </label><select name="gender">
             <option value="0">Male</option>

@@ -89,6 +89,19 @@ document.onready = function(){
         };
         reader.readAsDataURL(file);
     };
+
+
+
+    var preview = document.getElementById("disc_img");
+    _("disc_img_file").onchange = function(e){
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e){
+            image_base64 = e.target.result;
+            preview.src = image_base64;
+        };
+        reader.readAsDataURL(file);
+    };
 };
 /*
 

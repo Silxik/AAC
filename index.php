@@ -21,24 +21,14 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="#">Anime</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Discussion</a></li>
-            <li><a href="#">Our group</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="events">Events</a></li>
+            <li><a href="discussion">Discussion</a></li>
+            <li><a href="about">About us</a></li>
+            <li><a href="contact">Contact</a></li>
         </ul>
     </div>
 
     <div id="divWrapper">
-        <div id="main">
-            <?
-            $page = 'pages/' . $url[0] . '.php';
-            if (!file_exists($page)) {
-                $page = 'pages/404.php';
-            }
-            include($page);
-            ?>
-        </div>
-
         <div id="profile">
             <? if ($user) { ?>
                 <b id="welcome">Welcome : <a href="profile"><? echo $user['username']; ?></a></b>
@@ -65,6 +55,16 @@
             </div>
             <ul id='messages' class="chat-messages"></ul>
             <input type='text' id='messageInput'  placeholder='Type a message...'>
+        </div>
+
+        <div id="main">
+            <?
+            $page = 'pages/' . $url[0] . '.php';
+            if (!file_exists($page)) {
+                $page = 'pages/404.php';
+            }
+            include($page);
+            ?>
         </div>
 
         <div class="clearfix"></div>
