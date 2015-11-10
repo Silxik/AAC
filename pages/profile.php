@@ -21,7 +21,11 @@
         $u_id = $user['user_id'];
         $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id WHERE U.user_id = $u_id");
         while ($r = $q->fetch_assoc()) {
-            echo '<div class="post"><small>' . $r["post_date"] . '</small><pre>' . $r["text"] . '</pre><img class="postImg br" src="' . $r['file_name'] . '"></div>';
+            echo '<div class="post"><small>' . $r["post_date"] . '</small><pre>' . $r["text"] . '</pre>';
+            if($r['file_name'] !== ''){
+                echo '<img class="postImg br" src="' . $r['file_name'] . '">';
+            }
+            echo '</div>';
             if($user){ ?>
                 <div class="del_post">
                     <form method="post" action="profile">

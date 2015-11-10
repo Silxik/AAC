@@ -12,9 +12,11 @@ if(isset($_POST["newPost"])) {
         $target_file = $target_dir . basename($_FILES["post_attachment"]["name"]);
         // Check file size
         if($_FILES["post_attachment"]["size"] > 83886100) {
+            echo "Sorry, your file is too large.";
             exit("Sorry, your file is too large.");
         }
         elseif (file_exists($target_dir) == false) {
+            echo "Directory \''. $target_dir. '\' not found!";
             exit('Directory \''. $target_dir. '\' not found!');
         } else {
             if (move_uploaded_file($_FILES["post_attachment"]["tmp_name"], $target_file)) {

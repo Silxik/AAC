@@ -146,7 +146,7 @@ body {
 .profile_nav{
     padding:5px 10px;
     margin:0px 0px 10px 0px;
-    display:block;
+    display:-webkit-box;
     list-style: none;
     background:rgba(0,0,0,0.7);
 }
@@ -180,6 +180,7 @@ body {
 }
 
 /****** Discussion ******/
+.new_disc, .profile_content{margin-left:20px;}
 .discussion{display:block;border-top:2px inset silver;border-bottom:2px inset silver;clear:both;padding:0px 20px;background:rgba(0,0,0,0.7);height:100px;}
 .discussion .disc_name{
     display:inline-block;
@@ -193,7 +194,7 @@ body {
     background-position:center center;
     background-repeat:no-repeat;
     background-size:cover;
-    float:right;
+    float:left;
 }
 
 /****** Profile ******/
@@ -208,6 +209,7 @@ body {
     border:1px inset grey;
     border-left:none;
     background:rgba(0,0,0,0.7);
+    clear:both;
 }
 
 #avatar, #disc_img{

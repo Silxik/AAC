@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Okt 26, 2015 kell 12:21 PL
+-- Loomise aeg: Nov 10, 2015 kell 09:46 PL
 -- Serveri versioon: 5.6.24
 -- PHP versioon: 5.5.24
 
@@ -14,6 +14,24 @@ SET time_zone = "+00:00";
 --
 -- Andmebaas: `aac`
 --
+CREATE DATABASE IF NOT EXISTS `aac` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `aac`;
+
+-- --------------------------------------------------------
+
+--
+-- Tabeli struktuur tabelile `discussion`
+--
+
+DROP TABLE IF EXISTS `discussion`;
+CREATE TABLE IF NOT EXISTS `discussion` (
+  `discussion_id` int(10) unsigned NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `text` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -25,7 +43,7 @@ DROP TABLE IF EXISTS `files`;
 CREATE TABLE IF NOT EXISTS `files` (
   `file_id` int(64) unsigned NOT NULL,
   `file_name` varchar(200) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -50,13 +68,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ip_last` varchar(64) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Andmete tõmmistamine tabelile `user`
---
-
-INSERT INTO `user` (`user_id`, `username`, `password`, `profile_image`, `email`, `birthday`, `bio`, `online`, `location`, `date_joined`, `gender`, `ip_joined`, `ip_last`) VALUES
-  (1, 'Kurikutsu', 'd7e3d7cdb2f4cdb48b5df9ec26f2a08644cde461', 'uploads/avatars/Kurikutsu_avatar.jpg', '', '1994-05-12', 'I am Sexy~!', 1, 'Estonia', '0000-00-00 00:00:00', 0, '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -70,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `userpost` (
   `text` text CHARACTER SET utf8 NOT NULL,
   `file_id` int(64) unsigned NOT NULL,
   `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -84,15 +95,14 @@ CREATE TABLE IF NOT EXISTS `version` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Andmete tõmmistamine tabelile `version`
---
-
-INSERT INTO `version` (`version_nr`) VALUES
-  ('1');
-
---
 -- Indeksid tõmmistatud tabelitele
 --
+
+--
+-- Indeksid tabelile `discussion`
+--
+ALTER TABLE `discussion`
+ADD PRIMARY KEY (`discussion_id`);
 
 --
 -- Indeksid tabelile `files`
@@ -117,10 +127,15 @@ ADD PRIMARY KEY (`post_id`);
 --
 
 --
+-- AUTO_INCREMENT tabelile `discussion`
+--
+ALTER TABLE `discussion`
+MODIFY `discussion_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT tabelile `files`
 --
 ALTER TABLE `files`
-MODIFY `file_id` int(64) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `file_id` int(64) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT tabelile `user`
 --
@@ -130,4 +145,4 @@ MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT tabelile `userpost`
 --
 ALTER TABLE `userpost`
-MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
+MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;SET FOREIGN_KEY_CHECKS=1;
