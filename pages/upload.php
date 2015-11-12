@@ -11,7 +11,7 @@ if(isset($_POST["newPost"])) {
     else{
         $target_file = $target_dir . basename($_FILES["post_attachment"]["name"]);
         // Check file size
-        if($_FILES["post_attachment"]["size"] > 83886100) {
+        if($_FILES["post_attachment"]["size"] > 838861000) {
             echo "Sorry, your file is too large.";
             exit("Sorry, your file is too large.");
         }
@@ -58,6 +58,40 @@ if(isset($_POST['disc_submit'])){
             }else{
                 exit('Something went wrong: '. $db->error);
             }
+        }
+    }
+}
+
+if (isset($_POST["update"])) {
+    $username = $user["username"];
+    $id = $_POST["id"];
+    $l = $db->real_escape_string($_POST["location"]);
+    $g = $_POST["gender"];
+    $d = $_POST["day"];
+    $m = $_POST["month"];
+    $y = $_POST["year"];
+    $date = $y . '-' . $m . '-' . $d;
+    $bio = $db->real_escape_string($_POST["bio"]);
+
+    $sql = "UPDATE user SET";
+
+    $target_dir = "uploads/avatars/";
+    $target_file = $target_dir . basename($_FILES["avatar"]["tmp_name"]);
+    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+    if($check === false){
+        exit("File is not an image.");
+    }
+    if($_FILES["avatar"]["size"] > 200000){
+        exit("Image is too large!");
+    }
+    $temp = explode(".",$_FILES["avatar"]["name"]);
+    $file_path = $target_dir . $username . "_avatar" . '.' . end($temp);
+    if(move_uploaded_file($_FILES["avatar"]["tmp_name"],$file_path)){
+        $sql = "UPDATE user SET profile_image = '$file_path', location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
+        if ($db->query($sql)) {
+            echo "Files saved";
+        } else {
+            echo 'Something went wrong! ' . $db->error;
         }
     }
 }

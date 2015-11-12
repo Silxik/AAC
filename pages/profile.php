@@ -1,12 +1,16 @@
     <div class="profile_nav">
-        <ul class="left">
-            <li><a>Timeline</a></li><span class="nav_line"></span>
-            <li><a>About</a></li><span class="nav_line"></span>
-            <li><a>Photos</a></li>
-        </ul>
-        <ul class="right">
-            <li><a href="profileEdit">Profile edit</a></li>
-        </ul>
+        <div class="menu_left">
+            <ul>
+                <li><a>Timeline</a></li><span class="nav_line"></span>
+                <li><a>About</a></li><span class="nav_line"></span>
+                <li><a>Photos</a></li>
+            </ul>
+        </div>
+        <div class="menu_right">
+            <ul>
+                <li><a href="profileEdit">Edit profile</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="profile_content">
@@ -19,9 +23,9 @@
 
         <?
         $u_id = $user['user_id'];
-        $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id WHERE U.user_id = $u_id");
+        $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id WHERE U.user_id = $u_id");
         while ($r = $q->fetch_assoc()) {
-            echo '<div class="post"><small>' . $r["post_date"] . '</small><pre>' . $r["text"] . '</pre>';
+            echo '<div class="post"><span class="icon small" style="background-image:url('. $r["profile_image"] .');"></span><p class="post_username">'. $r["username"] .'</p><small class="post_date">' . $r["post_date"] . '</small><pre>' . $r["text"] . '</pre>';
             if($r['file_name'] !== ''){
                 echo '<img class="postImg br" src="' . $r['file_name'] . '">';
             }

@@ -128,6 +128,9 @@ body {
     color:#000000;
 }
 
+/****** Contact ******/
+.contact input, .new_disc input, .content input, .content select{padding:5px;}
+
 /****** FireChat ******/
 #chat_container{
     display: inline-block;
@@ -145,12 +148,16 @@ body {
 
 .profile_nav{
     padding:5px 10px;
-    margin:0px 0px 10px 0px;
-    display:-webkit-box;
-    list-style: none;
+    margin:0px 240px 10px 0px;
+    display:block;
     background:rgba(0,0,0,0.7);
+    position:relative;
+    border-bottom:2px inset silver;
 }
-.profile_nav ul{display:inline-block;}
+.menu_left, .menu_right{display:inline-block;}
+.menu_right{float:right;position:absolute;right:0px;padding:3px 20px;}
+
+.profile_nav ul{list-style:none;}
 
 .profile_nav li{
     display:inline-block;
@@ -180,7 +187,7 @@ body {
 }
 
 /****** Discussion ******/
-.new_disc, .profile_content{margin-left:20px;}
+.new_disc, .profile_content, .prof, .index, .contact{margin-left:20px;}
 .discussion{display:block;border-top:2px inset silver;border-bottom:2px inset silver;clear:both;padding:0px 20px;background:rgba(0,0,0,0.7);height:100px;}
 .discussion .disc_name{
     display:inline-block;
@@ -206,10 +213,21 @@ body {
     word-break: break-all;
 }
 #main .post{
-    border:1px inset grey;
-    border-left:none;
+    border:2px inset grey;
+    display:inline-block;
+    max-width:400px;
+    width:100%;
     background:rgba(0,0,0,0.7);
     clear:both;
+    padding:5px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.post_username{display:inline-block;margin-bottom:5px;position:relative;bottom:25px;font-style:italic;font-size:19px;}
+.post_date{
+    float:right;
+    display:inline-block;
+    padding:2px;
 }
 
 #avatar, #disc_img{
@@ -234,6 +252,11 @@ body {
     border:3px inset white;
     border-radius:100%;
     margin-bottom: 20px;
+}
+.small{
+    width:30px !important;
+    height:30px !important;
+    margin: 0px 5px 5px 0px !important;
 }
 
 .warning{
