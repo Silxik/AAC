@@ -1,7 +1,8 @@
 <?
 include('functions.php');
 
-//var_dump(filemtime('db.sql'));
+error_reporting(E_ALL);
+date_default_timezone_set('Europe/Tallinn');
 
 function set_base_url()
 {
@@ -33,13 +34,14 @@ $user = &$_SESSION['user'];
 //userpost
 $u_id = $user['user_id'];
 
-//Database related code
+// Database related code
 $db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
 
 // Userpost related code
-$u_post = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id")->fetch_assoc();
+$u_post = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id");
+if ($u_post) $u_post->fetch_assoc();
 
 
 /*

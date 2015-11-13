@@ -5,8 +5,9 @@ if (isset($_POST['un'])) {
     if (empty($un) || empty($pw)) {
         exit('Username or Password is missing!');
     } else {
-        $result = $db->query("SELECT * FROM user WHERE password = sha('$pw') AND username = '$un'")->fetch_assoc();
+        $result = $db->query("SELECT * FROM user WHERE password = sha('$pw') AND username = '$un'");
         if ($result) {
+            $result = $result->fetch_assoc();
             $db->query("UPDATE user SET online = '1' WHERE username='$un'");
             $_SESSION['user'] = $result;
             foreach ($result as $i => &$v) {

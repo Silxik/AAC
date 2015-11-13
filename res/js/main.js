@@ -50,6 +50,7 @@ function login() {
         }
     });
 }
+
 function register() {
     xhr('system/register.php', {
         un: _('regUsername').value,
@@ -57,7 +58,7 @@ function register() {
         cap: _('captcha').value
     }, function (result) {
         if (result == 'Ok') {
-            window.location = window.location;
+            window.location = window.location.href.split('register')[0];
         } else {
             console.log(result);
         }

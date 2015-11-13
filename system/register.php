@@ -18,7 +18,6 @@ if (isset($_POST['un'])) {
     if ($result->num_rows > 0) {
         exit('That username is taken!');
     }
-    var_dump($_SERVER['REMOTE_ADDR']);
     $result = $db->query("INSERT INTO user (username, password, ip_joined, ip_last) VALUES
                         ('$un', sha('$pw'), '{$_SERVER['REMOTE_ADDR']}', '{$_SERVER['REMOTE_ADDR']}')");
     if ($result) {
