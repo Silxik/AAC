@@ -31,8 +31,8 @@
     <div id="divWrapper">
         <div id="profile">
             <? if ($user) { ?>
-                <b id="welcome">Welcome : <a href="profile"><? echo $user['username']; ?></a></b>
-                <span class="icon" style="background-image: url('<?= $user['profile_image']; ?>')"></span>
+                <b id="welcome">Welcome : <a href="profile"><?= $user['username']; ?></a></b>
+                <span class="icon" style="background-image: url('<?= $user["profile_image"]; ?>')"></span>
                 <b id="logout"><a href="logout">Log Out</a></b>
             <? } else { ?>
                 <form id="loginForm" autocomplete="off">

@@ -9,11 +9,11 @@
     </div>
 
     <div class="content">
-        <form action="profileEdit" method="POST" enctype="multipart/form-data">
+        <form action="upload" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
             <label for="avatar" class="br">Upload your avatar : </label><input id="file" name="avatar" type="file">
-            <div id="upload-preview">
-                <img id="avatar" />
+            <div id="preview_container">
+                <img id="prev" />
             </div>
             <label for="location" class="br">Location : </label><input type="text" name="location" placeholder="State/City">
             <label for="gender" class="br">Gender : </label><select name="gender">

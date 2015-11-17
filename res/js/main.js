@@ -64,37 +64,11 @@ function register() {
         }
     });
 }
-/*
-function delete_post() {
-    xhr('pages/profile.php', {
-        u_id: _('userId').value,
-        p_id: _('postId').value
-    }, function(result) {
-        if (result == 'Ok'){
-            window.location = window.location;
-        } else {
-            console.log(result);
-        }
-    });
-}
-*/
+
 /* Upload avatar image preview for profileEdit */
 document.onready = function(){
-    var preview = document.getElementById("avatar");
+    var preview = document.getElementById("prev");
     _("file").onchange = function(e){
-        var file = this.files[0];
-        var reader = new FileReader();
-        reader.onload = function(e){
-            image_base64 = e.target.result;
-            preview.src = image_base64;
-        };
-        reader.readAsDataURL(file);
-    };
-
-
-
-    var preview = document.getElementById("disc_img");
-    _("disc_img_file").onchange = function(e){
         var file = this.files[0];
         var reader = new FileReader();
         reader.onload = function(e){

@@ -73,23 +73,24 @@ if (isset($_POST["update"])) {
     $date = $y . '-' . $m . '-' . $d;
     $bio = $db->real_escape_string($_POST["bio"]);
 
-    $sql = "UPDATE user SET";
-
     $target_dir = "uploads/avatars/";
     $target_file = $target_dir . basename($_FILES["avatar"]["tmp_name"]);
     $check = getimagesize($_FILES["avatar"]["tmp_name"]);
     if($check === false){
         exit("File is not an image.");
     }
-    if($_FILES["avatar"]["size"] > 200000){
+    if($_FILES["avatar"]["size"] > 2000000){
         exit("Image is too large!");
     }
     $temp = explode(".",$_FILES["avatar"]["name"]);
     $file_path = $target_dir . $username . "_avatar" . '.' . end($temp);
+    foreach(glob($target_dir . $username .'_avatar.*') as $image){
+        unlink($image);
+    }
     if(move_uploaded_file($_FILES["avatar"]["tmp_name"],$file_path)){
         $sql = "UPDATE user SET profile_image = '$file_path', location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
         if ($db->query($sql)) {
-            echo "Files saved";
+            header('location: profileEdit');
         } else {
             echo 'Something went wrong! ' . $db->error;
         }
