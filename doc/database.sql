@@ -14,8 +14,7 @@ SET time_zone = "+00:00";
 --
 -- Andmebaas: `aac`
 --
-CREATE DATABASE IF NOT EXISTS `aac` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `aac`;
+
 
 -- --------------------------------------------------------
 
