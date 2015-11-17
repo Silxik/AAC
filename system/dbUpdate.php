@@ -1,6 +1,6 @@
 <?
-// Database auto-update when db.sql file has been changed
-$dbFile = 'system/db.sql';
+// Database auto-update when database.sql file has been changed
+$dbFile = 'system/database.sql';
 $last_mod = new DateTime($db->query("SELECT * FROM version")->fetch_assoc()['last_mod']);
 $last_mod = $last_mod->getTimestamp();
 //var_dump($last_mod);

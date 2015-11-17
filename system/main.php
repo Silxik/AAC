@@ -35,7 +35,8 @@ $user = &$_SESSION['user'];
 $u_id = $user['user_id'];
 
 // Database related code
-$db = new mysqli("localhost", "root", "", "aac") or die(mysqli_connect_error());
+require 'config.php';
+$db = new mysqli(DATABASE_HOSTNAME, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_DATABASE) or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
 
