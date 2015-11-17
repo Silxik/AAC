@@ -1,3 +1,4 @@
 uploads/*
-.idea
+.idea/*
 system/PHP_errors.log
+/config.php
