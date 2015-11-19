@@ -78,6 +78,7 @@ document.onready = function(){
         reader.readAsDataURL(file);
     };
 };
+
 /*
 
  http://stackoverflow.com/questions/824349/modify-the-url-without-reloading-the-page
@@ -116,10 +117,6 @@ window.onload = function () {
         }
     }
     /*
-
-
-
-
      $('#html_editor').keyup(function(){
      document.getElementById("html_text").innerHTML= $('textarea').val();
      });

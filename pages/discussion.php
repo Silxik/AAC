@@ -17,6 +17,13 @@ while($disc_res = $disc_q->fetch_assoc()){
     if($disc_res['file_name'] !== ''){
         echo '<span class="disc_img" style="background-image:url('. '\'' . $disc_res["file_name"]. '\'' .')"></span>';
     }
-    echo '<div class="disc_name"><h2 class="disc_title">'. $disc_res["title"].'</h2><p>'. $disc_res["text"] .'</p><p>'. $disc_res["date"] .'</p></div></div>';
+    echo '<div class="disc_name"><h2 class="disc_title">' . $disc_res["title"] . '</h2><p>' . $disc_res["date"] . '</p></div><pre class="disc_text">' . $disc_res["text"] . '</pre></div>';
 }
 ?>
+
+<script>
+    $('.disc_title').click(function () {
+        $('.disc_text').css('display', 'none');
+        $('.disc_text').eq($(this).parent().parent().index() - 1).fadeIn();
+    });
+</script>

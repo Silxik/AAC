@@ -1,23 +1,21 @@
 <?
-if(isset($_POST["newPost"])) {
+if (isset($_POST["newPost"])) {
     $target_dir = "uploads/files/";
     $user_id = $user['user_id'];
     $id = $db->real_escape_string($_POST['id']);
     $text = $db->real_escape_string($_POST['text']);
-    if(basename($_FILES["post_attachment"]["name"]) == ''){
+    if (basename($_FILES["post_attachment"]["name"]) == '') {
         $db->query("INSERT INTO userpost (user_id, text) VALUES ('$user_id', $text)");
         header("location: profile");
-    }
-    else{
+    } else {
         $target_file = $target_dir . basename($_FILES["post_attachment"]["name"]);
         // Check file size
-        if($_FILES["post_attachment"]["size"] > 838861000) {
+        if ($_FILES["post_attachment"]["size"] > 838861000) {
             echo "Sorry, your file is too large.";
             exit("Sorry, your file is too large.");
-        }
-        elseif (file_exists($target_dir) == false) {
+        } elseif (file_exists($target_dir) == false) {
             echo "Directory \''. $target_dir. '\' not found!";
-            exit('Directory \''. $target_dir. '\' not found!');
+            exit('Directory \'' . $target_dir . '\' not found!');
         } else {
             if (move_uploaded_file($_FILES["post_attachment"]["tmp_name"], $target_file)) {
                 $db->query("INSERT INTO files (file_name) VALUES ('$target_file')");
@@ -28,35 +26,33 @@ if(isset($_POST["newPost"])) {
     }
 }
 
-if(isset($_POST['disc_submit'])){
+if (isset($_POST['disc_submit'])) {
     $target_dir = "uploads/files/";
     $title = $db->real_escape_string($_POST['title']);
     $text = $db->real_escape_string($_POST['text']);
     $user_id = $user['user_id'];
-    if(basename($_FILES["disc_img"]["name"]) == ''){
+    if (basename($_FILES["disc_img"]["name"]) == '') {
         $db->query("INSERT INTO discussion (user_id, title, text) VALUES ('$user_id', '$title', '$text')");
         header('location: discussion');
-    }
-    else{
+    } else {
         $target_file = $target_dir . basename($_FILES["disc_img"]["name"]);
         $check = getimagesize($_FILES["disc_img"]["tmp_name"]);
-        $imgType = pathinfo($target_file,PATHINFO_EXTENSION);
-        if($_FILES["disc_img"]["size"] > 5000000) {
+        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
+        if ($_FILES["disc_img"]["size"] > 5000000) {
             exit("Sorry, your file is too large.");
-        }
-        elseif (file_exists($target_dir) == false) {
-            exit('Directory \''. $target_dir. '\' not found!');
-        }
-        elseif($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg"
-            && $imgType != "gif") {
+        } elseif (file_exists($target_dir) == false) {
+            exit('Directory \'' . $target_dir . '\' not found!');
+        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg"
+            && $imgType != "gif"
+        ) {
             exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
-        }else{
+        } else {
             if (move_uploaded_file($_FILES["disc_img"]["tmp_name"], $target_file)) {
                 $db->query("INSERT INTO files (file_name) VALUES ('$target_file')");
                 $db->query("INSERT INTO discussion (user_id, title, text, file_id) VALUES ('$user_id', '$title', '$text', (SELECT file_id FROM files ORDER BY file_id DESC LIMIT 1))");
                 header('location: discussion');
-            }else{
-                exit('Something went wrong: '. $db->error);
+            } else {
+                exit('Something went wrong: ' . $db->error);
             }
         }
     }
@@ -76,21 +72,25 @@ if (isset($_POST["update"])) {
     $target_dir = "uploads/avatars/";
     $target_file = $target_dir . basename($_FILES["avatar"]["tmp_name"]);
     $check = getimagesize($_FILES["avatar"]["tmp_name"]);
-    if($check === false){
+    if ($check === false) {
         exit("File is not an image.");
     }
-    if($_FILES["avatar"]["size"] > 2000000){
+    if ($_FILES["avatar"]["size"] > 2000000) {
         exit("Image is too large!");
     }
-    $temp = explode(".",$_FILES["avatar"]["name"]);
+    $temp = explode(".", $_FILES["avatar"]["name"]);
     $file_path = $target_dir . $username . "_avatar" . '.' . end($temp);
-    foreach(glob($target_dir . $username .'_avatar.*') as $image){
+    foreach (glob($target_dir . $username . '_avatar.*') as $image) {
         unlink($image);
     }
-    if(move_uploaded_file($_FILES["avatar"]["tmp_name"],$file_path)){
+    if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $file_path)) {
         $sql = "UPDATE user SET profile_image = '$file_path', location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
         if ($db->query($sql)) {
-            header('location: profileEdit');
+            $result = $db->query("SELECT * FROM user WHERE user_id = '$id'");
+            if ($result) {
+                $_SESSION['user'] = $result->fetch_assoc();
+            }
+            header('Refresh:0; url=profileEdit');
         } else {
             echo 'Something went wrong! ' . $db->error;
         }

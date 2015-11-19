@@ -189,11 +189,36 @@ body {
 
 /****** Discussion ******/
 .new_disc, .profile_content, .prof, .index, .contact{margin-left:20px;}
-.discussion{display:block;border-top:2px inset silver;border-bottom:2px inset silver;clear:both;padding:0px 20px;background:rgba(0,0,0,0.7);height:100px;}
+
+.discussion {
+    display: block;
+    border-top: 2px inset silver;
+    border-bottom: 2px inset silver;
+    clear: both;
+    padding: 0px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    min-height: 100px;
+}
 .discussion .disc_name{
     display:inline-block;
     padding:20px;
-}.disc_name h2{font-size:27px;}
+}
+
+.disc_name h2 {
+    font-size: 27px;
+    transition: color .4s ease-in-out;
+}
+
+.disc_name h2:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+.disc_text {
+    display: none;
+    white-space: pre-wrap;
+    margin: 20px 0px 20px;
+}
 
 .discussion .disc_img{
     display:inline-block;
