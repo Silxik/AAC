@@ -4,6 +4,7 @@ include('functions.php');
 error_reporting(E_ALL);
 date_default_timezone_set('Europe/Tallinn');
 
+/***** base_url for HTTPS *****/
 function set_base_url()
 {
     $s = &$_SERVER;
@@ -39,6 +40,8 @@ require __DIR__ . '/../config.php';
 $db = new mysqli(DATABASE_HOSTNAME, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_DATABASE) or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
+
+$users = $db->query("SELECT * FROM user");
 
 // Userpost related code
 $u_post = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id");

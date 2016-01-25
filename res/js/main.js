@@ -65,8 +65,9 @@ function register() {
     });
 }
 
-/* Upload avatar image preview for profileEdit */
 document.onready = function(){
+    /* Upload avatar image preview for profileEdit */
+
     var preview = document.getElementById("prev");
     _("file").onchange = function(e){
         var file = this.files[0];
@@ -78,7 +79,6 @@ document.onready = function(){
         reader.readAsDataURL(file);
     };
 };
-
 /*
 
  http://stackoverflow.com/questions/824349/modify-the-url-without-reloading-the-page

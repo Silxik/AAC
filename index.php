@@ -23,6 +23,7 @@
             <li><a href="#">Anime</a></li>
             <li><a href="events">Events</a></li>
             <li><a href="discussion">Discussion</a></li>
+            <li><a href="members">Members</a></li>
             <li><a href="about">About us</a></li>
             <li><a href="contact">Contact</a></li>
         </ul>
@@ -48,13 +49,14 @@
 
         <!-- FIRECHAT -->
         <div id="chat_container">
-            <h2>Chat</h2>
-            <div class='chat-toolbar'>
-                <label for="nameInput">Username:</label>
-                <input type='text' id='nameInput' placeholder='enter a username...'>
+            <h2 id="chat_toggle">Chat</h2>
+            <div id="chat_content">
+                <div class='chat-toolbar'>
+                    <input type='text' id='nameInput' placeholder='Enter a username...'>
+                </div>
+                <ul id='messages' class="chat-messages"></ul>
+                <input type='text' id='messageInput' placeholder='Type a message...'>
             </div>
-            <ul id='messages' class="chat-messages"></ul>
-            <input type='text' id='messageInput'  placeholder='Type a message...'>
         </div>
 
         <div id="main">
@@ -105,7 +107,7 @@
 
         //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
         var messageElement = $("<li>");
-        var nameElement = $("<strong class='chat-username'></strong>")
+        var nameElement = $("<strong class='chat-username'></strong>");
         nameElement.text(username);
         messageElement.text(message).prepend(nameElement);
 
@@ -114,6 +116,10 @@
 
         //SCROLL TO BOTTOM OF MESSAGE LIST
         messageList[0].scrollTop = messageList[0].scrollHeight;
+    });
+
+    $('#chat_toggle').click(function () {
+        $('#chat_content').animate({height: 'toggle'});
     });
 </script>
 </body>

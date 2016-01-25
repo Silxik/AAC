@@ -13,7 +13,12 @@ body {
     background-attachment: fixed;
     margin: 0 0 40px;
 }
-#divWrapper{max-width:1050px;background:rgba(0,0,0,0.7);}
+
+#divWrapper {
+    max-width: 1050px;
+    background: rgba(0, 0, 0, 0.7);
+    position: relative;
+}
 
 #header{padding:20px;clear:both;background: rgba(0,0,0,0.7);}
 #header .logo{border:1px inset silver;border-radius:100%;}
@@ -89,7 +94,9 @@ body {
     margin-bottom:20px;
     text-align: center;
     float: right;
-    background: rgba(0,0,0,0.7);
+    background: #000000;
+    border-left: 3px inset silver;
+    border-bottom: 3px inset silver;
 }
 
 #welcome{
@@ -130,23 +137,46 @@ body {
 #preview_container{margin:0px;}
 #preview_container img{max-width:500px;max-height:300px;}
 /****** Contact ******/
-.contact input, .new_disc input, .content input, .content select, #profile input{padding:5px;}
+.contact input, .new_disc input, .content input, .content select, #username, #password {
+    padding: 5px;
+}
 
 /****** FireChat ******/
 #chat_container{
     display: inline-block;
-    width: 200px;
-    padding: 20px;
-    margin-bottom:20px;
-    float: right;
-    background: rgba(0,0,0,0.7);
-    clear:both;
+    width: 230px;
+    padding: 5px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-top: 3px inset silver;
+    border-left: 3px inset silver;
+    border-right: 3px inset silver;
 }
-#chat_container h2{margin-bottom:20px;}
 #chat_container ul{list-style: none;}
 #chat_container ul li{margin:5px;}
 #chat_container .chat-username{padding-right:5px;}
 
+#messages {
+    max-height: 200px;
+    overflow-y: scroll;
+    border-top: 2px inset silver;
+    border-bottom: 2px inset silver;
+}
+
+#messageInput {
+    width: 220px;
+    border: none;
+    padding: 5px;
+}
+
+#nameInput {
+    width: 220px;
+    margin: 10px 0px 20px 0px;
+    border: none;
+    padding: 5px;
+}
 .profile_nav{
     padding:5px 10px;
     margin:0px 240px 10px 0px;
@@ -188,13 +218,19 @@ body {
 }
 
 /****** Discussion ******/
+#discussion_comment {
+    margin-top: 40px;
+}
+
+.new_disc {
+    margin-bottom: 20px;
+}
 .new_disc, .profile_content, .prof, .index, .contact{margin-left:20px;}
 
 .discussion {
     display: block;
     border-top: 2px inset silver;
     border-bottom: 2px inset silver;
-    clear: both;
     padding: 0px 20px;
     background: rgba(0, 0, 0, 0.7);
     min-height: 100px;
@@ -228,6 +264,40 @@ body {
     background-repeat:no-repeat;
     background-size:cover;
     float:left;
+}
+
+.comment {
+    margin-top: 40px;
+}
+
+.close {
+    display: inline-block;
+    margin: 20px;
+    padding: 5px 10px;
+    border: 2px inset silver;
+    border-radius: 16px;
+    float: right;
+    cursor: pointer;
+    color: white;
+    transition: color .4s ease-in-out;
+    -moz-transition: color .4s ease-in-out;
+    -o-transition: color .4s ease-in-out;
+    -webkit-transition: color .4s ease-in-out;
+}
+
+.close:hover {
+    color: orange;
+}
+
+/****** Members *****/
+#main .member {
+    display: inline-block;
+    text-align: center;
+    margin: 10px 20px;
+}
+
+#main a {
+    display: block;
 }
 
 /****** Profile ******/
