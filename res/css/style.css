@@ -62,6 +62,19 @@ body {
     color:orange;
 }
 
+#main {
+    padding: 20px 0px;
+}
+
+#main h1 {
+    font-size: 38px;
+    padding-bottom: 30px;
+}
+
+#main p {
+    line-height: 26px;
+    font-size: 16px;
+}
 #main textarea{
     max-width:400px;
     width:100%;
@@ -152,7 +165,6 @@ body {
     bottom: 0;
     border-top: 3px inset silver;
     border-left: 3px inset silver;
-    border-right: 3px inset silver;
 }
 #chat_container ul{list-style: none;}
 #chat_container ul li{margin:5px;}
@@ -225,7 +237,10 @@ body {
 .new_disc {
     margin-bottom: 20px;
 }
-.new_disc, .profile_content, .prof, .index, .contact{margin-left:20px;}
+
+.new_disc, .profile_content, .prof, #index, .contact {
+    margin-left: 20px;
+}
 
 .discussion {
     display: block;
@@ -290,10 +305,13 @@ body {
 }
 
 /****** Members *****/
+#members {
+    margin: 0px 20px;
+}
 #main .member {
     display: inline-block;
     text-align: center;
-    margin: 10px 20px;
+    margin: 40px 20px 0px;
 }
 
 #main a {

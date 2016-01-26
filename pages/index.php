@@ -1,4 +1,4 @@
-<div class="index">
+<div id="index">
     <h1>Hi <? if ($user) {
         echo stripslashes($user['username']);
     }; ?>!</h1>
