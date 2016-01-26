@@ -16,5 +16,6 @@ if(isset($_POST['mail'])){
     $subject = $_POST['subject'];
     $message = $_POST['message'];
     mail($mailto,$subject,$message);
+    return true;
 }
 ?>
