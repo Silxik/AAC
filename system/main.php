@@ -4,7 +4,11 @@ include('functions.php');
 error_reporting(E_ALL);
 date_default_timezone_set('Europe/Tallinn');
 
-/***** base_url for HTTPS *****/
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_PORT', 587);
+define('EMAIL_ADDR', 'animeaddictscontinue@gmail.com');  // Sender email address
+define('EMAIL_PW', 'Veebispetsialistid2014');
+
 function set_base_url()
 {
     $s = &$_SERVER;

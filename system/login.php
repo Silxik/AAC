@@ -6,7 +6,7 @@ if (isset($_POST['un'])) {
         exit('Username or Password is missing!');
     } else {
         $result = $db->query("SELECT * FROM user WHERE password = sha('$pw') AND username = '$un'");
-        if ($result) {
+        if (mysqli_num_rows($result) > 0) {
             $result = $result->fetch_assoc();
             $db->query("UPDATE user SET online = '1' WHERE username='$un'");
             $_SESSION['user'] = $result;

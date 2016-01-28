@@ -21,6 +21,7 @@ var xhr = function (u, p, c, t) {
         par += key + "=" + encodeURIComponent(p[key]);
     }
     req.open('POST', u, true);
+
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     req.setRequestHeader("Content-length", par.length);
     req.setRequestHeader("Connection", "close");
