@@ -50,30 +50,3 @@ $users = $db->query("SELECT * FROM user");
 // Userpost related code
 $u_post = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id");
 if ($u_post) $u_post->fetch_assoc();
-
-
-/*
-    if ($user) {
-
-        $inactive = 600;
-        if (!isset($_SESSION['timeout']))
-            $_SESSION['timeout'] = time() + $inactive;
-        $session_life = time() - $_SESSION['timeout'];
-        if ($session_life > $inactive) {
-            $conn->query("UPDATE user SET log = 'out' WHERE username='$login_session'");
-            session_destroy();
-            header("Location: index.php");
-        }
-        $_SESSION['timeout'] = time();
-
-    }
-*/
-
-
-/*
-if (isset($_SESSION['user'])) {
-    $user = stripslashes($_SESSION['user']);
-    $user_q = $db->query("SELECT * from user WHERE username='$user'");
-    $user_d = $user_q->fetch_assoc();
-}
-*/

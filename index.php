@@ -32,7 +32,7 @@
     <div id="divWrapper">
         <div id="profile">
             <? if ($user) { ?>
-                <b id="welcome">Welcome : <a href="profile"><?= $user['username']; ?></a></b>
+                <b class="welcome">Welcome : <a href="profile"><?= $user['username']; ?></a></b>
                 <span class="icon" style="background-image: url('<?= $user["profile_image"]; ?>')"></span>
                 <b id="logout"><a href="logout">Log Out</a></b>
             <? } else { ?>
@@ -45,18 +45,6 @@
                     <a class="button" href="register">Register</a>
                 </form>
             <? } ?>
-        </div>
-
-        <!-- FIRECHAT -->
-        <div id="chat_container">
-            <h2 id="chat_toggle">Chat</h2>
-            <div id="chat_content">
-                <div class='chat-toolbar'>
-                    <input type='text' id='nameInput' placeholder='Enter a username...'>
-                </div>
-                <ul id='messages' class="chat-messages"></ul>
-                <input type='text' id='messageInput' placeholder='Type a message...'>
-            </div>
         </div>
 
         <div id="main">
@@ -73,7 +61,23 @@
     </div>
 
     <div id="footer">
-        <p>AAC.com All rights reserved</p>
+        <div class="footer-content">
+            <!-- FIRECHAT -->
+            <div id="chat">
+                <h2 class="chat-toggle">Chat</h2>
+                <div class="chat-content">
+                    <ul id='messages' class="chat-messages"></ul>
+                    <? if ($user) { ?>
+                        <input type='text' id='messageInput' placeholder='Type a message...'>
+                    <? } else {
+                        echo "Please log in first.";
+                    } ?>
+                </div>
+            </div>
+            <div class="footer-text">
+                <p>Andresspak@gmail.com. All rights reserved.</p>
+            </div>
+        </div>
     </div>
 
 <script>
@@ -82,14 +86,23 @@
 
     // REGISTER DOM ELEMENTS
     var messageField = $('#messageInput');
-    var nameField = $('#nameInput');
+
+    /*
+     To create an anonymous webchat for everyone who visits the site, do the following:
+     1.  replace nameInput variable value with the following - $('#nameInput').val()
+     2.  Add this HTML line inside chat-content div element.
+     <div class='chat-toolbar'><input type='text' id='nameInput' placeholder='Enter a username...'></div>
+
+     */
+
+    var nameField = "<?= $user['username'];?>";
     var messageList = $('#messages');
 
     // LISTEN FOR KEYPRESS EVENT
     messageField.keypress(function (e) {
         if (e.keyCode == 13) {
             //FIELD VALUES
-            var username = nameField.val();
+            var username = nameField;
             var message = messageField.val();
 
             //SAVE DATA TO FIREBASE AND EMPTY FIELD
@@ -118,8 +131,8 @@
         messageList[0].scrollTop = messageList[0].scrollHeight;
     });
 
-    $('#chat_toggle').click(function () {
-        $('#chat_content').animate({height: 'toggle'});
+    $('#chat .chat-toggle').click(function () {
+        $('#chat .chat-content').animate({height: 'toggle'});
     });
 </script>
 </body>

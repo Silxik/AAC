@@ -1,28 +1,41 @@
-* {
-    margin:0px auto;
-    padding:0px;
-    color:white;
-}
-
 body {
+    margin: 0 auto 40px;
+    color: #FFF;
     background-image: url(../img/bg_1.jpg);
+    -webkit-background-image: url(../img/bg_1.jpg);
     background-size: cover;
+    -webkit-background-size: cover;
     background-repeat: no-repeat;
     background-position:top center;
     background-attachment: scroll;
     background-attachment: fixed;
-    margin: 0 0 40px;
 }
 
 #divWrapper {
-    max-width: 1050px;
-    background: rgba(0, 0, 0, 0.7);
     position: relative;
+    max-width: 1050px;
+    margin: 0px auto;
+    background: rgba(0, 0, 0, 0.7);
 }
 
-#header{padding:20px;clear:both;background: rgba(0,0,0,0.7);}
-#header .logo{border:1px inset silver;border-radius:100%;}
-#header h1{display:inline-block;line-height:32px;position:relative;bottom:20px;margin-left:10px;}
+#header {
+    padding: 20px;
+    clear: both;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#header .logo {
+    border: 1px inset silver;
+    border-radius: 100%;
+}
+
+#header h1 {
+    display: inline-block;
+    line-height: 32px;
+    position: relative;
+    bottom: 20px;
+    margin-left: 10px;
+}
 
 #nav{
     display:block;
@@ -34,9 +47,10 @@ body {
 #nav ul{
     list-style:none;
     display:block;
-    background-color:rgba(0,0,0,0.7);
+    margin: 0px auto;
     border-top:2px inset;
     border-bottom:2px inset;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #nav ul li{
@@ -56,19 +70,25 @@ body {
     -webkit-transition:color 0.4s ease-in-out;
     -moz-transition:color 0.4s ease-in-out;
     -o-transition:color 0.4s ease-in-out;
+    color: #FFF;
 }
 
-#nav ul li a:hover{
-    color:orange;
+#nav ul li a:hover {
+    color: #ffA500;
 }
 
 #main {
-    padding: 20px 0px;
+    padding: 0px 0px 20px;
 }
 
 #main h1 {
     font-size: 38px;
-    padding-bottom: 30px;
+    display: inline-block;
+}
+
+#main .menu_left ul, #main .menu_right ul {
+    margin: 0px;
+    padding: 0px;
 }
 
 #main p {
@@ -96,7 +116,10 @@ body {
     margin-top:5px;
     display:inline-block;
 }
-#username, #password, #chat_container input{color:black;}
+
+#username, #password, #chat input {
+    color: black;
+}
 
 /****** Login ******/
 #profile{
@@ -112,18 +135,19 @@ body {
     border-bottom: 3px inset silver;
 }
 
-#welcome{
+.welcome {
     font-size: 20px;
     margin-bottom: 20px;
     display: block;
 }
 
-#welcome a{
+.welcome a {
     text-decoration:none;
     font-style:italic;
+    color: #FFF;
 }
 
-#welcome a:hover{
+.welcome a:hover {
     text-decoration:underline;
 }
 
@@ -135,8 +159,12 @@ body {
     padding:20px;
 }
 
-#logout{
-    display:block;
+#logout {
+    display: block;
+}
+
+#logout a {
+    color: #FFF;
 }
 
 #main .br{
@@ -155,20 +183,39 @@ body {
 }
 
 /****** FireChat ******/
-#chat_container{
+#chat {
     display: inline-block;
     width: 230px;
     padding: 5px;
     background: #000000;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 30px;
     border-top: 3px inset silver;
     border-left: 3px inset silver;
 }
-#chat_container ul{list-style: none;}
-#chat_container ul li{margin:5px;}
-#chat_container .chat-username{padding-right:5px;}
+
+#chat ul {
+    list-style: none;
+    padding: 0px;
+}
+
+#chat ul li {
+    margin: 5px;
+}
+
+#chat .chat-username {
+    padding-right: 5px;
+}
+
+.chat-content {
+    display: none;
+}
+
+.chat-toggle {
+    margin: 0px;
+    cursor: pointer;
+}
 
 #messages {
     max-height: 200px;
@@ -185,9 +232,9 @@ body {
 
 #nameInput {
     width: 220px;
-    margin: 10px 0px 20px 0px;
     border: none;
     padding: 5px;
+    margin-top: 10px;
 }
 .profile_nav{
     padding:5px 10px;
@@ -223,22 +270,18 @@ body {
     transition-delay: 0s;
 }
 .profile_nav a:hover{
-    color:orange;
+    color: #ffA500;
 }
 .profile_content{
     display:none;
 }
 
 /****** Discussion ******/
-#discussion_comment {
-    margin-top: 40px;
-}
-
-.new_disc {
+.new-disc {
     margin-bottom: 20px;
 }
 
-.new_disc, .profile_content, .prof, #index, .contact {
+.new-disc, .profile_content, .prof, #index, .contact {
     margin-left: 20px;
 }
 
@@ -250,39 +293,49 @@ body {
     background: rgba(0, 0, 0, 0.7);
     min-height: 100px;
 }
-.discussion .disc_name{
+
+.disc-name {
     display:inline-block;
-    padding:20px;
+    padding: 5px 20px;
 }
 
-.disc_name h2 {
+.disc-title {
     font-size: 27px;
     transition: color .4s ease-in-out;
+    margin: 0px;
 }
 
-.disc_name h2:hover {
-    color: orange;
+.disc-name p {
+    margin: 5px 0px 0px;
+}
+
+.disc-name h2:hover {
+    color: #ffA500;
     cursor: pointer;
 }
 
-.disc_text {
-    display: none;
+.disc-text {
     white-space: pre-wrap;
     margin: 20px 0px 20px;
+    clear: both;
 }
 
-.discussion .disc_img{
+.disc-img {
     display:inline-block;
-    height:100px;
-    width:120px;
-    background-position:center center;
-    background-repeat:no-repeat;
-    background-size:cover;
+    max-height: 100px;
+    max-width: 100px;
     float:left;
 }
 
-.comment {
-    margin-top: 40px;
+.disc-img-full {
+    display: inline-block;
+    max-height: 220px;
+    max-width: 200px;
+    margin-top: 20px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: left;
 }
 
 .close {
@@ -301,21 +354,39 @@ body {
 }
 
 .close:hover {
-    color: orange;
+    color: #ffA500;
 }
 
+/****** Discussion comments *****/
+.comment a {
+    color: #FFF;
+}
+
+
 /****** Members *****/
-#members {
+.members {
     margin: 0px 20px;
 }
 #main .member {
     display: inline-block;
     text-align: center;
-    margin: 40px 20px 0px;
+    margin: 10px 20px 0px;
+}
+
+.member a {
+    display: block;
+    color: #FFF;
+    transition: color .4s ease-in-out;
+    -webkit-transition: color .4s ease-in-out;
+    -moz-transition: color .4s ease-in-out;
+    -o-transition: color .4s ease-in-out;
+}
+
+.member a:hover {
+    color: #ffA500;
 }
 
 #main a {
-    display: block;
 }
 
 /****** Profile ******/
@@ -386,15 +457,25 @@ body {
     margin-bottom:20px;
 }
 
+.warning-message-link {
+    color: #FFF;
+}
+
 #footer{
     width:100%;
-    background-color:rgba(0,0,0,0.7);
+    background-color: #000;
     position: fixed;
     bottom: 0;
     left: 0;
-    overflow:hidden;
     border-top:2px inset silver;
 }
+
+.footer-content {
+    position: relative;
+    max-width: 1050px;
+    margin: 0px auto;
+}
+
 #footer p{margin:10px 20px;}
 
 .clearfix{clear:both;}

@@ -1,4 +1,4 @@
-<? include('main.php');
+<? require_once('main.php');
 if (isset($_POST['un'])) {
     $un = $db->real_escape_string($_POST['un']);
     $pw = $db->real_escape_string($_POST['pw']);

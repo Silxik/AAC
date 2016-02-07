@@ -1,5 +1,4 @@
-<?
-include('main.php');
+<? require_once('main.php');
 
 // Database auto-update when database.sql file has been changed
 $dbFile = '../doc/database.sql';
