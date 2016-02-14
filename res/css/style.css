@@ -7,7 +7,6 @@ body {
     -webkit-background-size: cover;
     background-repeat: no-repeat;
     background-position:top center;
-    background-attachment: scroll;
     background-attachment: fixed;
 }
 
@@ -15,7 +14,7 @@ body {
     position: relative;
     max-width: 1050px;
     margin: 0px auto;
-    background: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #header {
@@ -26,31 +25,47 @@ body {
 
 #header .logo {
     border: 1px inset silver;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
     border-radius: 100%;
 }
 
 #header h1 {
     display: inline-block;
-    line-height: 32px;
     position: relative;
     bottom: 20px;
     margin-left: 10px;
+    line-height: 32px;
 }
 
 #nav{
     display:block;
     text-align:center;
     clear:both;
-    background: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #nav ul{
-    list-style:none;
     display:block;
     margin: 0px auto;
+    -webkit-border-top: 2px inset;
+    -moz-border-top: 2px inset;
+    -ms-border-top: 2px inset;
+    -o-border-top: 2px inset;
+
+    -webkit-border-top: 2px inset;
+    -moz-border-top: 2px inset;
+    -ms-border-top: 2px inset;
+    -o-border-top: 2px inset;
     border-top:2px inset;
+
+    -webkit-border-bottom: 2px inset;
+    -moz-border-bottom: 2px inset;
+    -ms-border-bottom: 2px inset;
+    -o-border-bottom: 2px inset;
     border-bottom:2px inset;
     background-color: rgba(0, 0, 0, 0.7);
+    list-style: none;
 }
 
 #nav ul li{
@@ -64,11 +79,21 @@ body {
     text-decoration:none;
     text-transform:uppercase;
     padding:3px 15px;
+    -webkit-border-top-left-radius: 16px;
+    -moz-border-top-left-radius: 16px;
+    -ms-border-top-left-radius: 16px;
+    -o-border-top-left-radius: 16px;
     border-top-left-radius:16px;
+
+    -webkit-border-top-right-radius: 16px;
+    -moz-border-top-right-radius: 16px;
+    -ms-border-top-right-radius: 16px;
+    -o-border-top-right-radius: 16px;
     border-top-right-radius:16px;
     transition:color 0.4s ease-in-out;
     -webkit-transition:color 0.4s ease-in-out;
     -moz-transition:color 0.4s ease-in-out;
+    -ms-transition: color 0.4s ease-in-out;
     -o-transition:color 0.4s ease-in-out;
     color: #FFF;
 }
@@ -82,8 +107,8 @@ body {
 }
 
 #main h1 {
-    font-size: 38px;
     display: inline-block;
+    font-size: 38px;
 }
 
 #main .menu_left ul, #main .menu_right ul {
@@ -100,21 +125,40 @@ body {
     width:100%;
     height:80px;
     padding:10px;
+    -webkit-border-top-left-radius: 16px;
+    -moz-border-top-left-radius: 16px;
+    -ms-border-top-left-radius: 16px;
+    -o-border-top-left-radius: 16px;
     border-top-left-radius:16px;
+
+    -webkit-border-top-right-radius: 16px;
+    -moz-border-top-right-radius: 16px;
+    -ms-border-top-right-radius: 16px;
+    -o-border-top-right-radius: 16px;
     border-top-right-radius:16px;
+
+    -webkit-border-bottom-left-radius: 16px;
+    -moz-border-bottom-left-radius: 16px;
+    -ms-border-bottom-left-radius: 16px;
+    -o-border-bottom-left-radius: 16px;
     border-bottom-left-radius:16px;
 }
-#main input{color:black;}
+
+#main input {
+    color: black;
+}
 
 #main .button, .button{
-    text-decoration:none;
-    color:white;
-    background:rgba(0,0,0,0.4);
+    display: inline-block;
     padding:0px 10px;
+    margin-top: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
     border:3px inset white;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
     border-radius:16px;
-    margin-top:5px;
-    display:inline-block;
 }
 
 #username, #password, #chat input {
@@ -123,22 +167,31 @@ body {
 
 /****** Login ******/
 #profile{
+    float: right;
     display: inline-block;
     width: 200px;
     height: 200px;
     padding: 20px;
     margin-bottom:20px;
-    text-align: center;
-    float: right;
-    background: #000000;
+    background-color: #000000;
+    -webkit-border-left: 3px inset silver;
+    -moz-border-left: 3px inset silver;
+    -ms-border-left: 3px inset silver;
+    -o-border-left: 3px inset silver;
     border-left: 3px inset silver;
+
+    -webkit-border-bottom: 3px inset silver;
+    -moz-border-bottom: 3px inset silver;
+    -ms-border-bottom: 3px inset silver;
+    -o-border-bottom: 3px inset silver;
     border-bottom: 3px inset silver;
+    text-align: center;
 }
 
 .welcome {
-    font-size: 20px;
-    margin-bottom: 20px;
     display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .welcome a {
@@ -152,11 +205,11 @@ body {
 }
 
 #login, #register{
-    background:rgba(0,0,0,0.7);
-    border:3px inset white;
-    margin:0 auto;
     width:600px;
+    margin: 0 auto;
     padding:20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 3px inset white;
 }
 
 #logout {
@@ -175,8 +228,15 @@ body {
 #main select, #main select option, #main textarea{
     color:#000000;
 }
-#preview_container{margin:0px;}
-#preview_container img{max-width:500px;max-height:300px;}
+
+#preview_container {
+    margin: 0px;
+}
+
+#preview_container img {
+    max-width: 500px;
+    max-height: 300px;
+}
 /****** Contact ******/
 .contact input, .new_disc input, .content input, .content select, #username, #password {
     padding: 5px;
@@ -184,20 +244,29 @@ body {
 
 /****** FireChat ******/
 #chat {
-    display: inline-block;
-    width: 230px;
-    padding: 5px;
-    background: #000000;
     position: absolute;
     right: 0;
     bottom: 30px;
+    display: inline-block;
+    width: 230px;
+    padding: 5px;
+    background-color: #000000;
+    -webkit-border-top: 3px inset silver;
+    -moz-border-top: 3px inset silver;
+    -ms-border-top: 3px inset silver;
+    -o-border-top: 3px inset silver;
     border-top: 3px inset silver;
+
+    -webkit-border-left: 3px inset silver;
+    -moz-border-left: 3px inset silver;
+    -ms-border-left: 3px inset silver;
+    -o-border-left: 3px inset silver;
     border-left: 3px inset silver;
 }
 
 #chat ul {
-    list-style: none;
     padding: 0px;
+    list-style: none;
 }
 
 #chat ul li {
@@ -220,54 +289,86 @@ body {
 #messages {
     max-height: 200px;
     overflow-y: scroll;
+    -webkit-border-top: 2px inset silver;
+    -moz-border-top: 2px inset silver;
+    -ms-border-top: 2px inset silver;
+    -o-border-top: 2px inset silver;
     border-top: 2px inset silver;
+
+    -webkit-border-bottom: 2px inset silver;
+    -moz-border-bottom: 2px inset silver;
+    -ms-border-bottom: 2px inset silver;
+    -o-border-bottom: 2px inset silver;
     border-bottom: 2px inset silver;
 }
 
 #messageInput {
     width: 220px;
-    border: none;
     padding: 5px;
+    border: none;
 }
 
 #nameInput {
     width: 220px;
-    border: none;
     padding: 5px;
     margin-top: 10px;
+    border: none;
 }
 .profile_nav{
+    position: relative;
+    display: block;
     padding:5px 10px;
     margin:0px 240px 10px 0px;
-    display:block;
-    background:rgba(0,0,0,0.7);
-    position:relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    -webkit-border-bottom: 2px inset silver;
+    -moz-border-bottom: 2px inset silver;
+    -ms-border-bottom: 2px inset silver;
+    -o-border-bottom: 2px inset silver;
     border-bottom:2px inset silver;
 }
-.menu_left, .menu_right{display:inline-block;}
-.menu_right{float:right;position:absolute;right:0px;padding:3px 20px;}
 
-.profile_nav ul{list-style:none;}
+.menu_left, .menu_right {
+    display: inline-block;
+}
+
+.menu_right {
+    float: right;
+    position: absolute;
+    right: 0px;
+    padding: 3px 20px;
+}
+
+.profile_nav ul {
+    list-style: none;
+}
 
 .profile_nav li{
     display:inline-block;
 }
 .profile_nav .nav_line{
     position:relative;
-    display:inline-block;
     top:4px;
+    display: inline-block;
     width:1px;
     height:20px;
     margin:0px 10px;
-    background:white;
+    background-color: white;
 }
 .profile_nav a{
     font-size: 19px;
     text-decoration: none;
-    color:white;
     cursor: pointer;
+    -webkit-transition: color .4s ease-in-out;
+    -moz-transition: color .4s ease-in-out;
+    -ms-transition: color .4s ease-in-out;
+    -o-transition: color .4s ease-in-out;
     transition: color .4s ease-in-out;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s;
     transition-delay: 0s;
+    color: white;
 }
 .profile_nav a:hover{
     color: #ffA500;
@@ -287,11 +388,19 @@ body {
 
 .discussion {
     display: block;
-    border-top: 2px inset silver;
-    border-bottom: 2px inset silver;
-    padding: 0px 20px;
-    background: rgba(0, 0, 0, 0.7);
     min-height: 100px;
+    padding: 0px 20px;
+    -webkit-border-top: 2px inset silver;
+    -moz-border-top: 2px inset silver;
+    -ms-border-top: 2px inset silver;
+    -o-border-top: 2px inset silver;
+    border-top: 2px inset silver;
+    -webkit-border-bottom: 2px inset silver;
+    -moz-border-bottom: 2px inset silver;
+    -ms-border-bottom: 2px inset silver;
+    -o-border-bottom: 2px inset silver;
+    border-bottom: 2px inset silver;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .disc-name {
@@ -300,9 +409,13 @@ body {
 }
 
 .disc-title {
-    font-size: 27px;
-    transition: color .4s ease-in-out;
     margin: 0px;
+    -webkit-transition: color .4s ease-in-out;
+    -moz-transition: color .4s ease-in-out;
+    -ms-transition: color .4s ease-in-out;
+    -o-transition: color .4s ease-in-out;
+    transition: color .4s ease-in-out;
+    font-size: 27px;
 }
 
 .disc-name p {
@@ -315,42 +428,49 @@ body {
 }
 
 .disc-text {
-    white-space: pre-wrap;
-    margin: 20px 0px 20px;
     clear: both;
+    margin: 20px 0px 20px;
+    white-space: pre-wrap;
 }
 
 .disc-img {
+    float: left;
     display:inline-block;
     max-height: 100px;
     max-width: 100px;
-    float:left;
 }
 
 .disc-img-full {
+    float: left;
     display: inline-block;
     max-height: 220px;
     max-width: 200px;
     margin-top: 20px;
+    -webkit-background-position: center center;
+    -moz-background-position: center center;
+    -ms-background-position: center center;
+    -o-background-position: center center;
     background-position: center center;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
     background-size: cover;
-    float: left;
 }
 
 .close {
+    float: right;
     display: inline-block;
     margin: 20px;
     padding: 5px 10px;
     border: 2px inset silver;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
     border-radius: 16px;
-    float: right;
-    cursor: pointer;
-    color: white;
-    transition: color .4s ease-in-out;
+    -webkit-transition: color .4s ease-in-out;
     -moz-transition: color .4s ease-in-out;
     -o-transition: color .4s ease-in-out;
-    -webkit-transition: color .4s ease-in-out;
+    transition: color .4s ease-in-out;
+    cursor: pointer;
+    color: white;
 }
 
 .close:hover {
@@ -369,17 +489,17 @@ body {
 }
 #main .member {
     display: inline-block;
-    text-align: center;
     margin: 10px 20px 0px;
+    text-align: center;
 }
 
 .member a {
     display: block;
-    color: #FFF;
-    transition: color .4s ease-in-out;
     -webkit-transition: color .4s ease-in-out;
     -moz-transition: color .4s ease-in-out;
     -o-transition: color .4s ease-in-out;
+    transition: color .4s ease-in-out;
+    color: #FFF;
 }
 
 .member a:hover {
@@ -398,15 +518,23 @@ body {
     word-break: break-all;
 }
 #main .post{
-    border:2px inset grey;
     max-width:400px;
     width:100%;
-    background:rgba(0,0,0,0.7);
-    clear:both;
     padding:5px;
     margin:10px 0px 10px 0px;
+    clear: both;
+    border: 2px inset grey;
+    background-color: rgba(0, 0, 0, 0.7);
 }
-.post_username{display:inline-block;margin-bottom:5px;position:relative;bottom:25px;font-style:italic;font-size:19px;}
+
+.post_username {
+    position: relative;
+    bottom: 25px;
+    display: inline-block;
+    margin-bottom: 5px;
+    font-style: italic;
+    font-size: 19px;
+}
 .post_date{
     float:right;
     display:inline-block;
@@ -419,22 +547,32 @@ body {
 }
 
 .user{
-    column-count:2;
     -webkit-column-count:2;
     -moz-column-count:2;
+    column-count: 2;
 }
-.postImg{max-width:375px;}
+
+.postImg {
+    max-width: 375px;
+}
 
 .icon{
+    display: inline-block;
     width:80px;
     height:80px;
-    display:inline-block;
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
-    border:3px inset white;
-    border-radius:100%;
     margin-bottom: 20px;
+    border:3px inset white;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius:100%;
+    -webkit-background-position: center center;
+    -moz-background-position: center center;
+    -ms-background-position: center center;
+    -o-background-position: center center;
+    background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .small{
     width:30px !important;
@@ -445,16 +583,20 @@ body {
 .warning{
     max-width:450px;
     margin:0px auto;
-    border:3px solid #000000;
-    background:rgba(0,0,0,0.7);
     padding:20px;
+    border: 3px solid #000000;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 .err-img{
     display:block;
     width:100%;
-    background:white;
-    border-bottom:3px solid #000000;
     margin-bottom:20px;
+    -webkit-border-bottom: 3px solid #000;
+    -moz-border-bottom: 3px solid #000;
+    -ms-border-bottom: 3px solid #000;
+    -o-border-bottom: 3px solid #000;
+    border-bottom: 3px solid #000;
+    background-color: #FFF;
 }
 
 .warning-message-link {
@@ -462,12 +604,16 @@ body {
 }
 
 #footer{
-    width:100%;
-    background-color: #000;
     position: fixed;
     bottom: 0;
     left: 0;
+    width: 100%;
+    -webkit-border-top: 2px inset silver;
+    -moz-border-top: 2px inset silver;
+    -ms-border-top: 2px inset silver;
+    -o-border-top: 2px inset silver;
     border-top:2px inset silver;
+    background-color: #000;
 }
 
 .footer-content {
@@ -476,6 +622,10 @@ body {
     margin: 0px auto;
 }
 
-#footer p{margin:10px 20px;}
+#footer p {
+    margin: 10px 20px;
+}
 
-.clearfix{clear:both;}
+.clearfix {
+    clear: both;
+}

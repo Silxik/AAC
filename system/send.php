@@ -29,6 +29,7 @@ $mailer->SMTPSecure = 'TLS';        //SSL or TLS
 $mailer->From = EMAIL_ADDR;
 
 $mailer->addAddress(EMAIL_ADDR);  // Add a recipient
+$mailer->addAddress($email);
 $mailer->Subject = $subject;
 $mailer->Body = $message;
 
