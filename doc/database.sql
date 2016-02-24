@@ -3,16 +3,19 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2016 at 12:46 AM
+-- Generation Time: Feb 24, 2016 at 05:21 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
 -- Database: `aac`
 --
+CREATE DATABASE IF NOT EXISTS `aac` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `aac`;
 
 -- --------------------------------------------------------
 
@@ -22,14 +25,11 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `adminmail`;
 CREATE TABLE IF NOT EXISTS `adminmail` (
-  `mail_id` INT(10) UNSIGNED NOT NULL,
-  `subject` TINYTEXT         NOT NULL,
-  `message` TEXT             NOT NULL,
-  `email`   VARCHAR(150)     NOT NULL
-)
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 2
-  DEFAULT CHARSET = latin1;
+  `mail_id` int(10) unsigned NOT NULL,
+  `subject` tinytext NOT NULL,
+  `message` text NOT NULL,
+  `email` varchar(150) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `adminmail`
@@ -52,10 +52,7 @@ CREATE TABLE IF NOT EXISTS `discussion` (
   `title` varchar(50) NOT NULL,
   `text` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 7
-  DEFAULT CHARSET = latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `discussion`
@@ -63,12 +60,8 @@ CREATE TABLE IF NOT EXISTS `discussion` (
 
 INSERT INTO `discussion` (`discussion_id`, `user_id`, `file_id`, `title`, `text`, `date`) VALUES
   (1, 1, 1, 'Test', 'test', '2015-11-17 10:41:45'),
-  (2, 1, 2, 'REALLY MUCH TEXT',
-   'REALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXT',
-   '2015-11-17 10:45:05'),
-  (3, 1, 3, 'New test',
-   'New test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nvNew test',
-   '2015-11-17 11:54:11'),
+  (2, 1, 2, 'REALLY MUCH TEXT', 'REALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXTREALLY MUCH TEXT', '2015-11-17 10:45:05'),
+  (3, 1, 3, 'New test', 'New test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nNew test\r\nvNew test', '2015-11-17 11:54:11'),
   (4, 1, 0, 'Test', 'Tesljhjlfsdrg', '2015-11-19 13:19:49'),
   (5, 1, 0, 'Test', 'teseteset', '2015-11-19 13:20:06'),
   (6, 1, 4, 'res', 'tesdf', '2015-11-19 13:24:49');
@@ -81,15 +74,12 @@ INSERT INTO `discussion` (`discussion_id`, `user_id`, `file_id`, `title`, `text`
 
 DROP TABLE IF EXISTS `discussion_comments`;
 CREATE TABLE IF NOT EXISTS `discussion_comments` (
-  `comment_id`    INT(10) UNSIGNED NOT NULL,
-  `discussion_id` INT(11)          NOT NULL,
-  `user_id`       INT(11)          NOT NULL,
-  `text`          TEXT             NOT NULL,
-  `date`          TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 3
-  DEFAULT CHARSET = latin1;
+  `comment_id` int(10) unsigned NOT NULL,
+  `discussion_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `discussion_comments`
@@ -109,10 +99,7 @@ DROP TABLE IF EXISTS `files`;
 CREATE TABLE IF NOT EXISTS `files` (
   `file_id` int(64) unsigned NOT NULL,
   `file_name` varchar(200) CHARACTER SET utf8 NOT NULL
-)
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 5
-  DEFAULT CHARSET = latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `files`
@@ -122,7 +109,9 @@ INSERT INTO `files` (`file_id`, `file_name`) VALUES
   (1, 'uploads/files/8c056c567c2de0953863d8c4bd7e60d0.jpeg'),
   (2, 'uploads/files/2014-10-26 13.21.58.jpg'),
   (3, 'uploads/files/7ad51e0c5b557a3d9d46bf0e4dfff9d3.png'),
-  (4, 'uploads/files/2014-10-26 13.23.56.jpg');
+  (4, 'uploads/files/2014-10-26 13.23.56.jpg'),
+  (5, 'uploads/files/7ad51e0c5b557a3d9d46bf0e4dfff9d3.jpg'),
+  (6, 'uploads/files/8c056c567c2de0953863d8c4bd7e60d0.jpeg');
 
 -- --------------------------------------------------------
 
@@ -145,16 +134,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `gender` tinyint(1) NOT NULL,
   `ip_joined` varchar(64) NOT NULL,
   `ip_last` varchar(64) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `profile_image`, `email`, `birthday`, `bio`, `online`, `location`, `date_joined`, `gender`, `ip_joined`, `ip_last`)
-VALUES
-  (1, 'Kurikutsu', '65066a6d5acad2e30a5228b3776ace34973518aa', 'uploads/avatars/Kurikutsu_avatar.jpg', '', '1994-05-12',
-      'Testtesttest', 1, 'Estonia', '2015-11-17 09:52:51', 0, '::1', '::1');
+INSERT INTO `user` (`user_id`, `username`, `password`, `profile_image`, `email`, `birthday`, `bio`, `online`, `location`, `date_joined`, `gender`, `ip_joined`, `ip_last`) VALUES
+  (1, 'Kurikutsu', '65066a6d5acad2e30a5228b3776ace34973518aa', 'uploads/avatars/Kurikutsu_avatar.jpg', '', '1994-05-12', 'Testtesttest', 1, 'Estonia', '2015-11-17 09:52:51', 0, '::1', '::1'),
+  (2, 'Test', 'dddd5d7b474d2c78ebbb833789c4bfd721edf4bf', '', '', '0000-00-00', '', 1, '', '2016-01-26 07:15:51', 0, '::1', '::1');
 
 -- --------------------------------------------------------
 
@@ -169,9 +157,15 @@ CREATE TABLE IF NOT EXISTS `userpost` (
   `text` text CHARACTER SET utf8 NOT NULL,
   `file_id` int(64) unsigned NOT NULL,
   `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userpost`
+--
+
+INSERT INTO `userpost` (`post_id`, `user_id`, `text`, `file_id`, `post_date`) VALUES
+  (1, 1, 'Test', 5, '2016-02-23 21:45:42'),
+  (2, 1, 'New\r\nTest Huehuehuehuehue', 6, '2016-02-24 14:24:43');
 
 -- --------------------------------------------------------
 
@@ -239,29 +233,29 @@ ADD PRIMARY KEY (`post_id`);
 -- AUTO_INCREMENT for table `adminmail`
 --
 ALTER TABLE `adminmail`
-MODIFY `mail_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+MODIFY `mail_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `discussion`
 --
 ALTER TABLE `discussion`
-MODIFY `discussion_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 7;
+MODIFY `discussion_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `discussion_comments`
 --
 ALTER TABLE `discussion_comments`
-MODIFY `comment_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 3;
+MODIFY `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-MODIFY `file_id` INT(64) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;
+MODIFY `file_id` int(64) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `userpost`
 --
 ALTER TABLE `userpost`
-MODIFY `post_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;SET FOREIGN_KEY_CHECKS=1;
