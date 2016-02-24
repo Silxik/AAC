@@ -48,3 +48,8 @@ messagesRef.limitToLast(10).on('child_added', function (snapshot) {
 $('.firechat-header').click(function () {
     $('.firechat-container').animate({height: 'toggle'});
 });
+
+// If admin mode, give space for admin container
+if($("body").children("div.user-admin-block").length > 0 ){
+    $(".main-page-block").css("margin","0 0 0 250px");
+}

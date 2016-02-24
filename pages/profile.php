@@ -1,13 +1,4 @@
-<?
-if(isset($_POST["user-link"])){
-    $un = $_POST["username"];
-
-    var_dump($un);
-}
-?>
-
-
-
+<div class="profile-block">
     <div class="profile-nav-block">
         <div class="profile-nav-left">
             <ul class="profile-nav-list">
@@ -60,14 +51,16 @@ if(isset($_POST["user-link"])){
         }
         ?>
     </div>
-    <?
-    if (isset($_POST['delete_post'])){
-        $file_id = $db->real_escape_string($_POST['fileId']);
-        $del = $db->query("DELETE FROM userpost, files USING userpost INNER JOIN files WHERE userpost.file_id = '$file_id' AND files.file_id = '$file_id'");
-        if($del){
-            header("location: profile");
-        } else{
-            exit('Mysql error: ' . $db->error);
-        }
+</div>
+
+<?
+if (isset($_POST['delete_post'])){
+    $file_id = $db->real_escape_string($_POST['fileId']);
+    $del = $db->query("DELETE FROM userpost, files USING userpost INNER JOIN files WHERE userpost.file_id = '$file_id' AND files.file_id = '$file_id'");
+    if($del){
+        header("location: profile");
+    } else{
+        exit('Mysql error: ' . $db->error);
     }
-    ?>
+}
+?>

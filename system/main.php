@@ -4,6 +4,7 @@ include('functions.php');
 error_reporting(E_ALL);
 date_default_timezone_set('Europe/Tallinn');
 
+// REDIRECT TO HTTPS IF SSL ON
 function set_base_url()
 {
     $s = &$_SERVER;
@@ -34,7 +35,7 @@ $user = &$_SESSION['user'];
 //userpost
 $u_id = $user['user_id'];
 
-// Database related code
+// DB LINK, CONNECT
 require __DIR__ . '/../config.php';
 $db = new mysqli(DATABASE_HOSTNAME, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_DATABASE) or die(mysqli_connect_error());
 mysqli_query($db, "SET NAMES utf8");
