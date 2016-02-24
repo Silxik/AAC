@@ -33,8 +33,8 @@ messagesRef.limitToLast(10).on('child_added', function (snapshot) {
     var message = data.text;
 
     //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-    var messageElement = $("<li>");
-    var nameElement = $("<strong class='chat-username'></strong>");
+    var messageElement = $("<li class='firechat-list-item'>");
+    var nameElement = $("<strong class='firechat-username'></strong>");
     nameElement.text(username);
     messageElement.text(message).prepend(nameElement);
 
@@ -45,6 +45,6 @@ messagesRef.limitToLast(10).on('child_added', function (snapshot) {
     messageList[0].scrollTop = messageList[0].scrollHeight;
 });
 
-$('#chat .chat-toggle').click(function () {
-    $('#chat .chat-content').animate({height: 'toggle'});
+$('.firechat-header').click(function () {
+    $('.firechat-container').animate({height: 'toggle'});
 });

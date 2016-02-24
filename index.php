@@ -15,25 +15,25 @@
 <body>
     <div id="header">
         <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
-        <h1>Anime Addicts<br>Continue~!</h1>
+        <h2 class="page-title">Anime Addicts<br>Continue~!</h2>
     </div>
     <div id="nav">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="#">Anime</a></li>
-            <li><a href="events">Events</a></li>
-            <li><a href="discussion">Discussion</a></li>
-            <li><a href="members">Members</a></li>
-            <li><a href="about">About us</a></li>
-            <li><a href="contact">Contact</a></li>
+        <ul class="header-nav-list">
+            <li class="header-nav-list-item"><a class="header-nav-link" href="index.php">Home</a></li>
+            <li class="header-nav-list-item"><a class="header-nav-link" href="anime">Anime</a></li>
+            <li class="header-nav-list-item"><a class="header-nav-link" href="events">Events</a></li>
+            <li class="header-nav-list-item"><a class="header-nav-link" href="discussion">Discussion</a></li>
+            <li class="header-nav-list-item"><a class="header-nav-link" href="members">Members</a></li>
+            <li class="header-nav-list-item"><a class="header-nav-link" href="about">About us</a></li>
+            <li class="header-nav-list-item"><a class="header-nav-link" href="contact">Contact</a></li>
         </ul>
     </div>
 
     <div id="divWrapper">
         <div id="profile">
             <? if ($user) { ?>
-                <b class="welcome">Welcome : <a href="profile"><?= $user['username']; ?></a></b>
-                <span class="icon" style="background-image: url('<?= $user["profile_image"]; ?>')"></span>
+                <b class="welcome-text">Welcome : <a class="user-link"><?= $user['username']; ?></a></b>
+                <span class="user-icon" style="background-image: url('<?= $user["profile_image"]; ?>')"></span>
                 <b id="logout"><a href="logout">Log Out</a></b>
             <? } else { ?>
                 <form id="loginForm" autocomplete="off">
@@ -61,28 +61,28 @@
     </div>
 
     <div id="footer">
-        <div class="footer-content">
+        <div class="footer-block">
             <!-- FIRECHAT -->
-            <div id="chat">
-                <h2 class="chat-toggle">Chat</h2>
-                <div class="chat-content">
-                    <ul id='messages' class="chat-messages"></ul>
+            <div class="firechat-block">
+                <h2 class="firechat-header">Chat</h2>
+                <div class="firechat-container">
+                    <ul id='messages' class="firechat-list"></ul>
                     <? if ($user) { ?>
-                        <input type='text' id='messageInput' placeholder='Type a message...'>
+                        <input id='messageInput' class="firechat-text" type='text' placeholder='Type a message...'>
                     <? } else {
                         echo "Please log in first.";
                     } ?>
                 </div>
             </div>
-            <div class="footer-text">
-                <p>Andresspak@gmail.com. All rights reserved.</p>
+            <div class="footer-text-container">
+                <p class="footer-text">Andresspak@gmail.com. All rights reserved.</p>
             </div>
         </div>
     </div>
-
-<script>
-
-</script>
+    <form class="hidden" id="u-link-fetch" method="post" action="profile">
+        <input id="u-link-name" type="hidden" value="" name="username">
+        <input type="submit" name="user-link">
+    </form>
     <script type="text/javascript" src="res/js/main.js"></script>
 </body>
 </html>

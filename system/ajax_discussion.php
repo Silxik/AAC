@@ -7,16 +7,16 @@ $sql = $db->query("SELECT * FROM discussion D INNER JOIN files F ON D.file_id = 
 if (mysqli_num_rows($sql) > 0) {
     if ($result = $sql->fetch_assoc()) { ?>
 
-        <div class="discussion">
+        <div class="discussion-container">
             <? if ($result['file_id'] !== 0) { ?>
-                <img class="disc-img-full" src="<?= $result['file_name']; ?>" alt="Discussion image">
+                <img class="discussion-image-full" src="<?= $result['file_name']; ?>" alt="Discussion image">
             <? } ?>
-            <div class="disc-name">
-                <h1 class="disc-title"><?= $result["title"]; ?></h1>
-                <p class="disc-user">By <a href="profile"><?= $result['username']; ?></a></p>
-                <p>Created <?= $result["date"]; ?></p>
+            <div class="discussion-header">
+                <h1 class="discussion-title"><?= $result["title"]; ?></h1>
+                <p class="discussion-header-text">By <a class="user-link"><?= $result['username']; ?></a></p>
+                <span class="disussion-date">Created <?= $result["date"]; ?></span>
             </div>
-            <p class="disc-text"><?= $result['text']; ?></p>
+            <p class="discussion-container-text"><?= $result['text']; ?></p>
             <div class="clearfix"></div>
         </div>
 

@@ -1,5 +1,5 @@
-<div id="index">
-    <h1>Hi <? if ($user) {
+<div id="index" class="main-block">
+    <h1 class="header-h1">Hi <? if ($user) {
         echo stripslashes($user['username']);
     }; ?>!</h1>
 
@@ -13,13 +13,29 @@
     </pre>
 
     <?
-    $r = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id");
-    while($post_q = $r->fetch_assoc()){
-        echo '<div class="post"><span class="icon small" style="background-image:url('. '\'' . $post_q["profile_image"]. '\'' .')"></span><p class="post_username">'. $post_q["username"] .'</p><small class="post_date">' . $post_q["post_date"] . '</small><pre>' . $post_q["text"] . '</pre>';
-        if($post_q['file_name'] !== ''){
-            echo '<img class="postImg br" src="' . $post_q['file_name'] . '">';
-        }
-        echo '</div>';
+    $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id");
+    while ($r = $q->fetch_assoc()) { ?>
+        <div class="profile-userpost-container">
+            <div class="profile-userpost-header">
+                <span class="user-icon small vertical-align"
+                      style="background-image:url('<?= $r["profile_image"]; ?>')"></span>
+                <a class="user-link small-text vertical-align"><?= $r["username"]; ?></a>
+                <small class="profile-userpost-date vertical-align"><?= $r["post_date"]; ?></small>
+            </div>
+            <pre class="profile-userpost-text"><?= $r["text"]; ?></pre>
+            <? if ($r['file_name'] !== '') { ?>
+                <img class="profile-userpost-image" src="<?= $r['file_name']; ?>">
+            <? } ?>
+        </div>
+        <?
+        if ($user) { ?>
+            <div class="profile-userpost-delete-form">
+                <form method="post" action="profile">
+                    <input id="fileId" name="fileId" type="hidden" value="<?= $r['file_id'] ?>">
+                    <input name="delete_post" type="submit" class="button" value="Delete">
+                </form>
+            </div>
+        <? }
     }
     ?>
 </div>

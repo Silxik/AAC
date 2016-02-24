@@ -1,26 +1,31 @@
-<div class="prof">
-    <h1>Edit Profile</h1>
-    <div class="contentMenu">
-        <ul>
-            <li><a href="#">Personal info</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Change username or password</a></li>
+<div class="profile-edit-block">
+    <h1 class="header-h1">Edit Profile</h1>
+    <div class="profile-edit-nav-container">
+        <ul class="profile-nav-list">
+            <li class="profile-nav-list-item"><a class="profile-nav-link" href="#">Personal info</a></li>
+            <li class="profile-nav-line"></li>
+            <li class="profile-nav-list-item"><a class="profile-nav-link" href="#">Privacy</a></li>
+            <li class="profile-nav-line"></li>
+            <li class="profile-nav-list-item"><a class="profile-nav-link" href="#">Change username or password</a></li>
         </ul>
     </div>
 
-    <div class="content">
+    <div class="profile-edit-container">
         <form action="upload" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
-            <label for="avatar" class="br">Upload your avatar : </label><input id="file" name="avatar" type="file">
-            <div id="preview_container">
-                <img id="prev" />
+            <label class="profile-form-label" for="avatar">Upload your avatar : </label><input id="file" name="avatar"
+                                                                                               type="file">
+            <div class="preview-container">
+                <img id="image-preview"/>
             </div>
-            <label for="location" class="br">Location : </label><input type="text" name="location" placeholder="State/City">
-            <label for="gender" class="br">Gender : </label><select name="gender">
+            <label class="profile-form-label" for="location">Location : </label>
+            <input class="profile-edit-input" type="text" name="location" placeholder="State/City">
+            <label class="profile-form-label" for="gender">Gender : </label>
+            <select name="gender">
                 <option value="0">Male</option>
                 <option value="1">Female</option>
             </select>
-            <label for="birthday" class="br">Birthdate : </label>
+            <label class="profile-form-label" for="birthday">Birthdate : </label>
             <select name="day">
                 <? foreach (range(31, 1) as $i) {
                     echo '<option>' . $i . '</option>';
@@ -36,8 +41,10 @@
                     echo '<option>' . $i . '</option>';
                 } ?>
             </select>
-            <label for="bio" class="br">Bio : </label><textarea name="bio" placeholder="Your bio..."></textarea>
-            <input type="submit" name="update" class="button br" value="submit">
+            <label class="profile-form-label" for="bio">Bio : </label><textarea name="bio"
+                                                                                placeholder="Your bio..."></textarea>
+
+            <div><input type="submit" name="update" class="button" value="submit"></div>
         </form>
     </div>
 

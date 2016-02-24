@@ -90,7 +90,7 @@ function sendEmail() {
 document.onready = function () {
     /* Upload avatar image preview for profileEdit */
 
-    var preview = document.getElementById("prev");
+    var preview = document.getElementById("image-preview");
     _("file").onchange = function (e) {
         var file = this.files[0];
         var reader = new FileReader();
@@ -126,57 +126,76 @@ document.onready = function () {
 
 //---------------------------- Initialization --------------------------------
 
-window.onload = function () {
-
-    _('loginForm').onkeydown = function (e) {
+$(document).ready(function () {
+    // Login and register on enter keypress
+    $('#loginForm').keydown(function (e) {
         if (e.which == 13) {    // Enter key
             login();
         }
-    }
-    _('registerForm').onkeydown = function (e) {
-        if (e.which == 13) {    // Enter key
+    });
+
+    $('#registerForm').keydown(function (e) {
+        if (e.which == 13) {
             register();
         }
-    }
-    /*
-     $('#html_editor').keyup(function(){
-     document.getElementById("html_text").innerHTML= $('textarea').val();
-     });
+    });
 
-     // textarea tab override for space
-     $(document).delegate('#html_editor', 'keydown', function(e) {
-     var keyCode = e.keyCode || e.which;
+    $('.discussion-title').click(function () {
+        var discussion_name = $(this).text();
+        var username = $('.user-link').eq($(this).parent().parent().parent().index()).text();
+        $.ajax({
+            url: 'system/ajax_discussion.php',
+            data: {username: username, discussion_name: discussion_name},
+            type: 'POST',
+            success: function (data) {
+                $('.discussion-block').html(data);
+            }
+        });
+    });
 
-     if (keyCode == 9) {
-     e.preventDefault();
-     var start = $(this).get(0).selectionStart;
-     var end = $(this).get(0).selectionEnd;
-
-     // set textarea value to: text before caret + tab + text after caret
-     $(this).val($(this).val().substring(0, start)
-     + "\t"
-     + $(this).val().substring(end));
-
-     // put caret at right position again
-     $(this).get(0).selectionStart =
-     $(this).get(0).selectionEnd = start + 1;
-     }
-     });
-
-     $('#EditorToggler').click(function(){
-     $('#WebEditor').animate({
-     width: 'toggle'
-     });
-     });
-
-     $('#profile').click(function(){
-     $('#iconUpload').toggle();
-     });
-     */
-}
-$(document).ready(function () {
     $('#contact-form').submit(function () {
         return false;
     });
+
+    $(".user-link").click(function () {
+        var userlink = $(this).text();
+        $("#u-link-name").val(userlink);
+        $("#u-link-fetch input[type='submit']").click();
+    });
 });
 
+/*
+ $('#html_editor').keyup(function(){
+ document.getElementById("html_text").innerHTML= $('textarea').val();
+ });
+
+ // textarea tab override for space
+ $(document).delegate('#html_editor', 'keydown', function(e) {
+ var keyCode = e.keyCode || e.which;
+
+ if (keyCode == 9) {
+ e.preventDefault();
+ var start = $(this).get(0).selectionStart;
+ var end = $(this).get(0).selectionEnd;
+
+ // set textarea value to: text before caret + tab + text after caret
+ $(this).val($(this).val().substring(0, start)
+ + "\t"
+ + $(this).val().substring(end));
+
+ // put caret at right position again
+ $(this).get(0).selectionStart =
+ $(this).get(0).selectionEnd = start + 1;
+ }
+ });
+
+ $('#EditorToggler').click(function(){
+ $('#WebEditor').animate({
+ width: 'toggle'
+ });
+ });
+
+ $('#profile').click(function(){
+ $('#iconUpload').toggle();
+ });
+ */
