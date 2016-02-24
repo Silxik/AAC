@@ -13,10 +13,9 @@
     <div class="profile-edit-container">
         <form action="upload" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
-            <label class="profile-form-label" for="avatar">Upload your avatar : </label><input id="file" name="avatar"
-                                                                                               type="file">
+            <label class="profile-form-label" for="avatar">Upload your avatar : </label><input id="file" name="avatar" type="file">
             <div class="preview-container">
-                <img id="image-preview"/>
+                <img id="image-preview" />
             </div>
             <label class="profile-form-label" for="location">Location : </label>
             <input class="profile-edit-input" type="text" name="location" placeholder="State/City">
@@ -41,8 +40,7 @@
                     echo '<option>' . $i . '</option>';
                 } ?>
             </select>
-            <label class="profile-form-label" for="bio">Bio : </label><textarea name="bio"
-                                                                                placeholder="Your bio..."></textarea>
+            <label class="profile-form-label" for="bio">Bio : </label><textarea name="bio" placeholder="Your bio..."></textarea>
 
             <div><input type="submit" name="update" class="button" value="submit"></div>
         </form>

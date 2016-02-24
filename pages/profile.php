@@ -1,10 +1,11 @@
 <?
-if (isset($_POST["user-link"])) {
+if(isset($_POST["user-link"])){
     $un = $_POST["username"];
 
     var_dump($un);
 }
 ?>
+
 
 
     <div class="profile-nav-block">
@@ -26,11 +27,8 @@ if (isset($_POST["user-link"])) {
 
     <div class="profile-container">
         <form method="POST" action="upload" enctype="multipart/form-data">
-            <label class="profile-form-label" for="text"></label><textarea name="text"
-                                                                           placeholder="What's on your mind?"></textarea>
-            <label class="profile-form-label" for="post_attachment">Choose file : </label><input style="color:white;"
-                                                                                                 name="post_attachment"
-                                                                                                 type="file">
+            <label class="profile-form-label" for="text"></label><textarea name="text" placeholder="What's on your mind?"></textarea>
+            <label class="profile-form-label" for="post_attachment">Choose file : </label><input style="color:white;" name="post_attachment" type="file">
             <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
             <input class="button" type="submit" name="newPost" value="Post">
         </form>
@@ -41,15 +39,14 @@ if (isset($_POST["user-link"])) {
         while ($r = $q->fetch_assoc()) { ?>
             <div class="profile-userpost-container">
                 <div class="profile-userpost-header">
-                    <span class="user-icon small vertical-align"
-                          style="background-image:url('<?= $r["profile_image"]; ?>')"></span>
-                    <a class="user-link small-text vertical-align"><?= $r["username"]; ?></a>
-                    <small class="profile-userpost-date vertical-align"><?= $r["post_date"]; ?></small>
+                    <span class="user-icon small vertical-align" style="background-image:url('<?=$r["profile_image"];?>')"></span>
+                    <a class="user-link small-text vertical-align"><?=$r["username"]; ?></a>
+                    <small class="profile-userpost-date vertical-align"><?=$r["post_date"]; ?></small>
                 </div>
-                <pre class="profile-userpost-text"><?= $r["text"]; ?></pre>
-                <? if ($r['file_name'] !== '') { ?>
-                    <img class="profile-userpost-image" src="<?= $r['file_name']; ?>">
-                <? } ?>
+                <pre class="profile-userpost-text"><?=$r["text"]; ?></pre>
+            <? if($r['file_name'] !== ''){ ?>
+                <img class="profile-userpost-image" src="<?=$r['file_name'];?>">
+            <? } ?>
             </div>
             <?
             if($user){ ?>

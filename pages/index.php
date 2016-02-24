@@ -17,21 +17,20 @@
     while ($r = $q->fetch_assoc()) { ?>
         <div class="profile-userpost-container">
             <div class="profile-userpost-header">
-                <span class="user-icon small vertical-align"
-                      style="background-image:url('<?= $r["profile_image"]; ?>')"></span>
-                <a class="user-link small-text vertical-align"><?= $r["username"]; ?></a>
-                <small class="profile-userpost-date vertical-align"><?= $r["post_date"]; ?></small>
+                <span class="user-icon small vertical-align" style="background-image:url('<?=$r["profile_image"];?>')"></span>
+                <a class="user-link small-text vertical-align"><?=$r["username"]; ?></a>
+                <small class="profile-userpost-date vertical-align"><?=$r["post_date"]; ?></small>
             </div>
-            <pre class="profile-userpost-text"><?= $r["text"]; ?></pre>
-            <? if ($r['file_name'] !== '') { ?>
-                <img class="profile-userpost-image" src="<?= $r['file_name']; ?>">
+            <pre class="profile-userpost-text"><?=$r["text"]; ?></pre>
+            <? if($r['file_name'] !== ''){ ?>
+                <img class="profile-userpost-image" src="<?=$r['file_name'];?>">
             <? } ?>
         </div>
         <?
-        if ($user) { ?>
+        if($user){ ?>
             <div class="profile-userpost-delete-form">
                 <form method="post" action="profile">
-                    <input id="fileId" name="fileId" type="hidden" value="<?= $r['file_id'] ?>">
+                    <input id="fileId" name="fileId" type="hidden" value="<?=$r['file_id'] ?>">
                     <input name="delete_post" type="submit" class="button" value="Delete">
                 </form>
             </div>

@@ -128,14 +128,14 @@ document.onready = function () {
 
 $(document).ready(function () {
     // Login and register on enter keypress
-    $('#loginForm').keydown(function (e) {
+    $('#loginForm').keydown(function(e) {
         if (e.which == 13) {    // Enter key
             login();
         }
     });
 
-    $('#registerForm').keydown(function (e) {
-        if (e.which == 13) {
+    $('#registerForm').keydown(function(e){
+        if ( e.which == 13 ){
             register();
         }
     });
@@ -157,7 +157,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $(".user-link").click(function () {
+    $(".user-link").click(function(){
         var userlink = $(this).text();
         $("#u-link-name").val(userlink);
         $("#u-link-fetch input[type='submit']").click();
