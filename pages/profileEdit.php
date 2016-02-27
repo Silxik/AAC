@@ -11,38 +11,41 @@
     </div>
 
     <div class="profile-edit-container">
-        <form action="upload" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
-            <label class="profile-form-label" for="avatar">Upload your avatar : </label><input id="file" name="avatar" type="file">
+        <form id="userForm" action="" method="" target="_self" enctype="multipart/form-data">
+            <input id="user-id" type="hidden" name="id" value="<? echo $user['user_id']; ?>">
+            <label class="profile-form-label" for="avatar">Upload your avatar : </label>
+            <input id="file" name="avatar" type="file">
             <div class="preview-container">
                 <img id="image-preview" />
             </div>
-            <label class="profile-form-label" for="location">Location : </label>
-            <input class="profile-edit-input" type="text" name="location" placeholder="State/City">
+            <label class="profile-form-label" for="location">Country : </label>
+            <input id="location" class="profile-edit-input" type="text" name="location" placeholder="State/City">
             <label class="profile-form-label" for="gender">Gender : </label>
-            <select name="gender">
+            <select id="gender" name="gender">
                 <option value="0">Male</option>
                 <option value="1">Female</option>
             </select>
             <label class="profile-form-label" for="birthday">Birthdate : </label>
-            <select name="day">
+            <select id="day" name="day">
                 <? foreach (range(31, 1) as $i) {
                     echo '<option>' . $i . '</option>';
                 } ?>
             </select>
-            <select name="month">
+            <select id="month" name="month">
                 <? foreach (range(12, 1) as $i) {
                     echo '<option>' . $i . '</option>';
                 } ?>
             </select>
-            <select name="year">
+            <select id="year" name="year">
                 <? foreach (range(date("Y"), 1950) as $i) {
                     echo '<option>' . $i . '</option>';
                 } ?>
             </select>
-            <label class="profile-form-label" for="bio">Bio : </label><textarea name="bio" placeholder="Your bio..."></textarea>
+            <label class="profile-form-label" for="bio">Bio : </label>
+            <textarea id="bio" name="bio" placeholder="Your bio..."></textarea>
 
-            <div><input type="submit" name="update" class="button" value="submit"></div>
+            <input id="user-submit" type="submit" name="user-update" value="submit" class="button">
+            <div id="user-error"></div>
         </form>
     </div>
 

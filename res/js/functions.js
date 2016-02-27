@@ -96,7 +96,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#contact-form').submit(function () {
+    $('#contact-form, #userForm').submit(function () {
         return false;
     });
 
@@ -105,6 +105,25 @@ $(document).ready(function () {
         var userlink = $(this).text();
         $("#u-link-name").val(userlink);
         $("#u-link-fetch input[type='submit']").click();
+    });
+
+    // User data update
+    $("#userForm").submit(function(){
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: "pages/upload.php",
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+                $("#user-error").html(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        return false;
     });
 });
 

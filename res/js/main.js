@@ -46,17 +46,22 @@ messagesRef.limitToLast(10).on('child_added', function (snapshot) {
 });
 
 $('.firechat-header').click(function () {
-    $('.firechat-container').animate({height: 'toggle'});
+    if($('.firechat-container').hasClass("active")){
+        $('.firechat-container').removeClass("active");
+    }else{
+        $('.firechat-container').addClass("active");
+    }
 });
 
 // Create free space for user admin panel
 $(".user-container-toggle").click(function(){
-    $(".user-admin-block").animate({width:"toggle"});
-    if( $(".main-page-block").css("marginLeft") == "250px" ){
-        $(".main-page-block").animate({marginLeft:"0"}, 300);
+    if($(".user-admin-block").hasClass("show")){
+        $(".user-admin-block").removeClass("show");
+        $(".main-page-block").removeClass("move");
         $(".user-container-toggle.show").css("display","inline-block");
     }else{
-        $(".main-page-block").animate({marginLeft:"250px"}, 300);
+        $(".user-admin-block").addClass("show");
+        $(".main-page-block").addClass("move");
         $(".user-container-toggle.show").css("display","none");
     }
 });

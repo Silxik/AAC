@@ -46,7 +46,16 @@
 /* Wrapper
  --------------------------------------------------------------------------- */
     .main-page-block{
-        /*margin-left:250px;*/
+        margin-left:0;
+        -webkit-transition: margin-left .4s ease-in-out;
+        -moz-transition: margin-left .4s ease-in-out;
+        -ms-transition: margin-left .4s ease-in-out;
+        -o-transition: margin-left .4s ease-in-out;
+        transition: margin-left .4s ease-in-out;
+    }
+
+    .main-page-block.move{
+        margin-left:250px;
     }
 
     #divWrapper {
@@ -166,7 +175,7 @@
     }
 
     .button{
-        display: inline-block;
+        display:block;
         padding:0 10px;
         margin-top: 5px;
         color: white;
@@ -386,10 +395,22 @@
  --------------------------------------------------------------------------- */
     .user-admin-block{
         position: fixed;
-        display: none;
+        display: block;
+        padding:0 10px;
         height:100%;
-        width:250px;
+        width:0;
+        opacity:0;
         background-color: #000;
+        -webkit-transition: width .4s ease-in-out, opacity .4s ease-in-out;
+        -moz-transition: width .4s ease-in-out, opacity .4s ease-in-out;
+        -ms-transition: width .4s ease-in-out, opacity .4s ease-in-out;
+        -o-transition: width .4s ease-in-out, opacity .4s ease-in-out;
+        transition: width .4s ease-in-out, opacity .4s ease-in-out;
+    }
+
+    .user-admin-block.show{
+        width:230px;
+        opacity:1;
     }
 
     .user-container-toggle.button.show {
@@ -614,7 +635,18 @@
     }
 
     .firechat-container {
-        display: none;
+        height:0;
+        opacity:0;
+        -webkit-transition: height .4s ease-in-out, opacity .4s ease-in-out;
+        -moz-transition: height .4s ease-in-out, opacity .4s ease-in-out;
+        -ms-transition: height .4s ease-in-out, opacity .4s ease-in-out;
+        -o-transition: height .4s ease-in-out, opacity .4s ease-in-out;
+        transition: height .4s ease-in-out, opacity .4s ease-in-out;
+    }
+    
+    .firechat-container.active {
+        height:250px;
+        opacity:1;
     }
 
     .firechat-list {
@@ -635,7 +667,8 @@
     }
 
     #messages {
-        max-height: 200px;
+        max-height: 220px;
+        height: 100%;
         overflow-y: scroll;
         border-top: 2px inset silver;
         border-bottom: 2px inset silver;

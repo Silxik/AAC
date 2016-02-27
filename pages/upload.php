@@ -1,4 +1,6 @@
 <?
+require_once("../system/main.php");
+
 if (isset($_POST["newPost"])) {
     $target_dir = "uploads/files/";
     $user_id = $user['user_id'];
@@ -58,7 +60,7 @@ if (isset($_POST['disc_submit'])) {
     }
 }
 
-if (isset($_POST["update"])) {
+if (isset($_POST["user-update"])) {
     $username = $user["username"];
     $id = $_POST["id"];
     $l = $db->real_escape_string($_POST["location"]);
@@ -69,30 +71,43 @@ if (isset($_POST["update"])) {
     $date = $y . '-' . $m . '-' . $d;
     $bio = $db->real_escape_string($_POST["bio"]);
 
-    $target_dir = "uploads/avatars/";
-    $target_file = $target_dir . basename($_FILES["avatar"]["tmp_name"]);
-    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
-    if ($check === false) {
-        exit("File is not an image.");
-    }
-    if ($_FILES["avatar"]["size"] > 2000000) {
-        exit("Image is too large!");
-    }
-    $temp = explode(".", $_FILES["avatar"]["name"]);
-    $file_path = $target_dir . $username . "_avatar" . '.' . end($temp);
-    foreach (glob($target_dir . $username . '_avatar.*') as $image) {
-        unlink($image);
-    }
-    if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $file_path)) {
-        $sql = "UPDATE user SET profile_image = '$file_path', location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
+    if(!file_exists($_FILES['avatar']['tmp_name']) || !is_uploaded_file($_FILES['avatar']['tmp_name'])) {
+        $sql = "UPDATE user SET location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
         if ($db->query($sql)) {
             $result = $db->query("SELECT * FROM user WHERE user_id = '$id'");
             if ($result) {
                 $_SESSION['user'] = $result->fetch_assoc();
+                exit("Profile updated!");
             }
-            header('Refresh:0; url=profileEdit');
         } else {
             exit('Something went wrong! ' . $db->error);
+        }
+    }else{
+        $target_dir = "../uploads/avatars/";
+        $target_file = $target_dir . basename($_FILES["avatar"]["tmp_name"]);
+        if (getimagesize($_FILES["avatar"]["tmp_name"]) === false) {
+            exit("File is not an image.");
+        }
+        if ($_FILES["avatar"]["size"] > 2000000) {
+            exit("Image is too large!");
+        }
+        $temp = explode(".", $_FILES["avatar"]["name"]);
+        $file_path = $target_dir . $username . "_avatar" . '.' . end($temp);
+        $target_path = "uploads/avatars/" . $username . "_avatar" . '.' . end($temp);
+        foreach (glob($target_dir . $username . '_avatar.*') as $image) {
+            unlink($image);
+        }
+        if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $file_path)) {
+            $sql = "UPDATE user SET profile_image = '$target_path', location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'";
+            if ($db->query($sql)) {
+                $result = $db->query("SELECT * FROM user WHERE user_id = '$id'");
+                if ($result) {
+                    $_SESSION['user'] = $result->fetch_assoc();
+                    exit("Profile updated!");
+                }
+            } else {
+                exit('Something went wrong! ' . $db->error);
+            }
         }
     }
 }
