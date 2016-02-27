@@ -14,8 +14,10 @@ if($path === "profile"){
 
         // If page is visited by owner, create admin panel, else show design
         if($username === $user["username"]){ ?>
+            <div class="user-container-toggle button show">Show panel</div>
             <div class="user-admin-block">
                 <div class="user-admin-container">
+                    <div class="user-container-toggle button hide">Hide panel</div>
                     <div class="user-admin-header">
                         <h3 class="header-h3">Welcome, <?=$user["username"];?></h3>
                     </div>

@@ -29,7 +29,10 @@
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
-
+    /*b, strong, em, i{*/
+        /*font-weight: normal;*/
+        /*font-style: normal;*/
+    /*}*/
     ul{
         margin:0;
         padding:0;
@@ -49,7 +52,7 @@
     #divWrapper {
         max-width: 1050px;
         margin: 0 auto;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
     }
 
 /* HEADER
@@ -58,7 +61,7 @@
  --------------------------------------------------------------------------- */
     #header {
         padding: 20px;
-        background: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
     }
 
     #header .logo {
@@ -66,13 +69,13 @@
         -webkit-border-radius: 100%;
         -moz-border-radius: 100%;
         border-radius: 100%;
+        vertical-align: middle;
     }
 
     .page-title {
         display: inline-block;
-        position: relative;
-        bottom: 20px;
         margin-left: 10px;
+        vertical-align: middle;
     }
 
 /* Navigation
@@ -81,7 +84,7 @@
         display:block;
         text-align:center;
         clear:both;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
     }
 
     .header-nav-list{
@@ -89,7 +92,7 @@
         margin: 0 auto;
         border-top:2px inset;
         border-bottom:2px inset;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
         list-style: none;
     }
 
@@ -162,17 +165,18 @@
         border-bottom-left-radius:16px;
     }
 
-    #main .button, .button{
+    .button{
         display: inline-block;
         padding:0 10px;
         margin-top: 5px;
         color: white;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: #000;
         text-decoration: none;
         border:3px inset white;
         -webkit-border-radius: 16px;
         -moz-border-radius: 16px;
         border-radius:16px;
+        cursor: pointer;
     }
 
 /* LOGIN
@@ -222,7 +226,7 @@
         width:600px;
         margin: 0 auto;
         padding:20px;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
         border: 3px inset white;
     }
 
@@ -241,6 +245,14 @@
         margin-left:20px;
     }
 
+/* EVENTS
+** ========================================================================== */
+/* Events block
+ --------------------------------------------------------------------------- */
+    .events-block{
+        margin-left:20px;
+    }
+
 /* PROFILE
 ** ========================================================================== */
 /* Profile navigation
@@ -250,7 +262,7 @@
         display: block;
         padding:5px 10px;
         margin:0 240px 10px 0;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
         border-bottom:2px inset silver;
     }
 
@@ -317,7 +329,7 @@
         padding:5px;
         margin:10px 0 10px 0;
         border: 2px inset grey;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
     }
 
     .profile-userpost-header{
@@ -374,12 +386,25 @@
  --------------------------------------------------------------------------- */
     .user-admin-block{
         position: fixed;
+        display: none;
         height:100%;
         width:250px;
         background-color: #000;
     }
-    
-    .user-admin-container{
+
+    .user-container-toggle.button.show {
+        position: fixed;
+        bottom: 50px;
+    }
+
+    .user-container-toggle.hide{
+        position: absolute;
+        bottom: 50px;
+        white-space: nowrap;
+    }
+
+    .user-admin-header{
+        text-align: center;
     }
 
 /* PROFILE EDIT
@@ -434,7 +459,7 @@
         padding: 0 20px;
         border-top: 2px inset silver;
         border-bottom: 2px inset silver;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
     }
 
     .discussion-header {
@@ -442,7 +467,11 @@
         padding: 5px 20px;
     }
 
-    .discussion-title {
+    .discussion-title{
+        margin:0;
+    }
+
+    .discussion-title.discussion-toggler {
         margin: 0;
         -webkit-transition: color .4s ease-in-out;
         -moz-transition: color .4s ease-in-out;
@@ -451,7 +480,7 @@
         font-size: 27px;
     }
 
-    .discussion-title:hover {
+    .discussion-title.discussion-toggler:hover {
         color: #ffA500;
         cursor: pointer;
     }
@@ -543,7 +572,7 @@
         margin:0 auto;
         padding:20px;
         border: 3px solid #000000;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-image: url(../img/dim.png);
     }
     .warning-image{
         display:block;

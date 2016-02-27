@@ -13,7 +13,7 @@
     </pre>
 
     <?
-    $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id");
+    $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id ORDER BY post_date DESC");
     while ($r = $q->fetch_assoc()) { ?>
         <div class="profile-userpost-container">
             <div class="profile-userpost-header">

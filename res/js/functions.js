@@ -1,65 +1,33 @@
 //---------------------------- Functions --------------------------------
 
-/**
- * Sends an XMLHttpRequest to a url and returns the response
- * to the callback function once it arrives
- * @param {string} u Target url
- * @param {Object} p Parameters as JSON object
- * @param {function} c Callback function
- * @param {string=} t Response type (optional)
- * @return {object} XMLHttpRequest object
- */
-var xhr = function (u, p, c, t) {
-    /**
-     * @type {XMLHttpRequest} r XMLHttpRequest object
-     */
-    var req = new XMLHttpRequest(),
-        par = '';
-    // Generate request body from params
-    for (var key in p) {
-        par += par != '' ? '&' : '';
-        par += key + "=" + encodeURIComponent(p[key]);
-    }
-    req.open('POST', u, true);
-
-    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    req.setRequestHeader("Content-length", par.length);
-    req.setRequestHeader("Connection", "close");
-    req.onreadystatechange = function () {
-        if (req.readyState == 4 && req.status == 200) {
-            c(req.response);
-        }
-    };
-    if (t) {
-        req.responseType = t;
-    }
-    req.send(par);
-    return req;
-}
-
-function _(string) {
-    return document.getElementById(string) || document.getElementsByClassName(string) || document.getElementsByTagName(string);
-}
-
 function login() {
-    xhr('system/login.php', {un: _('username').value, pw: _('password').value}, function (result) {
-        if (result == 'Ok') {
+    var un = $("#username").val();
+    var pw = $("#password").val();
+    $.ajax({
+        url:"system/login.php",
+        data: {un:un, pw:pw},
+        type:"post",
+        success:function(){
             window.location = window.location;
-        } else {
+        },
+        error:function(result){
             console.log(result);
         }
     });
 }
 
 function register() {
-    xhr('system/register.php', {
-        un: _('regUsername').value,
-        pw: _('regPassword').value,
-        cap: _('captcha').value
-    }, function (result) {
-        if (result == 'Ok') {
+    var un = $("#regUsername").val();
+    var pw = $("#regPassword").val();
+    var cap = $("#captcha").val();
+    $.ajax({
+        url:"system/register.php",
+        data: {un:un, pw:pw, cap:cap},
+        type:"post",
+        success:function(){
             window.location = window.location.href.split('register')[0];
-        } else {
+        },
+        error:function(result){
             console.log(result);
         }
     });
@@ -87,46 +55,21 @@ function sendEmail() {
     }
 }
 
-document.onready = function () {
-    /* Upload avatar image preview for profileEdit */
-
-    var preview = document.getElementById("image-preview");
-    _("file").onchange = function (e) {
-        var file = this.files[0];
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            image_base64 = e.target.result;
-            preview.src = image_base64;
-        };
-        reader.readAsDataURL(file);
-    };
-};
-/*
-
- http://stackoverflow.com/questions/824349/modify-the-url-without-reloading-the-page
-
- function processAjaxData(response, urlPath){
- document.getElementById("content").innerHTML = response.html;
- document.title = response.pageTitle;
- window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
- }
-
- window.onpopstate = function(e){
- if(e.state){
- document.getElementById("content").innerHTML = e.state.html;
- document.title = e.state.pageTitle;
- }
- };
-
- */
-
-//----------------------------Global variables---------------------------
-//var BASE_URL = 'localhost/AAC/';
-
-
 //---------------------------- Initialization --------------------------------
 
 $(document).ready(function () {
+    /* Upload avatar image preview for profileEdit */
+
+    var preview = $("#image-preview");
+    $("#file").change(function (e) {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            preview.attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    });
+
     // Login and register on enter keypress
     $('#loginForm').keydown(function(e) {
         if (e.which == 13) {    // Enter key
@@ -157,6 +100,7 @@ $(document).ready(function () {
         return false;
     });
 
+    // Passes username to a hidden form & submits
     $(".user-link").click(function(){
         var userlink = $(this).text();
         $("#u-link-name").val(userlink);
@@ -188,14 +132,4 @@ $(document).ready(function () {
  $(this).get(0).selectionEnd = start + 1;
  }
  });
-
- $('#EditorToggler').click(function(){
- $('#WebEditor').animate({
- width: 'toggle'
- });
- });
-
- $('#profile').click(function(){
- $('#iconUpload').toggle();
- });
- */
+*/

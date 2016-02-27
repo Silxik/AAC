@@ -17,16 +17,16 @@
     </div>
     <div class="discussion-block">
     <?
-    $disc_q = $db->query("SELECT * FROM discussion D INNER JOIN files F ON D.file_id = F.file_id INNER JOIN user U ON D.user_id=U.user_id");
-    while ($disc_res = $disc_q->fetch_assoc()) { ?>
+    $sql = $db->query("SELECT * FROM discussion D INNER JOIN files F ON D.file_id = F.file_id INNER JOIN user U ON D.user_id=U.user_id ORDER BY date DESC");
+    while ($discussion = $sql->fetch_assoc() ) { ?>
         <div class="discussion-container">
-            <? if ($disc_res['file_id'] !== 0) { ?>
-                <img class="discussion-image" src="<?= $disc_res['file_name']; ?>" rel="Discussion image">
+            <? if ($discussion['file_id'] !== 0) { ?>
+                <img class="discussion-image" src="<?= $discussion['file_name']; ?>" rel="Discussion image">
             <? } ?>
 
             <div class="discussion-header">
-                <h2 class="discussion-title"><?= $disc_res["title"]; ?></h2>
-                <p class="discussion-header-text">By <a class="user-link"><?= $disc_res['username']; ?></a> <span class="discussion-date"><?= $disc_res["date"]; ?></span></p>
+                <h2 class="discussion-title discussion-toggler"><?= $discussion["title"]; ?></h2>
+                <p class="discussion-header-text">By <a class="user-link"><?= $discussion['username']; ?></a> <span class="discussion-date"><?= $discussion["date"]; ?></span></p>
             </div>
         </div>
     <? } ?>

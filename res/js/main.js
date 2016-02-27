@@ -49,7 +49,14 @@ $('.firechat-header').click(function () {
     $('.firechat-container').animate({height: 'toggle'});
 });
 
-// If admin mode, give space for admin container
-if($("body").children("div.user-admin-block").length > 0 ){
-    $(".main-page-block").css("margin","0 0 0 250px");
-}
+// Create free space for user admin panel
+$(".user-container-toggle").click(function(){
+    $(".user-admin-block").animate({width:"toggle"});
+    if( $(".main-page-block").css("marginLeft") == "250px" ){
+        $(".main-page-block").animate({marginLeft:"0"}, 300);
+        $(".user-container-toggle.show").css("display","inline-block");
+    }else{
+        $(".main-page-block").animate({marginLeft:"250px"}, 300);
+        $(".user-container-toggle.show").css("display","none");
+    }
+});
