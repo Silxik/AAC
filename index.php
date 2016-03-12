@@ -16,8 +16,10 @@
     <? include("system/admin-panel.php"); ?>
     <div class="main-page-block">
         <div id="header">
-            <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
-            <h2 class="page-title">Anime Addicts<br>Continue~!</h2>
+            <a class="header-link" href="#">
+                <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
+                <h2 class="page-title">Anime Addicts<br>Continue~!</h2>
+            </a>
         </div>
         <div id="nav">
             <ul class="header-nav-list">

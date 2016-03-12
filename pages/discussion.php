@@ -6,7 +6,7 @@
             <label class="form-label" for="text">Your discussion :</label><textarea placeholder="Description..." name="text"></textarea>
             <label class="form-label" for="disc_img_prev" class="br">Upload image : </label><input id="file" name="disc_img" type="file">
             <div class="preview-container">
-                <img id="image-preview"/>
+                <img class="image-preview"/>
             </div>
             <? if ($user) { ?>
                 <input class="button" name="disc_submit" type="submit">

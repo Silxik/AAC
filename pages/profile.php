@@ -9,15 +9,17 @@
                 <li class="profile-nav-list-item"><a class="profile-nav-link">Photos</a></li>
             </ul>
         </div>
+        <? if($user['username'] === $username ){ ?>
         <div class="profile-nav-right">
             <ul class="profile-nav-list">
                 <li class="profile-nav-list-item"><a class="profile-nav-link" href="profileEdit">Edit profile</a></li>
             </ul>
         </div>
+        <? } ?>
     </div>
 
     <div class="profile-container">
-        <form method="POST" action="upload" enctype="multipart/form-data">
+        <form id="userPost" class="profile-form" method="POST" action="upload" enctype="multipart/form-data">
             <label class="profile-form-label" for="text"></label><textarea name="text" placeholder="What's on your mind?"></textarea>
             <label class="profile-form-label" for="post_attachment">Choose file : </label><input style="color:white;" name="post_attachment" type="file">
             <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
@@ -25,8 +27,6 @@
         </form>
 
         <?
-        $u_id = $user['user_id'];
-        $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id WHERE U.user_id = $u_id ORDER BY post_date DESC");
         while ($r = $q->fetch_assoc()) { ?>
             <div class="profile-userpost-container">
                 <div class="profile-userpost-header">

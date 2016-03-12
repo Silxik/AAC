@@ -16,7 +16,7 @@
             <label class="profile-form-label" for="avatar">Upload your avatar : </label>
             <input id="file" name="avatar" type="file">
             <div class="preview-container">
-                <img id="image-preview" />
+                <img class="image-preview" />
             </div>
             <label class="profile-form-label" for="location">Country : </label>
             <input id="location" class="profile-edit-input" type="text" name="location" placeholder="State/City">

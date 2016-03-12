@@ -85,6 +85,11 @@
         display: inline-block;
         margin-left: 10px;
         vertical-align: middle;
+        color:#FFF;
+    }
+
+    .header-link{
+        display:inline-block;
     }
 
 /* Navigation
@@ -175,7 +180,7 @@
     }
 
     .button{
-        display:block;
+        display:inline-block;
         padding:0 10px;
         margin-top: 5px;
         color: white;
@@ -389,11 +394,11 @@
         margin: 0;
     }
 
-/* USER ADMIN
+/* ADMIN
 ** ========================================================================== */
-/* User admin block
+/* Admin block
  --------------------------------------------------------------------------- */
-    .user-admin-block{
+    .admin-block{
         position: fixed;
         display: block;
         padding:0 10px;
@@ -408,25 +413,43 @@
         transition: width .4s ease-in-out, opacity .4s ease-in-out;
     }
 
-    .user-admin-block.show{
+    .admin-block.show{
         width:230px;
         opacity:1;
     }
 
-    .user-container-toggle.button.show {
+    .sidebar-toggle.button.show {
         position: fixed;
         bottom: 50px;
     }
 
-    .user-container-toggle.hide{
+    .sidebar-toggle.hide{
         position: absolute;
         bottom: 50px;
         white-space: nowrap;
     }
 
-    .user-admin-header{
+    .admin-header{
         text-align: center;
     }
+
+/* Admin nav
+--------------------------------------------------------------------------- */
+    .admin-nav-link.hidden{
+        display:none;
+    }
+
+    .admin-editable{
+        opacity:0;
+        width:0;
+        height:0;
+    }
+    .admin-editable.active{
+        width:100%;
+        height:auto;
+        opacity:1;
+    }
+
 
 /* PROFILE EDIT
 ** ========================================================================== */
@@ -449,9 +472,10 @@
         margin: 0;
     }
 
-    #image-preview {
-        max-width: 500px;
+    .image-preview {
+        max-width: 400px;
         max-height: 300px;
+        width:100%;
     }
 
     .profile-edit-input{

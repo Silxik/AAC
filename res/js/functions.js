@@ -59,8 +59,7 @@ function sendEmail() {
 
 $(document).ready(function () {
     /* Upload avatar image preview for profileEdit */
-
-    var preview = $("#image-preview");
+    var preview = $(".image-preview");
     $("#file").change(function (e) {
         var file = this.files[0];
         var reader = new FileReader();
@@ -107,6 +106,11 @@ $(document).ready(function () {
         $("#u-link-fetch input[type='submit']").click();
     });
 
+    $("body").on("click", ".admin-nav-link", function(){
+        $(this).parent().children(".admin-editable").addClass("active");
+        $(".admin-nav-link").addClass("hidden");
+    });
+
     // User data update
     $("#userForm").submit(function(){
         var formData = new FormData($(this)[0]);
@@ -117,12 +121,9 @@ $(document).ready(function () {
             async: false,
             success: function (data) {
                 $("#user-error").html(data);
-            },
-            cache: false,
-            contentType: false,
-            processData: false
+                window.location = window.location;
+            }
         });
-
         return false;
     });
 });

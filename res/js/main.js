@@ -38,11 +38,8 @@ messagesRef.limitToLast(10).on('child_added', function (snapshot) {
     nameElement.text(username);
     messageElement.text(message).prepend(nameElement);
 
-    //ADD MESSAGE
-    messageList.append(messageElement)
-
-    //SCROLL TO BOTTOM OF MESSAGE LIST
-    messageList[0].scrollTop = messageList[0].scrollHeight;
+    messageList.append(messageElement); //ADD MESSAGE
+    messageList[0].scrollTop = messageList[0].scrollHeight; //SCROLL TO BOTTOM OF MESSAGE LIST
 });
 
 $('.firechat-header').click(function () {
@@ -53,15 +50,14 @@ $('.firechat-header').click(function () {
     }
 });
 
-// Create free space for user admin panel
-$(".user-container-toggle").click(function(){
-    if($(".user-admin-block").hasClass("show")){
-        $(".user-admin-block").removeClass("show");
+$(".sidebar-toggle").click(function(){
+    if($(".admin-block").hasClass("show")){
+        $(".admin-block").removeClass("show");
         $(".main-page-block").removeClass("move");
-        $(".user-container-toggle.show").css("display","inline-block");
+        $(".sidebar-toggle.show").css("display","inline-block");
     }else{
-        $(".user-admin-block").addClass("show");
+        $(".admin-block").addClass("show");
         $(".main-page-block").addClass("move");
-        $(".user-container-toggle.show").css("display","none");
+        $(".sidebar-toggle.show").css("display","none");
     }
 });
