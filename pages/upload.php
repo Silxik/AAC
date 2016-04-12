@@ -1,5 +1,5 @@
 <?
-require_once("../system/main.php");
+include("../system/main.php");
 
 if (isset($_POST["newPost"])) {
     $target_dir = "uploads/files/";

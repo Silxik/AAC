@@ -29,12 +29,15 @@ if($path === "profile"){
                             <li class="admin-nav-item">
                                 <a class="admin-nav-link">Background</a>
                                 <div class="admin-editable">
-                                    <label>Choose new background image :</label>
-                                    <input id="file" type="file">
-                                    <div class="preview-container">
-                                        <img class="image-preview">
-                                    </div>
+                                    <form method="post" action="" autocomplete="off">
+                                        <label>Choose new background image :</label>
+                                        <input id="file" type="file">
+                                        <div class="preview-container">
+                                            <img class="image-preview">
+                                        </div>
 
+                                        <input type="radio" value> <!-- TODO BACKGROUND POSITION, CONTAINER COLOR CHANGES -->
+                                    </form>
                                 </div>
                             </li>
                             <li class="admin-nav-item"><a class="admin-nav-link">Code editor</a></li>
@@ -51,7 +54,6 @@ if($path === "profile"){
 
                 $("#file").change(function(){
                     setTimeout(function(){
-                        // $("body").css("background-image","url("+$(".image-preview").attr("src")+")");
                         if( $("style").length > 1 ) {
                             $("style").last().remove();
                             $("body").append('<style> body{ background-image:url('+ $(".image-preview").attr("src") +'); } </style>');
@@ -62,6 +64,8 @@ if($path === "profile"){
                     ,1000);
                 });
             </script>
+
+            <!-- TODO INSERT INTO DATABASE USERPROFILE -->
         <? }else{
 
         }

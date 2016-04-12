@@ -1,5 +1,3 @@
-//---------------------------- Functions --------------------------------
-
 function login() {
     var un = $("#username").val();
     var pw = $("#password").val();
@@ -55,8 +53,6 @@ function sendEmail() {
     }
 }
 
-//---------------------------- Initialization --------------------------------
-
 $(document).ready(function () {
     /* Upload avatar image preview for profileEdit */
     var preview = $(".image-preview");
@@ -83,14 +79,13 @@ $(document).ready(function () {
     });
 
     $('.discussion-title').click(function () {
-        var discussion_name = $(this).text();
-        var username = $('.user-link').eq($(this).parent().parent().parent().index()).text();
-        $.ajax({
+        var id = $(this).data('id');
+        $.get({
             url: 'system/ajax_discussion.php',
-            data: {username: username, discussion_name: discussion_name},
-            type: 'POST',
+            data: {id: id},
             success: function (data) {
                 $('.discussion-block').html(data);
+                window.location.search = "id="+ id;
             }
         });
     });
@@ -100,27 +95,28 @@ $(document).ready(function () {
     });
 
     // Passes username to a hidden form & submits
-    $(".user-link").click(function(){
+    $(document).on('click', '.user-link',function(){
         var userlink = $(this).text();
-        $("#u-link-name").val(userlink);
-        $("#u-link-fetch input[type='submit']").click();
-    });
-
-    $("body").on("click", ".admin-nav-link", function(){
-        $(this).parent().children(".admin-editable").addClass("active");
-        $(".admin-nav-link").addClass("hidden");
+        $('#u-link-name').val(userlink);
+        $('#u-link-fetch input[type="submit"]').click();
+    }).on('click', '.admin-nav-link', function(){
+        $(this).parent().children('.admin-editable').addClass('active');
+        $('.admin-nav-link').addClass('hidden');
     });
 
     // User data update
-    $("#userForm").submit(function(){
-        var formData = new FormData($(this)[0]);
+    $(document).on('submit', '#userForm', function(){
+        var formData = new FormData(this);
         $.ajax({
-            url: "pages/upload.php",
+            url: 'pages/upload.php',
             type: 'POST',
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
             data: formData,
-            async: false,
             success: function (data) {
-                $("#user-error").html(data);
+                $('#user-error').html(data);
                 window.location = window.location;
             }
         });

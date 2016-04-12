@@ -30,7 +30,7 @@
         while ($r = $q->fetch_assoc()) { ?>
             <div class="profile-userpost-container">
                 <div class="profile-userpost-header">
-                    <span class="user-icon small vertical-align" style="background-image:url('<?=$r["profile_image"];?>')"></span>
+                    <img class="user-icon small vertical-align" src="<?=$r["profile_image"];?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
                     <a class="user-link small-text vertical-align"><?=$r["username"]; ?></a>
                     <small class="profile-userpost-date vertical-align"><?=$r["post_date"]; ?></small>
                 </div>

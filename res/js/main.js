@@ -1,63 +1,25 @@
-// To create an anonymous webchat for everyone who visits the site, do the following:
-// 1.  replace nameInput variable value with the following - $('#nameInput').val()
-// 2.  Add this HTML line inside chat-content div element.
-// <div class='chat-toolbar'><input type='text' id='nameInput' placeholder='Enter a username...'></div>
-
-// CREATE A REFERENCE TO FIREBASE
-var messagesRef = new Firebase('https://kurikutsu.firebaseio.com/');
-
-// REGISTER DOM ELEMENTS
-var messageField = $('#messageInput');
-
-var nameField = "<?= $user['username'];?>";
-var messageList = $('#messages');
-
-// LISTEN FOR KEYPRESS EVENT
-messageField.keypress(function (e) {
-    if (e.keyCode == 13) {
-        //FIELD VALUES
-        var username = nameField;
-        var message = messageField.val();
-
-        //SAVE DATA TO FIREBASE AND EMPTY FIELD
-        messagesRef.push({name: username, text: message});
-        messageField.val('');
+$(document).on('ready', function(){
+    $('.scrollbar-inner').scrollbar();
+}).on('click', '.users-block-toggle', function(){
+    if( $('.users-block').hasClass('active') ){
+        $('.users-block').removeClass('active');
+    } else {
+        $('.users-block').addClass('active');
     }
-});
-
-// Add a callback that is triggered for each chat message.
-messagesRef.limitToLast(10).on('child_added', function (snapshot) {
-    //GET DATA
-    var data = snapshot.val();
-    var username = data.name || "anonymous";
-    var message = data.text;
-
-    //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-    var messageElement = $("<li class='firechat-list-item'>");
-    var nameElement = $("<strong class='firechat-username'></strong>");
-    nameElement.text(username);
-    messageElement.text(message).prepend(nameElement);
-
-    messageList.append(messageElement); //ADD MESSAGE
-    messageList[0].scrollTop = messageList[0].scrollHeight; //SCROLL TO BOTTOM OF MESSAGE LIST
-});
-
-$('.firechat-header').click(function () {
-    if($('.firechat-container').hasClass("active")){
-        $('.firechat-container').removeClass("active");
-    }else{
-        $('.firechat-container').addClass("active");
+}).on('click', '.sidebar-toggle', function(){
+    if( $('.admin-block').hasClass('show') ){
+        $('.admin-block').removeClass('show');
+        $('.main-page-block').removeClass('move');
+        $('.sidebar-toggle.show').css('display','inline-block');
+    } else {
+        $('.admin-block').addClass('show');
+        $('.main-page-block').addClass('move');
+        $('.sidebar-toggle.show').css('display','none');
     }
-});
-
-$(".sidebar-toggle").click(function(){
-    if($(".admin-block").hasClass("show")){
-        $(".admin-block").removeClass("show");
-        $(".main-page-block").removeClass("move");
-        $(".sidebar-toggle.show").css("display","inline-block");
-    }else{
-        $(".admin-block").addClass("show");
-        $(".main-page-block").addClass("move");
-        $(".sidebar-toggle.show").css("display","none");
+}).on('click', '.firechat-header', function () {
+    if( $(this).parent().children('.firechat-container').hasClass('active') ){
+        $(this).parent().children('.firechat-container').removeClass('active');
+    } else {
+        $(this).parent().children('.firechat-container').addClass('active');
     }
 });

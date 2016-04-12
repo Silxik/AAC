@@ -29,13 +29,11 @@
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
-    /*b, strong, em, i{*/
-        /*font-weight: normal;*/
-        /*font-style: normal;*/
-    /*}*/
+    
     ul{
         margin:0;
         padding:0;
+        list-style:none;
     }
 
     input, select{
@@ -95,6 +93,7 @@
 /* Navigation
  --------------------------------------------------------------------------- */
     #nav{
+        position: relative;
         display:block;
         text-align:center;
         clear:both;
@@ -275,7 +274,7 @@
         position: relative;
         display: block;
         padding:5px 10px;
-        margin:0 240px 10px 0;
+        margin:0 243px 10px 0;
         background-image: url(../img/dim.png);
         border-bottom:2px inset silver;
     }
@@ -347,12 +346,10 @@
     }
 
     .profile-userpost-header{
-        display:table;
         width:100%;
     }
 
     .vertical-align{
-        display: table-cell;
         vertical-align: middle;
     }
 
@@ -363,13 +360,13 @@
     }
 
     .profile-userpost-date{
-        padding:2px;
-        text-align: right;
+        float: right;
+        margin: 15px;
     }
 
     .profile-userpost-image {
-        max-width: 375px;
-        max-height:200px;
+        max-width: 100%;
+        max-height:390px;
     }
 
     .user-icon{
@@ -381,17 +378,19 @@
         -webkit-border-radius: 100%;
         -moz-border-radius: 100%;
         border-radius:100%;
-        background-position: center center;
-        -webkit-background-size: cover;
-        background-size: cover;
-        background-repeat: no-repeat;
     }
 
     .small{
-        display:table-cell;
         width:40px;
         height:40px;
         margin: 0;
+    }
+
+    .chat-icon{
+        display:inline-block;
+        width:28px;
+        height:28px;
+        margin:0 5px 0 0;
     }
 
 /* ADMIN
@@ -401,21 +400,21 @@
     .admin-block{
         position: fixed;
         display: block;
-        padding:0 10px;
+        padding:0;
         height:100%;
         width:0;
-        opacity:0;
+        overflow: hidden;
         background-color: #000;
-        -webkit-transition: width .4s ease-in-out, opacity .4s ease-in-out;
-        -moz-transition: width .4s ease-in-out, opacity .4s ease-in-out;
-        -ms-transition: width .4s ease-in-out, opacity .4s ease-in-out;
-        -o-transition: width .4s ease-in-out, opacity .4s ease-in-out;
-        transition: width .4s ease-in-out, opacity .4s ease-in-out;
+        -webkit-transition: width .4s ease-in-out, padding .4s ease-in-out;
+        -moz-transition: width .4s ease-in-out, padding .4s ease-in-out;
+        -ms-transition: width .4s ease-in-out, padding .4s ease-in-out;
+        -o-transition: width .4s ease-in-out, padding .4s ease-in-out;
+        transition: width .4s ease-in-out, padding .4s ease-in-out;
     }
 
     .admin-block.show{
         width:230px;
-        opacity:1;
+        padding:0 10px;
     }
 
     .sidebar-toggle.button.show {
@@ -434,7 +433,7 @@
     }
 
 /* Admin nav
---------------------------------------------------------------------------- */
+ --------------------------------------------------------------------------- */
     .admin-nav-link.hidden{
         display:none;
     }
@@ -450,6 +449,74 @@
         opacity:1;
     }
 
+/* USER
+** ========================================================================== */
+/* User block
+ --------------------------------------------------------------------------- */
+    .users-block {
+        position: fixed;
+        right: 0;
+        height: 0;
+        width: 220px;
+        background: #000;
+        overflow: hidden;
+
+        -webkit-transition: height .4s ease-in-out;
+        -moz-transition: height .4s ease-in-out;
+        -o-transition: height .4s ease-in-out;
+        transition: height .4s ease-in-out;
+    }
+    .users-block.active{
+        height:100%;
+    }
+
+/* User block toggle
+ --------------------------------------------------------------------------- */
+    .users-block-toggle {
+        position: absolute;
+        right: calc(( 100% - 1050px ) / 5);;   /* TODO CHANGE POS  */
+        top: 35px;
+        display: inline-block;
+        padding: 0px;
+        width: 0;
+        height: 0;
+        border-right: 35px solid transparent;
+        border-left: 35px solid transparent;
+        border-top: 35px solid #000;
+        cursor:pointer;
+        z-index: 1;
+    }
+
+    .users-block-toggle .fa{
+        position: absolute;
+        right: calc(50% - 8.5px);
+        bottom: 14px;
+    }
+
+/* User list
+ --------------------------------------------------------------------------- */
+    .user-items{
+        padding:5px 15px;
+        cursor: pointer;
+    }
+
+    .user-item-icon{
+        width: 30px;
+        height: 30px;
+        user-drag: none; 
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .user-item-icon::-moz-selection{
+        background-color:transparent;
+    }
+    .user-item-icon::selection{
+        background-color:transparent;
+    }
 
 /* PROFILE EDIT
 ** ========================================================================== */
@@ -647,7 +714,7 @@
         bottom: 32px;
         display: inline-block;
         width: 230px;
-        padding: 5px;
+        padding: 5px 5px 0;
         background-color: #000000;
         border-top: 3px inset silver;
         border-left: 3px inset silver;
@@ -655,22 +722,31 @@
 
     .firechat-header {
         margin: 0;
+        padding: 0 0 5px;
+        position: relative;
+        font-size: 19px;
+        border-bottom: 2px inset silver;
         cursor: pointer;
+    }
+    .firechat-header::-moz-selection{
+        background-color:transparent;
+    }
+    .firechat-header::selection{
+        background-color:transparent;
     }
 
     .firechat-container {
         height:0;
-        opacity:0;
-        -webkit-transition: height .4s ease-in-out, opacity .4s ease-in-out;
-        -moz-transition: height .4s ease-in-out, opacity .4s ease-in-out;
-        -ms-transition: height .4s ease-in-out, opacity .4s ease-in-out;
-        -o-transition: height .4s ease-in-out, opacity .4s ease-in-out;
-        transition: height .4s ease-in-out, opacity .4s ease-in-out;
+        overflow: hidden;
+        -webkit-transition: height .4s ease-in-out;
+        -moz-transition: height .4s ease-in-out;
+        -ms-transition: height .4s ease-in-out;
+        -o-transition: height .4s ease-in-out;
+        transition: height .4s ease-in-out;
     }
     
     .firechat-container.active {
         height:250px;
-        opacity:1;
     }
 
     .firechat-list {
@@ -678,7 +754,13 @@
         list-style: none;
     }
 
-    .firechat-list-item {
+    .scroll-wrapper.firechat-list.scrollbar-inner {
+        border-bottom: 2px inset silver;
+        max-height: 215px;
+        height: 100%;
+    }
+
+    .firechat-message {
         margin: 5px;
     }
 
@@ -690,21 +772,20 @@
         padding-right: 5px;
     }
 
-    #messages {
-        max-height: 220px;
-        height: 100%;
-        overflow-y: scroll;
-        border-top: 2px inset silver;
-        border-bottom: 2px inset silver;
+    .messages {
+        max-height: 215px !important;
+        height: 100% !important;
+        overflow-x: hidden !important;
     }
 
-    #messageInput {
+    .messageInput {
         width: 220px;
         padding: 5px;
+        margin: 5px 0 0;
         border: none;
     }
 
-    #nameInput {
+    .nameInput {
         width: 220px;
         padding: 5px;
         margin-top: 10px;
