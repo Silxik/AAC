@@ -43,7 +43,7 @@
                 <? if ($user) { ?>
                     <b class="welcome-text">Welcome : <a class="user-link"><?= $user['username']; ?></a></b>
                     <img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
-                    <b id="logout"><a href="logout">Log Out</a></b>
+                    <b id="logout"><a href="system/logout.php">Log Out</a></b>
                 <? } else { ?>
                     <form id="loginForm" autocomplete="off">
                         <label for="username">UserName :</label>
@@ -199,6 +199,12 @@
             messageList.append(messageBlock); //ADD MESSAGE
             messageList[0].scrollTop = messageList[0].scrollHeight; //SCROLL TO BOTTOM OF MESSAGE LIST
         });
+
+        <? if($user){ ?>
+            // firebaseRef.ref().on("child_added", function(userSnapshot) {
+                // TODO ON MESSAGE SENT TO ACTIVE USER, OPEN CHATBOX
+            // });
+        <? } ?>
     </script>
     <script type="text/javascript" src="res/js/main.js"></script>
 </body>

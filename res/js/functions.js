@@ -53,6 +53,55 @@ function sendEmail() {
     }
 }
 
+function updatePass(formData){
+    var curPass = formData.find(".curPass").val();
+    var newPass = formData.find(".newPass").val();
+    var confirm = formData.find(".confirm").val();
+
+    if ( curPass == ""){
+        $(".errorlog").html("<h3 class='error-header'>You must input your current password to continue.</h3>");
+    } else if ( newPass == "" ) {
+        $(".errorlog").html("<h3 class='error-header'>You must input your new password to continue.</h3>");
+    } else if ( newPass != confirm ) {
+        $(".errorlog").html("<h3 class='error-header'>Passwords don't match!</h3>");
+    } else {
+        $.ajax({
+            url: "system/update.php",
+            data: $("#pass-update").serialize(),
+            type: "POST",
+            success: function(data){
+                $(".errorlog").html(data);
+                formData.find(".curPass").val('');
+                formData.find(".newPass").val('');
+                formData.find(".confirm").val('');
+            }
+        });
+    }
+}
+
+function updateMail(formData){
+    var curPass = formData.find(".curPass").val();
+    var newMail = formData.find(".newMail").val();
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if ( curPass == "" ){
+        $(".errorlog").html("<h3 class='error-header'>You must input your current password to change your email address.</h3>");
+    } else if ( newMail == '' || !re.test(newMail) ) {
+        $(".errorlog").html("<h3 class='error-header'>You must input your new valid email to continue.</h3>");
+    } else {
+        $.ajax({
+            url: "system/update.php",
+            data: $("#mail-update").serialize(),
+            type: "POST",
+            success: function(data){
+                $(".errorlog").html(data);
+                formData.find(".curPass").val('');
+                formData.find(".newMail").val('');
+            }
+        });
+    }
+}
+
 $(document).ready(function () {
     /* Upload avatar image preview for profileEdit */
     var preview = $(".image-preview");
@@ -121,6 +170,16 @@ $(document).ready(function () {
             }
         });
         return false;
+    });
+
+    $(document).on('submit', '#pass-update', function(e){
+        updatePass( $(this) );
+        e.preventDefault();
+    });
+
+    $(document).on('submit', '#mail-update', function(e){
+        updateMail( $(this) );
+        e.preventDefault();
     });
 });
 

@@ -29,16 +29,22 @@
     <div class="discussion-create-block">
         <h1 class="header-h1">Discussions</h1>
         <form method="POST" action="upload" enctype="multipart/form-data">
-            <label class="form-label" for="title">Title : </label><input name="title" type="text" placeholder="Title...">
-            <label class="form-label" for="text">Your discussion :</label><textarea placeholder="Description..." name="text"></textarea>
-            <label class="form-label" for="disc_img_prev" class="br">Upload image : </label><input id="file" name="disc_img" type="file">
-            <div class="preview-container">
-                <img class="image-preview"/>
+            <div>
+                <label class="form-label in-line" for="title">Title : </label><input name="title" type="text" placeholder="Title...">
+            </div>
+            <div>
+                <label class="form-label in-line text-area-label" for="text">Your discussion :</label><textarea class="text-area" placeholder="Description..." name="text"></textarea>
+            </div>
+            <div>
+                <label class="form-label in-line" for="disc_img_prev" class="br">Upload image : </label><input id="file" name="disc_img" type="file">
+                <div class="preview-container">
+                    <img class="image-preview"/>
+                </div>
             </div>
             <? if ($user) { ?>
-                <input class="button" name="disc_submit" type="submit">
+                <div><label class="form-label in-line text-area-label" for="text"></label><input class="button" name="disc_submit" type="submit"></div>
             <? } else { ?>
-                <p>To create a discussion you must be logged in first!</p>
+                <p>Please log in to create a discussion.</p>
             <? } ?>
         </form>
     </div>

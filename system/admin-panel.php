@@ -33,7 +33,7 @@ if($path === "profile"){
                                         <label>Choose new background image :</label>
                                         <input id="file" type="file">
                                         <div class="preview-container">
-                                            <img class="image-preview">
+                                            <img class="image-preview admin-panel-preview">
                                         </div>
 
                                         <input type="radio" value> <!-- TODO BACKGROUND POSITION, CONTAINER COLOR CHANGES -->

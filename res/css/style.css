@@ -30,14 +30,45 @@
         background-repeat: no-repeat;
     }
     
-    ul{
+    ul {
         margin:0;
         padding:0;
         list-style:none;
     }
 
-    input, select{
+    input, 
+    select {
         padding:5px;
+    }
+
+    select,
+    option,
+    textarea {
+        color:#000000;
+    }
+
+    textarea {
+        max-width:400px;
+        width:100%;
+        height:80px;
+        padding:10px;
+        -webkit-border-top-left-radius: 16px;
+        -moz-border-top-left-radius: 16px;
+        -ms-border-top-left-radius: 16px;
+        -o-border-top-left-radius: 16px;
+        border-top-left-radius:16px;
+
+        -webkit-border-top-right-radius: 16px;
+        -moz-border-top-right-radius: 16px;
+        -ms-border-top-right-radius: 16px;
+        -o-border-top-right-radius: 16px;
+        border-top-right-radius:16px;
+
+        -webkit-border-bottom-left-radius: 16px;
+        -moz-border-bottom-left-radius: 16px;
+        -ms-border-bottom-left-radius: 16px;
+        -o-border-bottom-left-radius: 16px;
+        border-bottom-left-radius:16px;
     }
 /* WRAPPER
 ** ========================================================================== */
@@ -154,30 +185,6 @@
         font-size: 38px;
     }
 
-    #main textarea{
-        max-width:400px;
-        width:100%;
-        height:80px;
-        padding:10px;
-        -webkit-border-top-left-radius: 16px;
-        -moz-border-top-left-radius: 16px;
-        -ms-border-top-left-radius: 16px;
-        -o-border-top-left-radius: 16px;
-        border-top-left-radius:16px;
-
-        -webkit-border-top-right-radius: 16px;
-        -moz-border-top-right-radius: 16px;
-        -ms-border-top-right-radius: 16px;
-        -o-border-top-right-radius: 16px;
-        border-top-right-radius:16px;
-
-        -webkit-border-bottom-left-radius: 16px;
-        -moz-border-bottom-left-radius: 16px;
-        -ms-border-bottom-left-radius: 16px;
-        -o-border-bottom-left-radius: 16px;
-        border-bottom-left-radius:16px;
-    }
-
     .button{
         display:inline-block;
         padding:0 10px;
@@ -196,11 +203,12 @@
 ** ========================================================================== */
 /* Login
  --------------------------------------------------------------------------- */
-    #username, #password{
+    #username,
+    #password {
         color: #000;
     }
 
-    #profile{
+    #profile {
         float: right;
         display: inline-block;
         width: 200px;
@@ -235,7 +243,8 @@
         color:#ffA500;
     }
 
-    #login, #register{
+    #login,
+    #register {
         width:600px;
         margin: 0 auto;
         padding:20px;
@@ -254,7 +263,7 @@
 ** ========================================================================== */
 /* Index page
  --------------------------------------------------------------------------- */
-    .main-block{
+    .main-block {
         margin-left:20px;
     }
 
@@ -262,7 +271,7 @@
 ** ========================================================================== */
 /* Events block
  --------------------------------------------------------------------------- */
-    .events-block{
+    .events-block {
         margin-left:20px;
     }
 
@@ -270,7 +279,7 @@
 ** ========================================================================== */
 /* Profile navigation
  --------------------------------------------------------------------------- */
-    .profile-nav-block{
+    .profile-nav-block {
         position: relative;
         display: block;
         padding:5px 10px;
@@ -279,7 +288,8 @@
         border-bottom:2px inset silver;
     }
 
-    .profile-nav-left, .profile-nav-right {
+    .profile-nav-left,
+    .profile-nav-right {
         display: inline-block;
     }
 
@@ -292,9 +302,10 @@
 
     .profile-nav-list { list-style: none; }
 
-    .profile-nav-list-item{ display:inline-block; }
+    .profile-nav-list-item { display:inline-block; }
+    .profile-nav-link.profile-change .fa { margin-right: 10px; }
 
-    .profile-nav-line{
+    .profile-nav-line {
         position:relative;
         top:4px;
         display: inline-block;
@@ -303,7 +314,7 @@
         margin:0 10px;
         background-color: white;
     }
-    .profile-nav-link{
+    .profile-nav-link {
         font-size: 19px;
         text-decoration: none;
         cursor: pointer;
@@ -317,25 +328,25 @@
         transition-delay: 0s;
         color: white;
     }
-    .profile-nav-link:hover{ color: #ffA500; }
+    .profile-nav-link:hover { color: #ffA500; }
 
-    .hidden{
+    .hidden {
         position: absolute;
         visibility: hidden;
     }
 /* Profile container
  --------------------------------------------------------------------------- */
-    .profile-container{
+    .profile-container {
         display:block;
         margin-left:20px;
     }
 
-    .profile-userpost-text{
+    .profile-userpost-text {
         white-space: pre-line;
         word-break: break-all;
     }
 
-    .profile-userpost-container{
+    .profile-userpost-container {
         clear: both;
         max-width:600px;
         width:100%;
@@ -345,21 +356,21 @@
         background-image: url(../img/dim.png);
     }
 
-    .profile-userpost-header{
+    .profile-userpost-header {
         width:100%;
     }
 
-    .vertical-align{
+    .vertical-align {
         vertical-align: middle;
     }
 
-    .small-text{
+    .small-text {
         position: relative;
         left: 20px;
         font-size:17px;
     }
 
-    .profile-userpost-date{
+    .profile-userpost-date {
         float: right;
         margin: 15px;
     }
@@ -369,7 +380,7 @@
         max-height:390px;
     }
 
-    .user-icon{
+    .user-icon {
         display: inline-block;
         width:80px;
         height:80px;
@@ -380,13 +391,13 @@
         border-radius:100%;
     }
 
-    .small{
+    .small {
         width:40px;
         height:40px;
         margin: 0;
     }
 
-    .chat-icon{
+    .chat-icon {
         display:inline-block;
         width:28px;
         height:28px;
@@ -397,7 +408,7 @@
 ** ========================================================================== */
 /* Admin block
  --------------------------------------------------------------------------- */
-    .admin-block{
+    .admin-block {
         position: fixed;
         display: block;
         padding:0;
@@ -412,7 +423,7 @@
         transition: width .4s ease-in-out, padding .4s ease-in-out;
     }
 
-    .admin-block.show{
+    .admin-block.show {
         width:230px;
         padding:0 10px;
     }
@@ -422,28 +433,28 @@
         bottom: 50px;
     }
 
-    .sidebar-toggle.hide{
+    .sidebar-toggle.hide {
         position: absolute;
         bottom: 50px;
         white-space: nowrap;
     }
 
-    .admin-header{
+    .admin-header {
         text-align: center;
     }
 
 /* Admin nav
  --------------------------------------------------------------------------- */
-    .admin-nav-link.hidden{
+    .admin-nav-link.hidden {
         display:none;
     }
 
-    .admin-editable{
+    .admin-editable {
         opacity:0;
         width:0;
         height:0;
     }
-    .admin-editable.active{
+    .admin-editable.active {
         width:100%;
         height:auto;
         opacity:1;
@@ -456,8 +467,9 @@
     .users-block {
         position: fixed;
         right: 0;
+        max-width: 250px;
         height: 0;
-        width: 220px;
+        width: 100%;
         background: #000;
         overflow: hidden;
 
@@ -466,7 +478,7 @@
         -o-transition: height .4s ease-in-out;
         transition: height .4s ease-in-out;
     }
-    .users-block.active{
+    .users-block.active {
         height:100%;
     }
 
@@ -487,7 +499,7 @@
         z-index: 1;
     }
 
-    .users-block-toggle .fa{
+    .users-block-toggle .fa {
         position: absolute;
         right: calc(50% - 8.5px);
         bottom: 14px;
@@ -495,12 +507,12 @@
 
 /* User list
  --------------------------------------------------------------------------- */
-    .user-items{
+    .user-items {
         padding:5px 15px;
         cursor: pointer;
     }
 
-    .user-item-icon{
+    .user-item-icon {
         width: 30px;
         height: 30px;
         user-drag: none; 
@@ -511,10 +523,10 @@
         -ms-user-select: none;
     }
 
-    .user-item-icon::-moz-selection{
+    .user-item-icon::-moz-selection {
         background-color:transparent;
     }
-    .user-item-icon::selection{
+    .user-item-icon::selection {
         background-color:transparent;
     }
 
@@ -522,48 +534,64 @@
 ** ========================================================================== */
 /* Profile edit block
  --------------------------------------------------------------------------- */
-    .profile-edit-block{
-        margin:0 20px 20px;
+    .profile-edit-block { margin:0 20px 20px; }
+
+    .profile-edit-pass,
+    .profile-edit-email{
+        padding:15px 0;
     }
 
-    #main select, #main select option, #main textarea{
-        color:#000000;
+    .profile-edit-header{
+        margin: 0 0 15px;
     }
 
-    .profile-form-label, .form-label{
+    .profile-form-label,
+    .form-label {
         display:block;
         margin:10px 10px 10px 0;
     }
 
-    .preview-container {
-        margin: 0;
+    .in-line {
+        display:inline-block;
+        width:150px;
+        text-align:right;
+        vertical-align: middle;
     }
+
+    .text-area-label{
+        vertical-align:top;
+        margin: 5px 10px 0 0;
+    }
+
+    .preview-container { margin: 0; }
 
     .image-preview {
         max-width: 400px;
         max-height: 300px;
-        width:100%;
+        /*width:100%;*/
     }
 
-    .profile-edit-input{
-        color: black;
+    .admin-panel-preview{
+        max-width:220px;
+    }
+
+    .profile-edit-input { color: black; }
+
+    .text-area {
+        margin:5px 0;
     }
 
 /* ANIME
 ** ========================================================================== */
 /* Anime block
  --------------------------------------------------------------------------- */
-    .anime-block{
-        margin-left:20px;
-    }
+    .anime-block { margin-left:20px; }
 
 /* DISCUSSION
 ** ========================================================================== */
 /* Discussion block
  --------------------------------------------------------------------------- */
-    .discussion-create-block {
-        margin: 0 20px 20px;
-    }
+    .discussion-create-block { margin: 0 20px 20px; }
 
     .discussion-container {
         display: block;
@@ -579,9 +607,7 @@
         padding: 5px 20px;
     }
 
-    .discussion-title{
-        margin:0;
-    }
+    .discussion-title { margin:0; }
 
     .discussion-title.discussion-toggler {
         margin: 0;
@@ -597,9 +623,7 @@
         cursor: pointer;
     }
 
-    .discussion-header-text {
-        margin: 5px 0 0;
-    }
+    .discussion-header-text { margin: 5px 0 0; }
 
     .discussion-container-text {
         clear: both;
@@ -647,23 +671,18 @@
         color: white;
     }
 
-    .close:hover {
-        color: #ffA500;
-    }
+    .close:hover { color: #ffA500; }
 
 /* Discussion comment
  --------------------------------------------------------------------------- */
-    .comment a {
-        color: #FFF;
-    }
+    .comment a { color: #FFF; }
 
 /* MEMBERS
 ** ========================================================================== */
 /* Members block
  --------------------------------------------------------------------------- */
-    .members-block {
-        margin: 0 20px;
-    }
+    .members-block { margin: 0 20px; }
+
     .user-container {
         display: inline-block;
         margin: 10px 20px 0;
@@ -679,14 +698,14 @@
 ** ========================================================================== */
 /* 404 Warning
  --------------------------------------------------------------------------- */
-    .warning-block{
+    .warning-block {
         max-width:450px;
         margin:0 auto;
         padding:20px;
         border: 3px solid #000000;
         background-image: url(../img/dim.png);
     }
-    .warning-image{
+    .warning-image {
         display:block;
         width:100%;
         margin-bottom:20px;
@@ -702,7 +721,7 @@
 ** ========================================================================== */
 /* Contact block
  --------------------------------------------------------------------------- */
-    .contact-block{ margin-left:20px; }
+    .contact-block { margin-left:20px; }
 
 /* FIREBASE
 ** ========================================================================== */
@@ -728,10 +747,10 @@
         border-bottom: 2px inset silver;
         cursor: pointer;
     }
-    .firechat-header::-moz-selection{
+    .firechat-header::-moz-selection {
         background-color:transparent;
     }
-    .firechat-header::selection{
+    .firechat-header::selection {
         background-color:transparent;
     }
 
@@ -760,17 +779,11 @@
         height: 100%;
     }
 
-    .firechat-message {
-        margin: 5px;
-    }
+    .firechat-message { margin: 5px; }
 
-    .firechat-text {
-        color: #000;
-    }
+    .firechat-text { color: #000; }
 
-    .firechat-username {
-        padding-right: 5px;
-    }
+    .firechat-username { padding-right: 5px; }
 
     .messages {
         max-height: 215px !important;
@@ -796,7 +809,7 @@
 ** ========================================================================== */
 /* Footer
  --------------------------------------------------------------------------- */
-    #footer{
+    #footer {
         position: fixed;
         bottom: 0;
         left:0;
@@ -811,19 +824,38 @@
         margin: 0 auto;
     }
 
-    .footer-text {
-        margin: 10px 20px;
+    .footer-text { margin: 10px 20px; }
+
+    .clearfix { clear: both; }
+
+/* ERRORLOG BLOCK
+** ========================================================================== */
+/* Error-block
+ --------------------------------------------------------------------------- */
+    .error-header {
+        margin: 0 0 15px 0;
+        padding: 5px 20px;
+        color: #FFF;
+        border-top: 1px solid #FFF;
+        border-bottom: 1px solid #FFF;
+        background-color: rgba(162, 23, 19, 0.7);
     }
 
-    .clearfix {
-        clear: both;
+/* Success-block
+ --------------------------------------------------------------------------- */
+    .success-header {
+        margin: 0 0 15px 0;
+        padding: 5px 20px;
+        color: #FFF;
+        border-top: 1px solid #FFF;
+        border-bottom: 1px solid #FFF;
+        background-color: rgba(35, 140, 39, 0.7);
     }
-
 
 /* To be changed
  --------------------------------------------------------------------------- */
-
-    #avatar, #disc_img{
+    #avatar,
+    #disc_img {
         max-width:450px;
         width:100%;
     }
