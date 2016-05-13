@@ -13,9 +13,11 @@ if (isset($_POST['un'])) {
             foreach ($result as $i => &$v) {
                 $v = stripslashes($v);
             }
-            exit('Ok');
+            echo "1";
+            $db->close();
         } else {
-            exit('Invalid Username or Password');
+            echo "Invalid Username or Password";
+            $db->close();
         }
     }
 } else {
