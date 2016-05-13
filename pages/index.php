@@ -18,7 +18,7 @@ $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.fi
     while ($r = $q->fetch_assoc()) { ?>
         <div class="profile-userpost-container">
             <div class="profile-userpost-header">
-                <img class="user-icon small vertical-align" src="<?= $r["profile_image"]; ?>">
+                <div class="user-icon-container small"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $r["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>
                 <a class="user-link small-text vertical-align"><?= $r["username"]; ?></a>
                 <small class="profile-userpost-date vertical-align"><?= $r["post_date"]; ?></small>
             </div>

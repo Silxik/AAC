@@ -4,7 +4,7 @@
         
         <div>
             <label class="form-label in-line" for="from">Email: </label>
-            <input id="from" class="br" type="text" name="from" placeholder="example@example.com">
+            <input id="from" class="br" type="text" name="from" placeholder="example@example.com" <?= !empty($user['email']) ? "value='".$user['email']."'" : '';?> >
         </div>
 
         <div>
