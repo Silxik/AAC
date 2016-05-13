@@ -42,15 +42,16 @@
             <div id="profile">
                 <? if ($user) { ?>
                     <b class="welcome-text">Welcome : <a class="user-link"><?= $user['username']; ?></a></b>
-                    <img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
+                    <div class="user-icon-container"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>
                     <b id="logout"><a href="system/logout.php">Log Out</a></b>
                 <? } else { ?>
+                    <div class="login-errorlog"></div>
                     <form id="loginForm" autocomplete="off">
                         <label for="username">UserName :</label>
                         <input id="username" name="username" placeholder="username" type="text">
                         <label for="password">Password :</label>
                         <input id="password" name="password" placeholder="password" type="password">
-                        <input class="button" onclick="login()" name="submit" type="button" value="Login">
+                        <input class="button" type="submit" value="Login">
                         <a class="button" href="register">Register</a>
                     </form>
                 <? } ?>
@@ -126,6 +127,7 @@
 
                 $('.footer-block').append(
                     '<div class="firechat-block user-chat" data-id="'+chatKey+'" style="right:'+rightShift+'px;">'+
+                        '<span class="firechat-close">x</span>' +
                         '<h2 class="firechat-header">'+selectedUser+'</h2>'+
                         '<div class="firechat-container">'+
                             '<ul class="messages firechat-list scrollbar-inner"></ul>'+
@@ -149,7 +151,7 @@
                     //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
                     var messageBlock = $('<li class="firechat-message">');
                     var messageElement = $('<span class="firechat-message"></span>');
-                    var nameElement = $('<img class="user-icon chat-icon vertical-align" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
+                    var nameElement = $('<div class="user-icon-container chat-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
                     nameElement.attr('title',username + ', ' + date);
                     messageElement.text(message);
 
@@ -190,7 +192,7 @@
             //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
             var messageBlock = $('<li class="firechat-message">');
             var messageElement = $('<span class="firechat-message"></span>');
-            var nameElement = $('<img class="user-icon chat-icon vertical-align" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
+            var nameElement = $('<div class="user-icon-container chat-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>');
             nameElement.attr('title',username + ', ' + date);
             messageElement.text(message);
 
@@ -207,5 +209,6 @@
         <? } ?>
     </script>
     <script type="text/javascript" src="res/js/main.js"></script>
+    <? $db->close(); ?>
 </body>
 </html>

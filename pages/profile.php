@@ -1,3 +1,5 @@
+<div class="errorlog"></div>
+
 <div class="profile-block">
     <div class="profile-nav-block">
         <div class="profile-nav-left">
@@ -9,7 +11,7 @@
                 <li class="profile-nav-list-item"><a class="profile-nav-link">Photos</a></li>
             </ul>
         </div>
-        <? if($user['username'] === $username ){ ?>
+        <? if ($user['username'] === $username ){ ?>
         <div class="profile-nav-right">
             <ul class="profile-nav-list">
                 <li class="profile-nav-list-item"><a class="profile-nav-link" href="profileEdit">Edit profile</a></li>
@@ -19,18 +21,19 @@
     </div>
 
     <div class="profile-container">
-        <form id="userPost" class="profile-form" method="POST" action="upload" enctype="multipart/form-data">
+        <? if ($user) { ?>
+        <form id="userPost" class="profile-form" method="POST" action="system/update" enctype="multipart/form-data">
             <label class="profile-form-label" for="text"></label><textarea name="text" placeholder="What's on your mind?"></textarea>
             <label class="profile-form-label" for="post_attachment">Choose file : </label><input style="color:white;" name="post_attachment" type="file">
-            <input type="hidden" name="id" value="<? echo $user['user_id']; ?>">
             <input class="button" type="submit" name="newPost" value="Post">
         </form>
+        <? } ?>
 
         <?
         while ($r = $q->fetch_assoc()) { ?>
             <div class="profile-userpost-container">
                 <div class="profile-userpost-header">
-                    <img class="user-icon small vertical-align" src="<?=$r["profile_image"];?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
+                    <div class="user-icon-container small"><span class="user-icon-helper"></span><img class="user-icon" src="<?=$r["profile_image"];?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>
                     <a class="user-link small-text vertical-align"><?=$r["username"]; ?></a>
                     <small class="profile-userpost-date vertical-align"><?=$r["post_date"]; ?></small>
                 </div>
@@ -42,7 +45,7 @@
             <?
             if($user){ ?>
                 <div class="profile-userpost-delete-form">
-                    <form method="post" action="profile">
+                    <form method="post" action="">
                         <input id="fileId" name="fileId" type="hidden" value="<?=$r['file_id'] ?>">
                         <input name="delete_post" type="submit" class="button" value="Delete">
                     </form>
@@ -56,11 +59,6 @@
 <?
 if (isset($_POST['delete_post'])){
     $file_id = $db->real_escape_string($_POST['fileId']);
-    $del = $db->query("DELETE FROM userpost, files USING userpost INNER JOIN files WHERE userpost.file_id = '$file_id' AND files.file_id = '$file_id'");
-    if($del){
-        header("location: profile");
-    } else{
-        exit('Mysql error: ' . $db->error);
-    }
+    $db->query("DELETE FROM userpost, files USING userpost INNER JOIN files WHERE userpost.file_id = '$file_id' AND files.file_id = '$file_id'");
 }
 ?>

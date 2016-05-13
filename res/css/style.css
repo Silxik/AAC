@@ -84,7 +84,7 @@
     }
 
     .main-page-block.move{
-        margin-left:250px;
+        margin-left:320px;
     }
 
     #divWrapper {
@@ -180,16 +180,19 @@
         padding: 0 0 20px;
     }
 
-    .header-h1{
+    .header-h1 {
         display: inline-block;
         font-size: 38px;
     }
 
-    .button{
+    .button {
         display:inline-block;
         padding:0 10px;
         margin-top: 5px;
         color: white;
+        font-size: 15px;
+        line-height: 1.4;
+        font-family: 'kotta_oneregular', serif;
         background-color: #000;
         text-decoration: none;
         border:3px inset white;
@@ -209,6 +212,7 @@
     }
 
     #profile {
+        position: relative;
         float: right;
         display: inline-block;
         width: 200px;
@@ -380,18 +384,32 @@
         max-height:390px;
     }
 
-    .user-icon {
-        display: inline-block;
+    .user-icon-container {
         width:80px;
         height:80px;
-        margin-bottom: 20px;
+        margin: 0 auto 20px;
         border:3px inset white;
         -webkit-border-radius: 100%;
         -moz-border-radius: 100%;
         border-radius:100%;
+        vertical-align: middle;
+        overflow: hidden;
+    }
+
+    .user-icon {
+        display: inline-block;
+        width:100%;
+        vertical-align: middle;
+    }
+
+    .user-icon-helper {
+        display: inline-block;
+        height:100%;
+        vertical-align: middle;
     }
 
     .small {
+        display: inline-block;
         width:40px;
         height:40px;
         margin: 0;
@@ -402,6 +420,74 @@
         width:28px;
         height:28px;
         margin:0 5px 0 0;
+    }
+
+/* Profile-form-date
+ --------------------------------------------------------------------------- */
+    .profile-form-date {
+        display: inline-block;
+    }
+
+    .days, .months, .years {
+        display: inline-block;
+        vertical-align: text-top;
+    }
+
+    .date-list{
+        height:0;
+        overflow: hidden;
+        -webkit-transition:height .4s ease-in-out;
+        -moz-transition:height .4s ease-in-out;
+        transition:height .4s ease-in-out;
+        cursor: pointer;
+        background-color: #FFF;
+        color:#000;
+    }
+    .date-list.active{
+        height: 150px;
+        overflow: auto;
+    }
+
+    .date-item{
+        padding:0 15px;
+    }
+
+    .selected-date {
+        padding: 0 15px;
+        background-color: #FFF;
+        color: #000;
+        cursor: pointer;
+    }
+/* Profile gender dropdown
+ --------------------------------------------------------------------------- */
+    .gender-dropdown{
+        display: inline-block;
+        vertical-align: text-top;
+    }
+
+    .gender-list {
+        height: 0;
+        -webkit-transition: height .4s ease-in-out;
+        -moz-transition: height .4s ease-in-out;
+        transition: height .4s ease-in-out;
+        overflow: hidden;
+        background-color: #FFF;
+        color:#000;
+        cursor: pointer;
+    }
+    .gender-list.active {
+        height: 66px;
+    }
+
+    .gender-item {
+        padding: 0 15px;
+    }
+
+    .selected-gender {
+        padding:0 15px;
+        background-color: #FFF;
+        color:#000;
+        cursor: pointer;
     }
 
 /* ADMIN
@@ -421,11 +507,16 @@
         -ms-transition: width .4s ease-in-out, padding .4s ease-in-out;
         -o-transition: width .4s ease-in-out, padding .4s ease-in-out;
         transition: width .4s ease-in-out, padding .4s ease-in-out;
+        z-index: 1;
     }
 
     .admin-block.show {
-        width:230px;
-        padding:0 10px;
+        width:290px;
+        padding:0 20px 0 10px;
+    }
+    .admin-block.hide {
+        width:0;
+        padding:0 20px 0 10px;
     }
 
     .sidebar-toggle.button.show {
@@ -445,19 +536,83 @@
 
 /* Admin nav
  --------------------------------------------------------------------------- */
+    .admin-nav-link {
+        cursor: pointer;
+    }
+
     .admin-nav-link.hidden {
         display:none;
     }
 
     .admin-editable {
-        opacity:0;
-        width:0;
-        height:0;
+        display:none;
     }
     .admin-editable.active {
-        width:100%;
-        height:auto;
-        opacity:1;
+        display: block;
+    }
+
+    .admin-return.hidden {
+        display: none;
+    }
+
+/* Admin-style-editor, User-style-editor
+ --------------------------------------------------------------------------- */
+    #admin-style-editor {
+        max-width: calc(100% - 25px);
+        height: auto;
+        background-color: #505050;
+        color: #FFF;
+        z-index: 1;
+
+        -moz-tab-size: 2; /* Code for Firefox */
+        -o-tab-size: 2; /* Code for Opera 10.6-12.1 */
+        tab-size: 2;
+    }
+
+/* Admin-style-editor, User-style-editor
+ --------------------------------------------------------------------------- */
+    .admin-panel-drag {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 0 3px 0 0;
+        border: 1px inset #808080;
+        border-bottom: none;
+        border-top: none;
+        cursor: w-resize;
+    }
+
+    .admin-panel-drag::-moz-selection { /* Code for Firefox */
+        background: transparent;
+    }
+
+    .admin-panel-drag::selection {
+        background: transparent;
+    }
+
+    .line-drag {
+        display: inline-block;
+        width: 1px;
+        height: 25px;
+        background-color: #FFF;
+        vertical-align: middle;
+        cursor: w-resize;
+    }
+
+    .line-drag::-moz-selection { /* Code for Firefox */
+        background: transparent;
+    }
+
+    .line-drag::selection {
+        background: transparent;
+    }
+
+    .full-vertical-align {
+        display: inline-block;
+        height: 100vh;
+        vertical-align: middle;
+        cursor: w-resize;
     }
 
 /* USER
@@ -591,7 +746,7 @@
 ** ========================================================================== */
 /* Discussion block
  --------------------------------------------------------------------------- */
-    .discussion-create-block { margin: 0 20px 20px; }
+    .new-discussion-block { margin: 0 20px 20px; }
 
     .discussion-container {
         display: block;
@@ -805,6 +960,20 @@
         border: none;
     }
 
+    .user-chat .firechat-close {
+        position: absolute;
+        right: 10px;
+        height: 19px;
+        width: 19px;
+        border: 1px inset silver;
+        border-radius: 50%;
+        line-height: 1;
+        font-size: 18px;
+        text-align: center;
+        z-index: 1;
+        cursor: pointer;
+    }
+
 /* FOOTER
 ** ========================================================================== */
 /* Footer
@@ -832,7 +1001,15 @@
 ** ========================================================================== */
 /* Error-block
  --------------------------------------------------------------------------- */
-    .error-header {
+    .login-errorlog .error-header {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .error-header,
+    .admin-panel-error-header {
         margin: 0 0 15px 0;
         padding: 5px 20px;
         color: #FFF;
@@ -843,7 +1020,8 @@
 
 /* Success-block
  --------------------------------------------------------------------------- */
-    .success-header {
+    .success-header,
+    .admin-panel-success-header {
         margin: 0 0 15px 0;
         padding: 5px 20px;
         color: #FFF;
@@ -854,8 +1032,7 @@
 
 /* To be changed
  --------------------------------------------------------------------------- */
-    #avatar,
-    #disc_img {
+    #avatar {
         max-width:450px;
         width:100%;
     }
