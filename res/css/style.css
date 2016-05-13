@@ -1036,3 +1036,32 @@
         max-width:450px;
         width:100%;
     }
+
+/* Loader
+ --------------------------------------------------------------------------- */
+    .loader-overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        z-index: 2;
+    }
+
+    .loader-image-align {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    .loader-image {
+        display: inline-block;
+        max-width: 500px;
+        padding: 0 15px;
+        width: 100%;
+        margin: 0 auto;
+        vertical-align: middle;
+    }

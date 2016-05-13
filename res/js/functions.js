@@ -1,5 +1,5 @@
 function pageLoader(param){
-    param ? $("body").prepend("<div class='loader-overlay'><div class='vertical-align'><img src='res/img/loading.gif'></div></div>") : $(".loader-overlay").remove() ;
+    param ? $("body").prepend("<div class='loader-overlay'><span class='loader-image-align'></span><img class='loader-image' src='res/img/loading.gif'></div>") : $(".loader-overlay").remove() ;
 }
 
 function register() {
