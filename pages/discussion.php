@@ -1,3 +1,5 @@
+<div class="errorlog"></div>
+
 <div class="discussion-block">
     <? if( isset($_GET['id']) ){
         $id = $db->real_escape_string($_GET['id']);
@@ -18,36 +20,33 @@
                     <div class="clearfix"></div>
                 </div>
 
-            <? } else {
-                echo 'There is no discussion with such id.';
-            }
+            <? }
         } else {
             header('location: 404');
         }
     } else { ?>
 
-    <div class="discussion-create-block">
-        <h1 class="header-h1">Discussions</h1>
-        <form method="POST" action="upload" enctype="multipart/form-data">
-            <div>
-                <label class="form-label in-line" for="title">Title : </label><input name="title" type="text" placeholder="Title...">
-            </div>
-            <div>
-                <label class="form-label in-line text-area-label" for="text">Your discussion :</label><textarea class="text-area" placeholder="Description..." name="text"></textarea>
-            </div>
-            <div>
-                <label class="form-label in-line" for="disc_img_prev" class="br">Upload image : </label><input id="file" name="disc_img" type="file">
-                <div class="preview-container">
-                    <img class="image-preview"/>
+    <? if ($user) { ?>
+        <div class="new-discussion-block">
+            <h1 class="header-h1">Discussions</h1>
+            <form id="new-discussion" method="POST" action="upload" enctype="multipart/form-data">
+                <div>
+                    <label class="form-label in-line" for="title">Title: </label><input class="new-discussion-title" name="title" type="text" placeholder="Title...">
                 </div>
-            </div>
-            <? if ($user) { ?>
-                <div><label class="form-label in-line text-area-label" for="text"></label><input class="button" name="disc_submit" type="submit"></div>
-            <? } else { ?>
-                <p>Please log in to create a discussion.</p>
-            <? } ?>
-        </form>
-    </div>
+                <div>
+                    <label class="form-label in-line text-area-label" for="text">Your discussion:</label><textarea class="new-discussion-description text-area" placeholder="Description..." name="text"></textarea>
+                </div>
+                <div>
+                    <label class="form-label in-line" for="disc_img_prev" class="br">Upload image: </label><input id="file" name="new-discussion-image" type="file">
+                    <div class="preview-container">
+                        <img class="image-preview"/>
+                    </div>
+                </div>
+                    <div><label class="form-label in-line text-area-label" for="text"></label><input class="button" name="new-discussion" type="submit"></div>
+            </form>
+        </div>
+    <? } ?>
+    
     <div class="discussion-block">
     <?
     $sql = $db->query("SELECT * FROM discussion D INNER JOIN files F ON D.file_id = F.file_id INNER JOIN user U ON D.user_id=U.user_id ORDER BY date DESC");
