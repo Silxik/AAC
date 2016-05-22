@@ -283,6 +283,11 @@
 ** ========================================================================== */
 /* Profile navigation
  --------------------------------------------------------------------------- */
+    .profile-container {
+        display:block;
+        margin-left:20px;
+    }
+
     .profile-nav-block {
         position: relative;
         display: block;
@@ -338,20 +343,13 @@
         position: absolute;
         visibility: hidden;
     }
-/* Profile container
+
+/* POST
+** ========================================================================== */
+/* Post container
  --------------------------------------------------------------------------- */
-    .profile-container {
-        display:block;
-        margin-left:20px;
-    }
-
-    .profile-userpost-text {
-        white-space: pre-line;
-        word-break: break-all;
-    }
-
-    .profile-userpost-container {
-        clear: both;
+    .post-container {
+        position: relative;
         max-width:600px;
         width:100%;
         padding:5px;
@@ -360,26 +358,35 @@
         background-image: url(../img/dim.png);
     }
 
-    .profile-userpost-header {
+    .post-header {
         width:100%;
+    }
+
+    .post-text {
+        white-space: pre-line;
+        word-break: break-all;
     }
 
     .vertical-align {
         vertical-align: middle;
     }
 
-    .small-text {
-        position: relative;
-        left: 20px;
+    .post-auth-block {
+        display: inline-block;
+        margin-left:20px;
+        vertical-align: middle;
+    }
+
+    .post-username {
+        display: block;
         font-size:17px;
     }
 
-    .profile-userpost-date {
-        float: right;
-        margin: 15px;
+    .post-date {
+        display: block;
     }
 
-    .profile-userpost-image {
+    .post-image {
         max-width: 100%;
         max-height:390px;
     }
@@ -420,6 +427,58 @@
         width:28px;
         height:28px;
         margin:0 5px 0 0;
+    }
+
+/* New post
+ --------------------------------------------------------------------------- */
+    .new-post-textarea {
+        min-height: 17px;
+        height: 17px;
+        max-height: 600px;
+        max-width: 100%;
+        width: calc(100% - 560px);
+        margin: 0 5px 0 0;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+        vertical-align: middle;
+    }
+
+    #userPost .preview-container {
+        margin-top: 15px;
+    }
+
+    .new-post-submit {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .new-post-image-selection {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        vertical-align: middle;
+    }
+
+/* Post delete
+ --------------------------------------------------------------------------- */
+    .post-delete {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        display: inline-block;
+        padding: 4px;
+        border: 3px inset #FFF;
+        border-radius: 50%;
+        line-height: 1;
+        color: #FFF;
+        cursor: pointer;
     }
 
 /* Profile-form-date
@@ -488,6 +547,60 @@
         background-color: #FFF;
         color:#000;
         cursor: pointer;
+    }
+
+/* ABOUT USER
+** ========================================================================== */
+/* About header
+ --------------------------------------------------------------------------- */
+    .user-header-avatar {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        border: 2px inset #FFF;
+        border-radius: 50%;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+
+    .user-image {
+        width: 100%;
+        vertical-align: middle;
+    }
+
+    .user-info-container {
+        display: inline-block;
+        margin: 0 15px;
+        width: calc(100% - 490px);
+        vertical-align: middle;
+    }
+
+    .user-header-name {
+        font-size: 32px;
+        vertical-align: middle;
+    }
+
+    .user-header-name:before {
+        content: "";
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        margin: 0 15px 0 0;
+        background-color: #FFF;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .user-info-item {
+        display: inline-block;
+    }
+
+    .user-info-item.email {
+    display: block;
+    }
+
+    .user-info-item .fa {
+        margin-right: 10px;
     }
 
 /* ADMIN
@@ -746,8 +859,6 @@
 ** ========================================================================== */
 /* Discussion block
  --------------------------------------------------------------------------- */
-    .new-discussion-block { margin: 0 20px 20px; }
-
     .discussion-container {
         display: block;
         min-height: 100px;
@@ -828,9 +939,130 @@
 
     .close:hover { color: #ffA500; }
 
+/* New discussion
+ --------------------------------------------------------------------------- */
+    .new-discussion-block { margin: 0 20px 20px; }
+
+    .new-discussion-title {
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+    }
+
+    .new-discussion-description {
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+        border-radius: 0;
+    }
+
+    .new-discussion-image-selection {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        vertical-align: middle;
+    }
+
+    #new-discussion .preview-container {
+        display: inline-block;
+        margin-top: 15px;
+    }
+
+    .new-discussion-submit {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        vertical-align: middle;
+    }
+
 /* Discussion comment
  --------------------------------------------------------------------------- */
-    .comment a { color: #FFF; }
+    .new-discussion-comment {
+        margin: 15px;
+    }
+
+     .discussion-comment {
+        border-top: 2px inset #FFF;
+        border-bottom: 2px inset #FFF;
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .discussion-comment-col-1, 
+    .discussion-comment-col-2 {
+        float: left;
+    }
+
+    .discussion-comment-col-1 {
+        width: 200px;
+        text-align: center;
+    }
+
+    .discussion-comment-col-2 {
+        width: calc(100% - 201px);
+    }
+
+    .discussion-comment-date,
+    .discussion-comment-username,
+    .discussion-comment-text {
+        padding: 5px 15px;
+    }
+
+    .discussion-comment-username, 
+    .discussion-comment-date {
+        border-bottom: 1px inset #FFF;
+    }
+
+    .discussion-comment-username {
+        font-size: 21px;
+    }
+
+    .discussion-icon {
+        margin: 20px auto;
+    }
+
+    .discussion-comment-text {
+        min-height: 115px;
+        border-left: 1px inset #FFF;
+        white-space: pre-wrap;
+    }
+
+    .discussion-comment-date {
+        height: 29px;
+        border-left: 1px inset #FFF;
+    }
+
+    .discussion-comment-date:after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    .discussion-message-input {
+        min-height: 17px;
+        height: 17px;
+        max-height: 600px;
+        max-width: 100%;
+        width: calc(100% - 130px);
+        margin: 0 5px 0 10px;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+        vertical-align: middle;
+    }
+
+    .discussion-comment-post {
+        height: 17px;
+        padding: 9px 20px 11px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        vertical-align: middle;
+    }
 
 /* MEMBERS
 ** ========================================================================== */
@@ -985,6 +1217,7 @@
         width: 100%;
         border-top:2px inset silver;
         background-color: #000;
+        z-index: 1;
     }
 
     .footer-block {
