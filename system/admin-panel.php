@@ -8,11 +8,12 @@
 include_once("main.php");
 
 $path = pathinfo($_SERVER["REQUEST_URI"])["filename"]; // URL NAME
-if($path === "profile"){
+if(explode('?', $path)[0] === "profile"){
     $username = "";
-    if(isset($_POST["user-link"])){
-        $username = $_POST["username"];
-        $q = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id INNER JOIN user US ON US.user_id = U.user_id WHERE US.username = '$username' ORDER BY post_date DESC");
+    if(isset($_GET["username"])) {
+        $username = $db->real_escape_string($_GET["username"]);
+
+        $q = $db->query("SELECT * FROM userpost U INNER JOIN user US ON US.user_id = U.user_id WHERE US.username = '$username' ORDER BY post_date DESC");
 
         $query = $db->query("SELECT * FROM user_code WHERE user_id = (SELECT user_id FROM user WHERE username = '$username')");
         $user_profile = $query->fetch_assoc();
