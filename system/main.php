@@ -42,7 +42,3 @@ mysqli_query($db, "SET NAMES utf8");
 mysqli_query($db, "SET CHARACTER utf8");
 
 $users = $db->query("SELECT * FROM user");
-
-// Userpost related code
-$u_post = $db->query("SELECT * FROM userpost U INNER JOIN files F ON U.file_id = F.file_id");
-if ($u_post) $u_post->fetch_assoc();

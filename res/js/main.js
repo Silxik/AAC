@@ -64,6 +64,23 @@ $(document).on('ready', function(){
 
     // Close user firechat container
     $(this).parent().remove();
+}).on('click', '.new-post-image-selection', function(){
+
+    // Custom button for file selection
+    $('#post_attachment').click();
+}).on('click', '.new-discussion-image-selection', function(){
+
+    // Custom button for file selection
+    $('#file').click();
+}).on('change', '#post_attachment', function(e){
+    var preview = $(".image-preview");
+
+    var file = this.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        preview.attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
 });
 
 // Admin panel real-time CSS editor

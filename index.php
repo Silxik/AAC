@@ -19,16 +19,20 @@
     <? include("system/admin-panel.php"); ?>
     <div class="main-page-block">
         <div id="header">
-            <a class="header-link" href="#">
+            <a class="header-link" href="http://localhost/AAC/">
                 <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
-                <h2 class="page-title">Anime Addicts<br>Continue~!</h2>
+                <h2 class="page-title">AnimeAddicts<br>Continue~!</h2>
             </a>
         </div>
         <div id="nav">
             <ul class="header-nav-list">
-                <li class="header-nav-list-item"><a class="header-nav-link" href="index.php">Home</a></li>
-                <li class="header-nav-list-item"><a class="header-nav-link" href="anime">Anime</a></li>
-                <li class="header-nav-list-item"><a class="header-nav-link" href="events">Events</a></li>
+                <li class="header-nav-list-item"><a class="header-nav-link" href="http://localhost/AAC/">Home</a></li>
+                <li class="header-nav-list-item"><a class="header-nav-link" href="events">Events</a>
+                    <ul class="header-subnav-list">
+                        <li class="header-subnav-item"><a href="anime" class="header-subnav-link">Top Anime Selection</a></li>
+                        <li class="header-subnav-item"><a href="events" class="header-subnav-link">Active events</a></li>
+                    </ul>
+                </li>
                 <li class="header-nav-list-item"><a class="header-nav-link" href="discussion">Discussion</a></li>
                 <li class="header-nav-list-item"><a class="header-nav-link" href="members">Members</a></li>
                 <li class="header-nav-list-item"><a class="header-nav-link" href="about">About us</a></li>
@@ -42,7 +46,10 @@
             <div id="profile">
                 <? if ($user) { ?>
                     <b class="welcome-text">Welcome : <a class="user-link"><?= $user['username']; ?></a></b>
-                    <div class="user-icon-container"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>
+                    <div class="user-icon-container">
+                        <img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
+                        <span class="user-icon-helper"></span>
+                    </div>
                     <b id="logout"><a href="system/logout.php">Log Out</a></b>
                 <? } else { ?>
                     <div class="login-errorlog"></div>
@@ -89,13 +96,15 @@
                 </div>
             </div>
         </div>
-        <form class="hidden" id="u-link-fetch" method="post" action="profile">
+        <form class="hidden" id="u-link-fetch" method="get" action="profile">
             <input id="u-link-name" type="hidden" value="" name="username">
             <input type="submit" name="user-link">
         </form>
     </div>
 
     <script>
+        /* REALTIME FIREBASE CHAT
+        ** ========================================================================== */
         var keys = [];
         var uNames = [];
         var uImages = [];
@@ -201,12 +210,6 @@
             messageList.append(messageBlock); //ADD MESSAGE
             messageList[0].scrollTop = messageList[0].scrollHeight; //SCROLL TO BOTTOM OF MESSAGE LIST
         });
-
-        <? if($user){ ?>
-            // firebaseRef.ref().on("child_added", function(userSnapshot) {
-                // TODO ON MESSAGE SENT TO ACTIVE USER, OPEN CHATBOX
-            // });
-        <? } ?>
     </script>
     <script type="text/javascript" src="res/js/main.js"></script>
     <? $db->close(); ?>

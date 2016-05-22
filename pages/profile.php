@@ -4,11 +4,11 @@
     <div class="profile-nav-block">
         <div class="profile-nav-left">
             <ul class="profile-nav-list">
-                <li class="profile-nav-list-item"><a class="profile-nav-link">Timeline</a></li>
+                <li class="profile-nav-list-item"><a class="profile-nav-link" id="timeline">Timeline</a></li>
                 <li class="profile-nav-line"></li>
-                <li class="profile-nav-list-item"><a class="profile-nav-link">About</a></li>
+                <li class="profile-nav-list-item"><a class="profile-nav-link" id="about">About</a></li>
                 <li class="profile-nav-line"></li>
-                <li class="profile-nav-list-item"><a class="profile-nav-link">Photos</a></li>
+                <li class="profile-nav-list-item"><a class="profile-nav-link" id="photos">Photos</a></li>
             </ul>
         </div>
         <? if ($user['username'] === $username ){ ?>
@@ -23,42 +23,34 @@
     <div class="profile-container">
         <? if ($user) { ?>
         <form id="userPost" class="profile-form" method="POST" action="system/update" enctype="multipart/form-data">
-            <label class="profile-form-label" for="text"></label><textarea name="text" placeholder="What's on your mind?"></textarea>
-            <label class="profile-form-label" for="post_attachment">Choose file : </label><input style="color:white;" name="post_attachment" type="file">
-            <input class="button" type="submit" name="newPost" value="Post">
+            <textarea class="new-post-textarea" name="text" placeholder="What's on your mind?"></textarea>
+            <div class="new-post-image-selection button" title="Choose attachment..."><i class="fa fa-paperclip" aria-hidden="true"></i></div>
+            <input class="button new-post-submit" type="submit" name="newPost" value="Post">
+            <input class="hidden" style="color:white;" id="post_attachment" name="post_attachment" type="file">
+            <div class="preview-container">
+                <img class="image-preview"/>
+            </div>
         </form>
         <? } ?>
 
         <?
         while ($r = $q->fetch_assoc()) { ?>
-            <div class="profile-userpost-container">
-                <div class="profile-userpost-header">
+            <div class="post-container">
+                <div class="post-header">
                     <div class="user-icon-container small"><span class="user-icon-helper"></span><img class="user-icon" src="<?=$r["profile_image"];?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>
-                    <a class="user-link small-text vertical-align"><?=$r["username"]; ?></a>
-                    <small class="profile-userpost-date vertical-align"><?=$r["post_date"]; ?></small>
+                    <div class="post-auth-block">
+                        <a class="user-link post-username"><?=$r["username"]; ?></a>
+                        <small class="post-date"><?=$r["post_date"]; ?></small>
+                    </div>
+                    <? if($user['username'] == $r['username']) { ?>
+                        <span class="post-delete" data-id="<?= $r['post_id']; ?>"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    <? } ?>
                 </div>
-                <pre class="profile-userpost-text"><?=$r["text"]; ?></pre>
-            <? if($r['file_name'] !== ''){ ?>
-                <img class="profile-userpost-image" src="<?=$r['file_name'];?>">
+                <pre class="post-text"><?=$r["text"]; ?></pre>
+            <? if( !empty($r['file_name']) ) { ?>
+                <img class="post-image" src="<?=$r['file_name'];?>">
             <? } ?>
             </div>
-            <?
-            if($user){ ?>
-                <div class="profile-userpost-delete-form">
-                    <form method="post" action="">
-                        <input id="fileId" name="fileId" type="hidden" value="<?=$r['file_id'] ?>">
-                        <input name="delete_post" type="submit" class="button" value="Delete">
-                    </form>
-                </div>
-            <? }
-        }
-        ?>
+        <? } ?>
     </div>
 </div>
-
-<?
-if (isset($_POST['delete_post'])){
-    $file_id = $db->real_escape_string($_POST['fileId']);
-    $db->query("DELETE FROM userpost, files USING userpost INNER JOIN files WHERE userpost.file_id = '$file_id' AND files.file_id = '$file_id'");
-}
-?>

@@ -104,6 +104,36 @@ function updateMail(formData){
 }
 
 $(document).ready(function () {
+    $(document).on('click', '.post-delete', function(){
+        var postID = $(this).data('id');
+        $.ajax({
+            url:"system/update.php",
+            data:{ post_id:postID, postDelete:'' },
+            type:'post',
+            success:function(data){
+                if(data == 1) {
+                    window.location = window.location;
+                } else {
+                    $(".errorlog").html("<h3 class='error-header'>" + data + "!</h3>");
+                }
+            }
+        });
+    }).on('click', '#about', function(e){
+        e.preventDefault();
+        var username = window.location.search.split('=')[1];
+
+        $.post({
+            url:"system/update.php",
+            data:{ username:username, about:'' },
+            success:function(data) {
+                if (data == 0) {
+                    $(".login-errorlog").html("<h3 class='error-header'>User not found!</h3>");
+                } else {
+                    $('.profile-container').html(data);
+                }
+            }
+        });
+    });
 
     $(document).on('submit', '#loginForm', function(e){
         e.preventDefault();
@@ -177,7 +207,7 @@ $(document).ready(function () {
         // Passes username to a hidden form & submits
         var userlink = $(this).text();
         $('#u-link-name').val(userlink);                    
-        $('#u-link-fetch input[type="submit"]').click();
+        $('#u-link-fetch').submit();
 
     }).on('click', '.admin-nav-link', function(){
 
@@ -207,8 +237,7 @@ $(document).ready(function () {
             processData:false,
             success: function (data) {
                 if ( data == 1 ) {
-                    $('.errorlog').html('<h3 class="success-header">New post created! Page will refresh in 3 seconds!</h3>');
-                    setTimeout(function(){ window.location.href = window.location.href }, 3000);
+                    window.location = window.location;
                 } else {
                     $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
                 }
@@ -224,14 +253,13 @@ $(document).ready(function () {
         $.ajax({
             url: 'system/update.php',
             type: 'POST',
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
             success: function (data) {
                 if ( data == 1 ) {
-                    $('.errorlog').html('<h3 class="success-header">Your profile is updated! Page will refresh in 3 seconds!</h3>');
-                    setTimeout(function(){ window.location.href = window.location.href }, 3000);
+                    window.location = window.location;
                 } else {
                     $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
                 }
@@ -254,14 +282,13 @@ $(document).ready(function () {
             $.ajax({
                 url: 'system/update.php',
                 type: 'POST',
-                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-                contentType: false,       // The content type used when sending data to the server.
-                cache: false,             // To unable request pages to be cached
-                processData:false,        // To send DOMDocument or non processed data file it is set to false
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
                 success: function (data) {
                     if ( data == 1 ) {
-                        $('.errorlog').html('<h3 class="success-header">New topic created! Page will refresh in 3 seconds!</h3>');
-                        setTimeout(function(){ window.location.href = window.location.href }, 3000);
+                        window.location = window.location;
                     } else {
                         $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
                     }
@@ -300,10 +327,10 @@ $(document).ready(function () {
         $.ajax({
             url: 'system/update.php',
             type: 'POST',
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
             success: function (data) {
                 if ( data == 1 ) {
                     $('.admin-panel-error-log').html('<h3 class="admin-panel-success-header">Saved!</h3>');
@@ -323,8 +350,8 @@ $(document).on("mousedown", ".admin-panel-drag", function(){
             $("*").css({'-moz-user-select':'-moz-none',
                    '-moz-user-select':'none',
                    '-o-user-select':'none',
-                   '-khtml-user-select':'none', /* you could also put this in a class */
-                   '-webkit-user-select':'none',/* and add the CSS class here instead */
+                   '-khtml-user-select':'none',
+                   '-webkit-user-select':'none',
                    '-ms-user-select':'none',
                    'user-select':'none'
              });
