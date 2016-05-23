@@ -20,11 +20,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="discussion-comment-block">
+                <? if($user) { ?>
                     <div class="new-discussion-comment">
                         <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;"></div>
                         <textarea class="discussion-message-input" placeholder="Write a comment..."></textarea>
                         <div class="discussion-comment-post button"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
                     </div>
+                <? } ?>
 
                     <div class="discussion-comments-container"></div>
                 </div>
@@ -43,7 +45,7 @@
                     var discussionField = $('.discussion-message-input');
                     var discussionList = $('.discussion-comments-container');
 
-                    // LISTEN FOR KEYPRESS EVENT
+                    // LISTEN FOR ELEMENT CLICK
                     $(document).on('click', '.discussion-comment-post.button', function(){
                         //FIELD VALUES
                         var comment_author = "<?= $user['username']; ?>";
@@ -55,7 +57,7 @@
                         discussionField.val('');
                     });
 
-                    // Add a callback that is triggered for each chat message.
+                    // Add a callback that is triggered for each discussion message.
                     discussionRef.child(discussion_id).limitToLast(50).on('child_added', function (snapshot) {
                         //GET DATA
                         var data = snapshot.val();
