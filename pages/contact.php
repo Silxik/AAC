@@ -1,3 +1,4 @@
+<div id="mail-error"></div>
 <div class="contact-block">
     <h1 class="header-h1">Contact</h1>
     <form action="" target="_self" method="" id="contact-form">
@@ -18,9 +19,8 @@
         </div>
 
         <div>
-            <label class="form-label in-line"></label><button id="send-mail" class="button" type="submit" onclick="sendEmail()">Submit</button>
+            <label class="form-label in-line"></label><button id="send-mail" class="button" type="submit" onclick="sendEmail()">Send</button>
         </div>
 
     </form>
-    <div id="mail-error"></div>
 </div>
