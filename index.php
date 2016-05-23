@@ -134,7 +134,7 @@
             if($('.footer-block').find('.firechat-header:contains("'+selectedUser+'")').length < 1 && selectedUser != activeUser){
                 keys.push(chatKey);
 
-                $('.footer-block').append(
+                $('.footer-block').prepend(
                     '<div class="firechat-block user-chat" data-id="'+chatKey+'" style="right:'+rightShift+'px;">'+
                         '<span class="firechat-close">x</span>' +
                         '<h2 class="firechat-header">'+selectedUser+'</h2>'+
