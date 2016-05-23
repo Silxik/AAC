@@ -227,11 +227,13 @@ $(document).ready(function () {
     $(document).on('submit', '#userPost', function(e){
         e.preventDefault();
 
-        var formData = new FormData(this);
+        var formData = new FormData(document.querySelector("#userPost"));
+        formData.append('newPost','');
+
         $.ajax({
             url: 'system/update.php',
             type: 'POST',
-            data: new FormData(this),
+            data: formData,
             contentType: false,
             cache: false,
             processData:false,
@@ -249,11 +251,13 @@ $(document).ready(function () {
     $(document).on('submit', '#userForm', function(e){
         e.preventDefault();
         
-        var formData = new FormData(this);
+        var formData = new FormData(document.querySelector("#userForm"));
+        formData.append('user-update','');
+
         $.ajax({
             url: 'system/update.php',
             type: 'POST',
-            data: new FormData(this),
+            data: formData,
             contentType: false,
             cache: false,
             processData:false,
@@ -278,11 +282,13 @@ $(document).ready(function () {
         } else if( description == '' ) {
             $(".errorlog").html("<h3 class='error-header'>You must input your topic description.</h3>");
         } else {
-            var formData = new FormData(this);
+            var formData = new FormData(document.querySelector("#new-discussion"));
+            formData.append('new-discussion','');
+
             $.ajax({
                 url: 'system/update.php',
                 type: 'POST',
-                data: new FormData(this),
+                data: formData,
                 contentType: false,
                 cache: false,
                 processData:false,
@@ -323,11 +329,13 @@ $(document).ready(function () {
     $('#userBackgroundEdit').submit(function(e){
         e.preventDefault();
 
-        var formData = new FormData(this);
+        var formData = new FormData(document.querySelector("#userBackgroundEdit"));
+        formData.append('user-background-edit','');
+        
         $.ajax({
             url: 'system/update.php',
             type: 'POST',
-            data: new FormData(this),
+            data: formData,
             contentType: false,
             cache: false,
             processData:false,

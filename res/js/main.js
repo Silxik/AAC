@@ -72,6 +72,22 @@ $(document).on('ready', function(){
 
     // Custom button for file selection
     $('#file').click();
+}).on('click', '.custom-image-selection', function(){
+
+    // Custom button for file selection
+    $('#file').click();
+}).on('click', '.userUI-custom-image-selection', function(){
+
+    $('#bgImage').click();
+}).on('change', '#bgImage', function(e){
+    var preview = $(".admin-panel-preview");
+
+    var file = this.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        preview.attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
 }).on('change', '#post_attachment', function(e){
     var preview = $(".image-preview");
 

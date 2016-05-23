@@ -282,6 +282,48 @@
         text-align: center;
     }
 
+    .login-button {
+        padding: 5px 15px 5px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        -webkit-border-top-left-radius: 20px;
+        -moz-border-top-left-radius: 20px;
+        -ms-border-top-left-radius: 20px;
+        -o-border-top-left-radius: 20px;
+        border-top-left-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-bottom-left-radius: 20px;
+        -ms-border-bottom-left-radius: 20px;
+        -o-border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        vertical-align: middle;
+    }
+
+    .register-button {
+        padding: 5px 15px 5px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        vertical-align: middle;
+    }
+
+    #password {
+        margin-bottom: 10px;
+    }
+
+
+
     .welcome-text {
         display: block;
         margin-bottom: 20px;
@@ -510,8 +552,16 @@
         margin: 0;
         border: 1px inset #FFF;
         border-radius: 0;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
         vertical-align: middle;
     }
 
@@ -546,7 +596,7 @@
         min-height: 17px;
         height: 17px;
         max-width: 100%;
-        width: calc(100% - 145px);
+        width: calc(100% - 155px);
         margin: 0 5px 0 10px;
         border-radius: 0;
         background: rgba(0, 0, 0, 0.7);
@@ -559,8 +609,16 @@
         margin: 0;
         border: 1px inset #FFF;
         border-radius: 0;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
         vertical-align: middle;
     }
 
@@ -647,74 +705,6 @@
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
         border-right: 10px solid #FFF;
-    }
-
-/* Profile-form-date
- --------------------------------------------------------------------------- */
-    .profile-form-date {
-        display: inline-block;
-    }
-
-    .days, .months, .years {
-        display: inline-block;
-        vertical-align: text-top;
-    }
-
-    .date-list{
-        height:0;
-        overflow: hidden;
-        -webkit-transition:height .4s ease-in-out;
-        -moz-transition:height .4s ease-in-out;
-        transition:height .4s ease-in-out;
-        cursor: pointer;
-        background-color: #FFF;
-        color:#000;
-    }
-    .date-list.active{
-        height: 150px;
-        overflow: auto;
-    }
-
-    .date-item{
-        padding:0 15px;
-    }
-
-    .selected-date {
-        padding: 0 15px;
-        background-color: #FFF;
-        color: #000;
-        cursor: pointer;
-    }
-/* Profile gender dropdown
- --------------------------------------------------------------------------- */
-    .gender-dropdown{
-        display: inline-block;
-        vertical-align: text-top;
-    }
-
-    .gender-list {
-        height: 0;
-        -webkit-transition: height .4s ease-in-out;
-        -moz-transition: height .4s ease-in-out;
-        transition: height .4s ease-in-out;
-        overflow: hidden;
-        background-color: #FFF;
-        color:#000;
-        cursor: pointer;
-    }
-    .gender-list.active {
-        height: 66px;
-    }
-
-    .gender-item {
-        padding: 0 15px;
-    }
-
-    .selected-gender {
-        padding:0 15px;
-        background-color: #FFF;
-        color:#000;
-        cursor: pointer;
     }
 
 /* ABOUT
@@ -844,6 +834,50 @@
         display: none;
     }
 
+    .userUI-custom-image-selection {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        vertical-align: middle;
+    }
+
+    .userUI-submit {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        vertical-align: middle;
+    }
+
+    .admin-return{
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        -webkit-border-top-left-radius: 20px;
+        -moz-border-top-left-radius: 20px;
+        -ms-border-top-left-radius: 20px;
+        -o-border-top-left-radius: 20px;
+        border-top-left-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-bottom-left-radius: 20px;
+        -ms-border-bottom-left-radius: 20px;
+        -o-border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        vertical-align: middle;
+    }
+
 /* Admin-style-editor, User-style-editor
  --------------------------------------------------------------------------- */
     #admin-style-editor {
@@ -858,8 +892,6 @@
         tab-size: 2;
     }
 
-/* Admin-style-editor, User-style-editor
- --------------------------------------------------------------------------- */
     .admin-panel-drag {
         position: absolute;
         right: 0;
@@ -1019,10 +1051,114 @@
         max-width:220px;
     }
 
-    .profile-edit-input { color: black; }
+    .profile-edit-input {
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+    }
 
     .text-area {
         margin:5px 0;
+    }
+
+    .custom-image-selection {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        vertical-align: middle;
+    }
+
+    .profile-form-date {
+        display: inline-block;
+    }
+
+    .days, .months, .years {
+        display: inline-block;
+        vertical-align: text-top;
+    }
+
+    .date-list{
+        height:0;
+        overflow: hidden;
+        -webkit-transition:height .4s ease-in-out;
+        -moz-transition:height .4s ease-in-out;
+        transition:height .4s ease-in-out;
+        cursor: pointer;
+        background-color: #000;
+        color: #FFF;
+    }
+    .date-list.active{
+        height: 150px;
+        overflow: auto;
+    }
+
+    .date-item{
+        padding:0 15px;
+    }
+
+    .selected-date {
+        padding: 0 15px;
+        background-color: #FFF;
+        color: #000;
+        cursor: pointer;
+    }
+
+/* Profile gender dropdown
+ --------------------------------------------------------------------------- */
+    .gender-dropdown{
+        display: inline-block;
+        vertical-align: text-top;
+    }
+
+    .gender-list {
+        height: 0;
+        -webkit-transition: height .4s ease-in-out;
+        -moz-transition: height .4s ease-in-out;
+        transition: height .4s ease-in-out;
+        overflow: hidden;
+        background-color: #FFF;
+        color:#000;
+        cursor: pointer;
+    }
+    .gender-list.active {
+        height: 66px;
+    }
+
+    .gender-item {
+        padding: 0 15px;
+    }
+
+    .selected-gender,
+    .selected-date {
+        padding: 0 15px;
+        border: 1px inset #FFF;
+        background-color: #000;
+        color: #FFF;
+        cursor: pointer;
+    }
+
+    #bio {
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+        border-radius: 0;
+    }
+
+    #user-submit {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        vertical-align: middle;
     }
 
 /* ANIME
@@ -1148,8 +1284,16 @@
         margin: 0;
         border: 1px inset #FFF;
         border-radius: 0;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
         vertical-align: middle;
     }
 
@@ -1221,7 +1365,7 @@
         height: 17px;
         max-height: 600px;
         max-width: 100%;
-        width: calc(100% - 130px);
+        width: calc(100% - 140px);
         margin: 0 5px 0 10px;
         border-radius: 0;
         background: rgba(0, 0, 0, 0.7);
@@ -1235,8 +1379,16 @@
         margin: 0;
         border: 1px inset #FFF;
         border-radius: 0;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
         vertical-align: middle;
     }
 
@@ -1304,8 +1456,16 @@
         border: 1px inset #FFF;
         border-radius: 0;
         vertical-align: middle;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        -webkit-border-top-right-radius: 20px;
+        -moz-border-top-right-radius: 20px;
+        -ms-border-top-right-radius: 20px;
+        -o-border-top-right-radius: 20px;
+        border-top-right-radius: 20px;
+        -webkit-border-bottom-right-radius: 20px;
+        -moz-border-bottom-right-radius: 20px;
+        -ms-border-bottom-right-radius: 20px;
+        -o-border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
         text-align: center;
     }
 

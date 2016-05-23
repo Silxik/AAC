@@ -19,14 +19,14 @@
     <? include("system/admin-panel.php"); ?>
     <div class="main-page-block">
         <div id="header">
-            <a class="header-link" href="http://localhost/AAC/">
+            <a class="header-link" href="http://lahingupaik.ee/AAC/index.php">
                 <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
                 <h2 class="page-title">AnimeAddicts<br>Continue~!</h2>
             </a>
         </div>
         <div id="nav">
             <ul class="header-nav-list">
-                <li class="header-nav-list-item"><a class="header-nav-link" href="http://localhost/AAC/">Home</a></li>
+                <li class="header-nav-list-item"><a class="header-nav-link" href="http://lahingupaik.ee/AAC/index.php">Home</a></li>
                 <li class="header-nav-list-item events"><a class="header-nav-link" href="events">Events</a>
                     <ul class="header-subnav-list">
                         <li class="header-subnav-item"><a href="anime" class="header-subnav-link">Top Anime Selection</a></li>
@@ -47,7 +47,7 @@
                 <? if ($user) { ?>
                     <b class="welcome-text">Welcome : <a class="user-link"><?= $user['username']; ?></a></b>
                     <div class="user-icon-container">
-                        <img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
+                        <img class="user-icon" src="<?= !empty($user["profile_image"]) ? $user["profile_image"] : 'uploads/avatars/default.jpg'; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
                         <span class="user-icon-helper"></span>
                     </div>
                     <b id="logout"><a href="system/logout.php">Log Out</a></b>
@@ -58,8 +58,8 @@
                         <input id="username" name="username" placeholder="username" type="text">
                         <label for="password">Password :</label>
                         <input id="password" name="password" placeholder="password" type="password">
-                        <input class="button" type="submit" value="Login">
-                        <a class="button" href="register">Register</a>
+                        <input class="button login-button" type="submit" value="Login">
+                        <a class="button register-button" href="register">Register</a>
                     </form>
                 <? } ?>
             </div>

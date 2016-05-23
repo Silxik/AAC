@@ -16,8 +16,12 @@
         <form id="userForm" method="POST" action="upload" enctype="multipart/form-data">
             <div>
                 <label class="profile-form-label in-line" for="avatar">Upload your avatar : </label>
-                <input id="file" name="avatar" type="file">
+                <div class="custom-image-selection button" title="Choose attachment...">
+                    <i class="fa fa-paperclip" aria-hidden="true"></i>
+                </div>
+                <input class="hidden" id="file" name="avatar" type="file">
                 <div class="preview-container">
+                    <label class="profile-form-label in-line"></label>
                     <img class="image-preview" />
                 </div>
             </div>
@@ -38,11 +42,6 @@
                         <li class="gender-item">Other</li>
                     </ul>
                 </div>
-
-                <!-- <select id="gender" name="gender">
-                    <option value="0">Male</option>
-                    <option value="1">Female</option>
-                </select> -->
             </div>
 
             <div>
@@ -81,7 +80,7 @@
             
             <div>
                 <label class="profile-form-label in-line"></label>
-                <input id="user-submit" type="submit" name="user-update" class="button profile-edit-submit">
+                <input id="user-submit" type="submit" name="user-update" value="Save" class="button profile-edit-submit">
             </div>
         </form>
     </div>

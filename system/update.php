@@ -90,7 +90,7 @@ if(isset($_POST['admin-editor-submit'])) {
 ** ========================================================================== */
 if(isset($_POST['user-background-edit'])) {
 	if (!empty($id)) {
-		$image = $_FILES["user-background-image"];
+		$image = isset($_FILES["user-background-image"]) ? $_FILES["user-background-image"] : "";
 	
 		$query = $db->query("SELECT * FROM user_code WHERE user_id = '$id'");
 	    if (mysqli_num_rows($query) > 0) {
@@ -166,7 +166,11 @@ if(isset($_POST['user-background-edit'])) {
 if (isset($_POST["newPost"])) {
     if(!empty($id)){
     	$text = $db->real_escape_string($_POST['text']);
-    	$image = $_FILES["post_attachment"];
+    	$image = isset($_FILES["post_attachment"]) ? $_FILES["post_attachment"] : "";
+
+    	if( empty($text) && empty($image) ) {
+    		exit("Can't create an empty post.");
+    	}
 
         if ( empty($image["name"])) {
             $db->query("INSERT INTO userpost (user_id, text) VALUES ('$id', '$text')");
@@ -207,7 +211,7 @@ if (isset($_POST['new-discussion'])) {
     $title = $db->real_escape_string($_POST['title']);
     $text = $db->real_escape_string($_POST['text']);
 
-    $image = $_FILES["new-discussion-image"];
+    $image = isset($_FILES["new-discussion-image"]) ? $_FILES["new-discussion-image"] : "";
 
     if( empty($image["name"]) ) {
         $db->query("INSERT INTO discussion (user_id, title, text) VALUES ('$id', '$title', '$text')");
@@ -248,7 +252,7 @@ if (isset($_POST["user-update"])) {
     $date = $y . '-' . (strlen($m) > 1 ? $m : '0'.$m) . '-' . (strlen($d) > 1 ? $d : '0'.$d);
     $bio = $db->real_escape_string($_POST["bio"]);
 
-    $image = $_FILES['avatar'];
+    $image = isset($_FILES['avatar']) ? $_FILES['avatar'] : "";
 
     if( empty($image["name"]) ) {
         $query = $db->query("UPDATE user SET location='$l', gender='$g', birthday = '$date', bio='$bio' WHERE user_id = '$id'");
@@ -298,21 +302,6 @@ if (isset($_POST["user-update"])) {
                 exit('Something went wrong: ' . $db->error);
             }
         }
-    }
-}
-
-/* DISCUSSION COMMENT
-** ========================================================================== */
-if (isset($_POST['discussion_comment'])) {
-    $disc_id = $db->real_escape_string($_POST['discussion_id']);
-    $comment = $db->real_escape_string($_POST['comment']);
-
-    $sql = $db->query("INSERT INTO discussion_comments (discussion_id, user_id, text) VALUES ('$disc_id', '$id', '$comment')");
-    if ($sql) {
-        $db->close();
-        header('location: discussion');
-    } else {
-        exit($db->error);
     }
 }
 

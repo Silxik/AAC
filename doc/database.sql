@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2016 at 02:22 AM
+-- Generation Time: May 23, 2016 at 06:28 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -14,8 +14,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `aac`
 --
-CREATE DATABASE IF NOT EXISTS `aac` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `aac`;
 
 -- --------------------------------------------------------
 
@@ -140,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `userpost` (
   `text` text CHARACTER SET utf8 NOT NULL,
   `file_name` varchar(255) NOT NULL,
   `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -277,59 +275,9 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `userpost`
 --
 ALTER TABLE `userpost`
-  MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user_code`
 --
 ALTER TABLE `user_code`
-  MODIFY `code_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `discussion`
---
-ALTER TABLE `discussion`
-ADD CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `discussion_comments`
---
-ALTER TABLE `discussion_comments`
-ADD CONSTRAINT `discussion_comments_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`discussion_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `discussion_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `event_participants`
---
-ALTER TABLE `event_participants`
-ADD CONSTRAINT `event_participants_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `event_participants_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `post_comments`
---
-ALTER TABLE `post_comments`
-ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `userpost` (`post_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `userpost`
---
-ALTER TABLE `userpost`
-ADD CONSTRAINT `userpost_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `user_code`
---
-ALTER TABLE `user_code`
-ADD CONSTRAINT `user_code_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `user_top_selection`
---
-ALTER TABLE `user_top_selection`
-ADD CONSTRAINT `user_top_selection_ibfk_1` FOREIGN KEY (`selection_id`) REFERENCES `top_anime_selection` (`selection_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `user_top_selection_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-SET FOREIGN_KEY_CHECKS=1;
+  MODIFY `code_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;SET FOREIGN_KEY_CHECKS=1;

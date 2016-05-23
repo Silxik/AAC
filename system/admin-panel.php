@@ -34,13 +34,19 @@ if(explode('?', $path)[0] === "profile"){
                                 <a class="admin-nav-link">Change background</a>
                                 <div class="admin-editable">
                                     <form id="userBackgroundEdit" method="post" action="" enctype="multipart/form-data">
-                                        <label>Choose new background image :</label>
-                                        <input id="file" type="file" name="user-background-image">
+                                        <h3>Choose new background image :</h3>
+
                                         <div class="preview-container">
                                             <img class="image-preview admin-panel-preview">
                                         </div>
 
-                                        <input class="button" type="submit" name="user-background-edit">
+                                        <div class="button admin-return hidden">Back</div>
+                                        <div class="userUI-custom-image-selection button" title="Choose attachment...">
+                                            <i class="fa fa-paperclip" aria-hidden="true"></i>
+                                        </div>
+                                        <input class="hidden" id="bgImage" type="file" name="user-background-image">
+                                        <input class="userUI-submit button" type="submit" name="user-background-edit" value="Save">
+
                                     </form>
                                 </div>
                             </li>
@@ -62,11 +68,11 @@ if(explode('?', $path)[0] === "profile"){
                                         <input name="admin-editor-submit" type="hidden" value="">
                                         <label>CSS editor:</label>
                                         <textarea id="admin-style-editor" name="admin-style-editor"><?= (!empty($user_profile['css_editor'])) ? $user_profile['css_editor'] : ''; ?></textarea>
-                                        <input class="button" type="submit" value="save">
+                                        <div class="button admin-return hidden">Back</div>
+                                        <input class="button userUI-submit" type="submit" value="Save">
                                     </form>
                                 </div>
                             </li>
-                            <div class="button admin-return hidden">Back</div>
                         </ul>
                     </div>
                 </div>
@@ -84,13 +90,13 @@ if(explode('?', $path)[0] === "profile"){
                     $(".main-page-block").addClass("move");
                 });
 
-                $("#file").change(function(){
+                $("#bgImage").change(function(){
                     setTimeout(function(){
                         if( $("style").length > 2 ) {
                             $("style").last().remove();
-                            $("body").append('<style> body{ background-image:url('+ $(".image-preview").attr("src") +'); } </style>');
+                            $("body").append('<style> body{ background-image:url('+ $(".admin-panel-preview").attr("src") +'); } </style>');
                         } else {
-                            $("body").append('<style> body{ background-image:url('+ $(".image-preview").attr("src") +'); } </style>');
+                            $("body").append('<style> body{ background-image:url('+ $(".admin-panel-preview").attr("src") +'); } </style>');
                         }
                     }
                     ,1000);
