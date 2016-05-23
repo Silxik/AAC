@@ -140,7 +140,8 @@
         list-style: none;
     }
 
-    .header-nav-list-item{
+    .header-nav-list-item {
+        position: relative;
         display:inline-block;
     }
 
@@ -172,6 +173,62 @@
     .header-nav-link:hover {
         color: #ffA500;
     }
+
+/* Subnavigation
+ --------------------------------------------------------------------------- */
+    .header-subnav-list {
+        position: absolute;
+        right: calc(50% - 60px);
+        height: 0;
+        opacity: 0;
+        background: #000;
+
+        -webkit-transition: height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        -moz-transition: height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        -o-transition: height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        transition: height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+
+        overflow: hidden;
+    }
+
+    .events:hover > .header-subnav-list {
+        height: 108px;
+        border: 2px inset #FFF;
+        opacity: 1;
+    }
+
+    .header-subnav-link {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 17px;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 3px 15px;
+
+        -webkit-border-top-left-radius: 16px;
+        -moz-border-top-left-radius: 16px;
+        -ms-border-top-left-radius: 16px;
+        -o-border-top-left-radius: 16px;
+        border-top-left-radius: 16px;
+
+        -webkit-border-top-right-radius: 16px;
+        -moz-border-top-right-radius: 16px;
+        -ms-border-top-right-radius: 16px;
+        -o-border-top-right-radius: 16px;
+        border-top-right-radius: 16px;
+
+        transition: color 0.4s ease-in-out;
+        -webkit-transition: color 0.4s ease-in-out;
+        -moz-transition: color 0.4s ease-in-out;
+        -o-transition: color 0.4s ease-in-out;
+
+        color: #FFF;
+    }
+
+    .header-subnav-link:hover {
+        color: #ffA500;
+    }
+
 /* MAIN
 ** ========================================================================== */
 /* Main content
@@ -436,8 +493,8 @@
         height: 17px;
         max-height: 600px;
         max-width: 100%;
-        width: calc(100% - 560px);
-        margin: 0 5px 0 0;
+        width: calc(100% - 610px);
+        margin: 0 5px 0 10px;
         border-radius: 0;
         background: rgba(0, 0, 0, 0.7);
         color: #FFF;
@@ -479,6 +536,117 @@
         line-height: 1;
         color: #FFF;
         cursor: pointer;
+    }
+
+/* POST COMMENT
+** ========================================================================== */
+/* New post
+ --------------------------------------------------------------------------- */
+    .new-post-comment-textarea {
+        min-height: 17px;
+        height: 17px;
+        max-width: 100%;
+        width: calc(100% - 145px);
+        margin: 0 5px 0 10px;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+        vertical-align: middle;
+    }
+
+    .new-post-comment-submit {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        vertical-align: middle;
+    }
+
+/* Post comment
+ --------------------------------------------------------------------------- */
+    .post-comment {
+        position: relative;
+    }
+
+    .infobox {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        display: inline-block;
+        padding: 5px;
+        border: 1px inset #FFF;
+        background: #000;
+        -webkit-transition:opacity .4s ease-in-out, z-index .4s ease-in-out;
+        -moz-transition:opacity .4s ease-in-out, z-index .4s ease-in-out;
+        -o-transition:opacity .4s ease-in-out, z-index .4s ease-in-out;
+        transition:opacity .4s ease-in-out, z-index .4s ease-in-out;
+
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .infobox:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 2px;
+        border-right: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-top: 15px solid #000;
+        z-index: 1;
+    }
+
+    .user-icon-container.user-item-icon.small.post-comment-icon:hover + .infobox,
+    .infobox:hover {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .comment-infobox-icon {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 0 10px 0 0;
+    }
+
+    .post-comment-icon {
+        margin: 5px 0 0;
+    }
+
+    .comment-infobox-text {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .post-comment-username,
+    .post-comment-date {
+        display: block;
+        vertical-align: middle;
+    }
+
+    .post-comment-text {
+        position: relative;
+        display: inline-block;
+        padding: 5px;
+        margin: 5px 0 5px 20px;
+        width: calc(100% - 100px);
+        border: 1px inset #FFF;
+        border-radius: 10px;
+        background: #000;
+        vertical-align: top;
+        white-space: pre-wrap;
+    }
+
+    .post-comment-text:before {
+        content: "";
+        position: absolute;
+        left: -11px;
+        bottom: calc(100% - 27px);
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid #FFF;
     }
 
 /* Profile-form-date
@@ -1109,6 +1277,29 @@
 /* Contact block
  --------------------------------------------------------------------------- */
     .contact-block { margin-left:20px; }
+
+    #from,
+    #subject {
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+    }
+
+    #message {
+        background: rgba(0, 0, 0, 0.7);
+        color: #FFF;
+        border-radius: 0;
+    }
+
+    #send-mail {
+        padding: 8px 20px 8px 15px;
+        margin: 0;
+        border: 1px inset #FFF;
+        border-radius: 0;
+        vertical-align: middle;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        text-align: center;
+    }
 
 /* FIREBASE
 ** ========================================================================== */

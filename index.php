@@ -27,7 +27,7 @@
         <div id="nav">
             <ul class="header-nav-list">
                 <li class="header-nav-list-item"><a class="header-nav-link" href="http://localhost/AAC/">Home</a></li>
-                <li class="header-nav-list-item"><a class="header-nav-link" href="events">Events</a>
+                <li class="header-nav-list-item events"><a class="header-nav-link" href="events">Events</a>
                     <ul class="header-subnav-list">
                         <li class="header-subnav-item"><a href="anime" class="header-subnav-link">Top Anime Selection</a></li>
                         <li class="header-subnav-item"><a href="events" class="header-subnav-link">Active events</a></li>
@@ -146,7 +146,6 @@
 
                 firebaseRef.child(chatKey).limitToLast(100).on('child_added', function (snapshot) {
                     var messageList = $('.firechat-block[data-id="'+chatKey+'"]').find('ul.messages');
-                    console.log(messageList);
                     //GET DATA
                     var data = snapshot.val();
 
