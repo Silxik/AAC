@@ -51,8 +51,8 @@ if(isset($_POST['mailUpdate'])) {
 				$result = $db->query("SELECT * FROM user WHERE user_id = '$id'");
 	            if ($result) {
 	                $_SESSION['user'] = $result->fetch_assoc();
-	                echo "1";
 					$db->close();
+	                echo "1";
 	            }
 			} else {
 				exit($db->error);
@@ -62,6 +62,32 @@ if(isset($_POST['mailUpdate'])) {
 		}
 	} else {
 		exit('Please login first to continue.');
+	}
+}
+
+if(isset($_POST['top-anime-selection'])) {
+	if (!empty($id)) {
+		$list = htmlspecialchars($db->real_escape_string($_POST['anime-selection-list']));
+		$selection_id = $db->real_escape_string($_POST['selection_id']);
+
+		$sql = $db->query("SELECT * FROM user_top_selection WHERE selection_id = '$selection_id' AND user_id = '$id'");
+		if( mysqli_num_rows($sql) < 1 ) {
+			$sql = $db->query("INSERT INTO user_top_selection (selection_id, user_id, anime_list) VALUES ('$selection_id', '$id', '$list')");
+			if($sql) {
+				$db->close();
+				echo '1';
+			} else {
+				exit($db->error);
+			}
+		} else {
+			$sql = $db->query("UPDATE user_top_selection SET anime_list = '$list' WHERE selection_id = '$selection_id' AND user_id = '$id'");
+			if($sql) {
+				$db->close();
+				echo '1';
+			} else {
+				exit($db->error);
+			}
+		}
 	}
 }
 
@@ -232,6 +258,80 @@ if (isset($_POST['new-discussion'])) {
             if (move_uploaded_file($image["tmp_name"], $target_file)) {
                 $query_target = "uploads/files/". $image["name"];
                 $db->query("INSERT INTO discussion (user_id, title, text, file_name) VALUES ('$id', '$title', '$text', '$query_target')");
+                echo "1";
+                $db->close();
+            } else {
+                exit('Something went wrong: ' . $db->error);
+            }
+        }
+    }
+}
+
+/* NEW EVENT PARTICIPANT
+** ========================================================================== */
+if (isset($_POST['new-participant'])) {
+    $name = $db->real_escape_string($_POST['name']);
+    $event_id = $db->real_escape_string($_POST['event_id']);
+
+    $image = isset($_FILES["new-participant-work-image"]) ? $_FILES["new-participant-work-image"] : "";
+
+    if( empty($image["name"]) ) {
+        $db->query("INSERT INTO event_participant (user_id, event_id) VALUES ('$id', '$event_id')");
+        echo "1";
+        $db->close();
+    } else {
+        $target_dir = "../uploads/files/";
+        $target_file = $target_dir . $image["name"];
+
+        $check = getimagesize($image["tmp_name"]);
+        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
+        
+        if ($image["size"] > 2000000) {
+            exit("Sorry, your file is too large. Max image size is 2MB. *Tip for optimizing large image - <a class='warning-message-link' href='https://tinypng.com/' target='_blank'>https://tinypng.com/</a>");
+        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif") {
+            exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
+        } else {
+        	$temp = explode('.', $image['name']);
+        	$newFileName = $target_dir . $name . '.' . end($temp);
+            if (move_uploaded_file($image["tmp_name"], $newFileName)) {
+                $query_target = "uploads/files/" . $name . '.' . end($temp);
+                $db->query("INSERT INTO event_participants (user_id, event_id, file) VALUES ('$id', '$event_id', '$query_target')");
+                echo "1";
+                $db->close();
+            } else {
+                exit('Something went wrong: ' . $db->error);
+            }
+        }
+    }
+}
+
+/* CREATE NEW DISCUSSION TOPIC
+** ========================================================================== */
+if (isset($_POST['new-event'])) {
+    $title = $db->real_escape_string($_POST['title']);
+    $text = $db->real_escape_string($_POST['text']);
+
+    $image = isset($_FILES["new-event-image"]) ? $_FILES["new-event-image"] : "";
+
+    if( empty($image["name"]) ) {
+        $db->query("INSERT INTO events (name, description) VALUES ('$title', '$text')");
+        echo "1";
+        $db->close();
+    } else {
+        $target_dir = "../uploads/files/";
+        $target_file = $target_dir . $image["name"];
+
+        $check = getimagesize($image["tmp_name"]);
+        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
+        
+        if ($image["size"] > 1000000) {
+            exit("Sorry, your file is too large. Max image size is 1MB. *Tip for optimizing large image - <a class='warning-message-link' href='https://tinypng.com/' target='_blank'>https://tinypng.com/</a>");
+        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif") {
+            exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
+        } else {
+            if (move_uploaded_file($image["tmp_name"], $target_file)) {
+                $query_target = "uploads/files/". $image["name"];
+                $db->query("INSERT INTO events (name, description, image) VALUES ('$title', '$text', '$query_target')");
                 echo "1";
                 $db->close();
             } else {
