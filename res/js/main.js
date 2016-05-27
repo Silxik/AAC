@@ -2,6 +2,7 @@ $(document).on('ready', function(){
 
     // Scrollbar plugin implement
     $('.scrollbar-inner').scrollbar();
+    $('.users-list').scrollbar();
 }).on('click', '.users-block-toggle', function(){
 
     // Toggle firechat user block
@@ -9,6 +10,12 @@ $(document).on('ready', function(){
         $('.users-block').removeClass('active');
     } else {
         $('.users-block').addClass('active');
+
+        var scrollHeight = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        var navHeight = $('#nav')[0]['offsetTop'] + 75;
+        $('.users-block.active').css('max-height', (windowHeight - navHeight + scrollHeight) + "px");
+        $('.users-list').css('max-height', (windowHeight - navHeight + scrollHeight) + "px");
     }
 }).on('click', '.sidebar-toggle', function(){
 
@@ -60,6 +67,178 @@ $(document).on('ready', function(){
     $(this).parent().parent().parent().find('.selected-gender').text( $(this).text() );
     $(this).parent().removeClass('active');
     $(this).parent().parent().removeClass('active');
+}).on('click', '.selected-theme', function(){
+
+    // Toggle custom theme selector
+    if( $(this).parent().find('.theme-list').hasClass('active') ) {
+        $(this).parent().find('.theme-list').removeClass('active');
+    } else {
+        $(this).parent().find('.theme-list').addClass('active');
+    }
+}).on('click', '.theme-item', function(){
+
+    // Select theme
+    $(this).parent().parent().parent().find('.selected-theme').text( $(this).text() );
+    $(this).parent().removeClass('active');
+    $(this).parent().parent().removeClass('active');
+
+    var themeName = $(this).text();
+
+    if ( themeName == 'Default (Dark)' ) {
+        var colorCode = '#FFF';
+        var bgColorCode = 'rgba(0, 0, 0, 0.7)';
+        var bgTrueColor = '#000';
+        var borderColor = '#FFF';
+    } else if ( themeName == 'Light' ) {
+        var colorCode = '#000';
+        var bgColorCode = 'rgba(255, 255, 255, 0.7)';
+        var bgTrueColor = '#FFF';
+        var borderColor = '#000';
+    } else if ( themeName == 'Lightblue' ) {
+        var colorCode = '#ADD8E6';
+        var bgColorCode = 'rgba(173, 216, 230, 0.7)';
+        var bgTrueColor = '#ADD8E6';
+        var borderColor = '#FFF';
+    } else if ( themeName == 'Orange' ) {
+        var colorCode = '#000';
+        var bgColorCode = 'rgba(255, 192, 203, 0.7)';
+        var bgTrueColor = '#FFC0CB';
+        var borderColor = '#FFF';
+    } else {
+        var colorCode = '#FFF';
+        var bgColorCode = 'rgba(0, 0, 0, 0.7)';
+        var bgTrueColor = '#000';
+        var borderColor = '#FFF';
+    }
+    var themeStyle = '/* USING '+themeName.toUpperCase()+' THEME\n'+
+        '** ======================== */\n'+
+        '\n'+
+        '/* FALLBACK FOR DARK THEME\n'+
+        ' ------------------------- */\n'+
+        '#header, #nav, #divWrapper, .header-nav-list, .post-container, .profile-nav-block {\n'+
+        '   background-image: none;\n'+
+        '}\n'+
+        '\n'+
+        'body {\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '* {\n'+
+        '   border-color:'+borderColor+';\n'+
+        '}\n'+
+        '\n'+
+        '/* HEADER BLOCK\n'+
+        ' -------------------------- */\n'+
+        '#header {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '}\n'+
+        '\n'+
+        '/* NAVIGATION BLOCK\n'+
+        ' -------------------------- */\n'+
+        '#nav {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '}\n'+
+        '\n'+
+        '.header-nav-list{\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '}\n'+
+        '\n'+
+        '.header-nav-link { '+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '\n'+
+        '/* SUBNAVIGATION BLOCK\n'+
+        ' -------------------------- */\n'+
+        '.profile-nav-block {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '}\n'+
+        '.profile-nav-link { '+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '\n'+
+        '/* PROFILE BLOCK\n'+
+        ' -------------------------- */\n'+
+        '#profile {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.user-link {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '#logout a {\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '/* MAIN BLOCK\n'+
+        ' -------------------------- */\n'+
+        '#divWrapper {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '}\n'+
+        '.button {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '\n'+
+        '/* POST BLOCK\n'+
+        ' -------------------------- */\n'+
+        '.post-container {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '}\n'+
+        '.post-delete {\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.new-post-textarea {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.new-post-comment-textarea {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '/* FIRECHAT\n'+
+        ' -------------------------- */\n'+
+        '.firechat-block {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.messageInput {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '/* USERS DROPDOWN\n'+
+        ' -------------------------- */\n'+
+        '.users-block-toggle {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '}\n'+
+        '/* FOOTER\n'+
+        ' -------------------------- */\n'+
+        '#footer {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '}\n'+
+        '.footer-text-container {\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '/* ADMIN BLOCK\n'+
+        ' -------------------------- */\n'+
+        '.admin-block {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.selected-theme {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.theme-list {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n';
+
+    $('#admin-style-editor').val( themeStyle );
+    $('#user-style-editor-code').text( themeStyle );
+
+}).on('click', '.theme-submit', function(){
+
+    // Submit CSS style editor
+    $('#admin-style-editor-form').submit();
 }).on('click', '.user-chat .firechat-close', function(){
 
     // Close user firechat container
@@ -128,3 +307,21 @@ $(document).delegate('#admin-style-editor', 'keydown', function(e) {
         $(this).get(0).selectionEnd = start + 1;
     }
 });
+
+// Resize members block on scroll
+$(window).scroll(function(){
+    var scrollHeight = $(window).scrollTop();
+    var windowHeight = $(window).height();
+    var navHeight = $('#nav')[0]['offsetTop'] + 75;
+    $('.users-block.active').css('max-height', (windowHeight - navHeight + scrollHeight) + "px");
+    $('.users-list').css('max-height', (windowHeight - navHeight + scrollHeight) + "px");
+});
+/** Todo focused string to span element
+ *
+ */
+/*
+$(document).on('mouseup', function(e){
+    var selectionStr = window.getSelection().toString();
+    console.log( e['target']['innerHTML'] );
+});
+*/
