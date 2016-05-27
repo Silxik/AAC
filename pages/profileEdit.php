@@ -4,10 +4,6 @@
     <h1 class="header-h1">Edit Profile</h1>
     <div class="profile-edit-nav-container">
         <ul class="profile-nav-list">
-            <li class="profile-nav-list-item"><a class="profile-nav-link" href="#">Personal info</a></li>
-            <li class="profile-nav-line"></li>
-            <li class="profile-nav-list-item"><a class="profile-nav-link" href="#">Privacy</a></li>
-            <li class="profile-nav-line"></li>
             <li class="profile-nav-list-item"><a class="profile-nav-link profile-change" href="profile_edit_email_pass"><i class="fa fa-pencil" aria-hidden="true"></i>Edit email and password</a></li>
         </ul>
     </div>
@@ -84,7 +80,4 @@
             </div>
         </form>
     </div>
-
-    <div class="content"></div>
-    <div class="content"></div>
 </div>
