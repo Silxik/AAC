@@ -23,7 +23,7 @@
                 <? if($user) { ?>
                     <div class="new-discussion-comment">
                         <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;"></div>
-                        <textarea class="discussion-message-input" placeholder="Write a comment..."></textarea>
+                        <textarea class="discussion-message-input" placeholder="Leave a comment..."></textarea>
                         <div class="discussion-comment-post button"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
                     </div>
                 <? } ?>
@@ -97,20 +97,23 @@
                 </script>
 
             <? }
-        } else {
-            header('location: 404');
-        }
+        } else { ?>
+            <script> window.location.href = window.location.href.split(window.location.search)[0] </script>
+        <? }
     } else { ?>
 
     <? if ($user) { ?>
+        <h1 class="header-h1">Discussions</h1>
+        
         <div class="new-discussion-block">
-            <h1 class="header-h1">Discussions</h1>
             <form id="new-discussion" method="POST" action="upload" enctype="multipart/form-data">
                 <div>
-                    <label class="form-label in-line" for="title">Title: </label><input class="new-discussion-title" name="title" type="text" placeholder="Title...">
+                    <label class="form-label in-line">Title: </label>
+                    <input class="new-discussion-title" name="title" type="text" placeholder="Title...">
                 </div>
                 <div>
-                    <label class="form-label in-line text-area-label" for="text">Your discussion:</label><textarea class="new-discussion-description text-area" placeholder="Description..." name="text"></textarea>
+                    <label class="form-label in-line text-area-label">Your discussion:</label>
+                    <textarea class="new-discussion-description text-area" placeholder="Description..." name="text"></textarea>
                 </div>
                 <div>
                     <label class="form-label in-line"></label>
