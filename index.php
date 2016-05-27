@@ -13,16 +13,17 @@
     <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
     <script type="text/javascript" src="res/js/functions.js"></script>
     <link rel="stylesheet" type="text/css" href="res/css/jquery.scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="res/css/style.css">
+    <link rel="stylesheet" type="text/css" href="res/css/style.css?2">
 </head>
 <body>
     <? include("system/admin-panel.php"); ?>
     <div class="main-page-block">
         <div id="header">
-            <a class="header-link" href="http://lahingupaik.ee/AAC/index.php">
-                <img class="logo" src="res/img/AAC_logo.png" alt="Anime Addicts Continue logo" />
-                <h2 class="page-title">AnimeAddicts<br>Continue~!</h2>
-            </a>
+            <div class="logo-block">
+                <a class="header-link" href="http://lahingupaik.ee/AAC/index.php">
+                    <img class="logo" src="res/img/logo.png" alt="Anime Addicts Continue logo" />
+                </a>
+            </div>
         </div>
         <div id="nav">
             <ul class="header-nav-list">
@@ -47,7 +48,7 @@
                 <? if ($user) { ?>
                     <b class="welcome-text">Welcome : <a class="user-link"><?= $user['username']; ?></a></b>
                     <div class="user-icon-container">
-                        <img class="user-icon" src="<?= !empty($user["profile_image"]) ? $user["profile_image"] : 'uploads/avatars/default.jpg'; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
+                        <img class="user-icon" alt="<?=$user['username'];?>" src="<?= !empty($user["profile_image"]) ? $user["profile_image"] : 'uploads/avatars/default.jpg'; ?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">
                         <span class="user-icon-helper"></span>
                     </div>
                     <b id="logout"><a href="system/logout.php">Log Out</a></b>

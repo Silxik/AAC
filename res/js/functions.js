@@ -185,16 +185,15 @@ $(document).ready(function () {
     });
 
     // Discussion topic toggle    
-    $('.discussion-title').click(function () {
+    $('.discussion-title.discussion-toggler').click(function () {
         var id = $(this).data('id');
-        $.get({
-            url: 'system/ajax_discussion.php',
-            data: {id: id},
-            success: function (data) {
-                $('.discussion-block').html(data);
-                window.location.search = "id="+ id;
-            }
-        });
+        window.location.search = "id="+ id;
+    });
+
+    // Events topic toggle
+    $('.event-title.event-toggler').click(function () {
+        var id = $(this).data('id');
+        window.location.search = "id="+ id;
     });
 
     // Contact form prevent page refresh
@@ -229,6 +228,29 @@ $(document).ready(function () {
 
         var formData = new FormData(document.querySelector("#userPost"));
         formData.append('newPost','');
+
+        $.ajax({
+            url: 'system/update.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function (data) {
+                if ( data == 1 ) {
+                    window.location = window.location;
+                } else {
+                    $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
+                }
+            }
+        });
+    });
+
+    $(document).on('submit', '#newParticipant', function(e){
+        e.preventDefault();
+
+        var formData = new FormData(document.querySelector("#newParticipant"));
+        formData.append('new-participant','');
 
         $.ajax({
             url: 'system/update.php',
@@ -303,6 +325,62 @@ $(document).ready(function () {
         }
     });
 
+    // CREATE NEW EVENT
+    $(document).on('submit', '#newEventForm', function(e){
+        e.preventDefault();
+        var title = $('.new-event-title').val();
+        var description = $('.new-event-description').val();
+
+        if ( title == '' ) {
+            $(".errorlog").html("<h3 class='error-header'>You must input your topic title.</h3>");
+        } else if( description == '' ) {
+            $(".errorlog").html("<h3 class='error-header'>You must input your topic description.</h3>");
+        } else {
+            var formData = new FormData(document.querySelector("#newEventForm"));
+            formData.append('new-event','');
+
+            $.ajax({
+                url: 'system/update.php',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function (data) {
+                    if ( data == 1 ) {
+                        window.location = window.location;
+                    } else {
+                        $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).on('submit', '#animeSelectionForm', function(e){
+        e.preventDefault();
+
+        var list = $(this).find('.anime-selection-list').val().split(',');
+
+        if( list.length > 10 ) {
+            $('.errorlog').html('<h3 class="error-header">There are more than 10 anime in list.</h3>');
+        } else {
+            $.ajax({
+                url: 'system/update.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (data) {
+                        if ( data == 1 ) {
+                            $('.errorlog').html('<h3 class="success-header">Your list has been saved! To update, simply add or change the list. Thank you!</h3>');
+                        } else {
+                            $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
+                        }
+                    }
+            });
+        }
+    });
+
+    // STYLE EDITOR CSS CODE SUBMIT
     $(document).on('submit', '#admin-style-editor-form', function(e){
         e.preventDefault();
 

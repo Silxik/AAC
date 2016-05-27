@@ -54,10 +54,22 @@ if(explode('?', $path)[0] === "profile"){
                             <li class="admin-nav-item">
                                 <a class="admin-nav-link">Change layout color</a>
                                 <div class="admin-editable">
-                                    <form method="post" action="">
-                                        <label>Layout</label>
-                                        
-                                    </form>
+                                    <div>
+                                        <h3>Change theme :</h3>
+
+                                        <div class="user-theme-block">
+                                            <div class="selected-theme">Default (Dark)</div>
+                                            <ul class="theme-list scrollbar-inner">
+                                                <li class="theme-item">Default (Dark)</li>
+                                                <li class="theme-item">Light</li>
+                                                <li class="theme-item">Lightblue</li>
+                                                <li class="theme-item">Orange</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="button admin-return hidden">Back</div>
+                                        <input class="userUI-submit theme-submit button" type="submit" value="Save">
+                                    </div>
                                 </div>
                             </li>
 
