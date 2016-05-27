@@ -82,7 +82,7 @@ $q = $db->query("SELECT * FROM userpost U INNER JOIN user US ON US.user_id = U.u
             <? if($user) { ?>
                 <div class="new-post-comment-block">
                     <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;"></div>
-                    <textarea class="new-post-comment-textarea" name="text" placeholder="What's on your mind?"></textarea>
+                    <textarea class="new-post-comment-textarea" name="text" placeholder="Leave a comment..."></textarea>
                     <input class="button new-post-comment-submit" data-id="<?=$r['post_id'];?>" type="submit" name="newPost" value="Post">
                 </div>
             <? } ?>
