@@ -6,15 +6,20 @@ function register() {
     var un = $("#regUsername").val();
     var pw = $("#regPassword").val();
     var cap = $("#captcha").val();
+
+    if(un == "") {
+
+    }
     $.ajax({
         url:"system/register.php",
         data: {un:un, pw:pw, cap:cap},
         type:"post",
-        success:function(){
+        success:function(data){
+            if(data == 1)
             window.location = window.location.href.split('register')[0];
-        },
-        error:function(result){
-            console.log(result);
+            else {
+                $('.errorlog').html('<h3 class="error-header">'+ data +'</h3>');
+            }
         }
     });
 }
@@ -125,6 +130,26 @@ $(document).ready(function () {
         $.post({
             url:"system/update.php",
             data:{ username:username, about:'' },
+            success:function(data) {
+                if (data == 0) {
+                    $(".login-errorlog").html("<h3 class='error-header'>User not found!</h3>");
+                } else {
+                    $('.profile-container').html(data);
+                }
+            }
+        });
+    }).on('click', '#timeline', function(e){
+        e.preventDefault();
+
+        window.location = window.location;
+    }).on('click', '#photos', function(e) {
+        e.preventDefault();
+
+        var username = window.location.search.split('=')[1];
+
+        $.post({
+            url:"system/update.php",
+            data:{ username:username, photos:'' },
             success:function(data) {
                 if (data == 0) {
                     $(".login-errorlog").html("<h3 class='error-header'>User not found!</h3>");
@@ -370,12 +395,12 @@ $(document).ready(function () {
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (data) {
-                        if ( data == 1 ) {
-                            $('.errorlog').html('<h3 class="success-header">Your list has been saved! To update, simply add or change the list. Thank you!</h3>');
-                        } else {
-                            $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
-                        }
+                    if ( data == 1 ) {
+                        $('.errorlog').html('<h3 class="success-header">Your list has been saved! To update, simply add or change the list. Thank you!</h3>');
+                    } else {
+                        $('.errorlog').html('<h3 class="error-header">'+data+'</h3>');
                     }
+                }
             });
         }
     });
@@ -393,12 +418,35 @@ $(document).ready(function () {
                 type: 'POST',
                 data: $('#admin-style-editor-form').serialize(),
                 success: function (data) {
-                        if ( data == 1 ) {
-                            $('.admin-panel-error-log').html('<h3 class="admin-panel-success-header">Saved!</h3>');
-                        } else {
-                            $('.admin-panel-error-log').html('<h3 class="admin-panel-error-header">'+data+'</h3>');
-                        }
+                    if ( data == 1 ) {
+                        $('.admin-panel-error-log').html('<h3 class="admin-panel-success-header">Saved!</h3>');
+                    } else {
+                        $('.admin-panel-error-log').html('<h3 class="admin-panel-error-header">'+data+'</h3>');
                     }
+                }
+            });
+        }
+    });
+
+    // ABOUT PAGEVIEW MARKUP EDITOR CODE SUBMIT
+    $(document).on('submit', '#aboutPageView', function(e){
+        e.preventDefault();
+
+        var MarkupCode = $('#markup-editor').val();
+        if( MarkupCode.search('<script>') > -1 ){
+            $('.admin-panel-error-log').html('<h3 class="admin-panel-error-header">Please remove script tags to continue.</h3>');
+        } else {
+            $.ajax({
+                url: 'system/update.php',
+                type: 'POST',
+                data: $('#aboutPageView').serialize(),
+                success: function (data) {
+                    if ( data == 1 ) {
+                        $('.admin-panel-error-log').html('<h3 class="admin-panel-success-header">Saved!</h3>');
+                    } else {
+                        $('.admin-panel-error-log').html('<h3 class="admin-panel-error-header">'+data+'</h3>');
+                    }
+                }
             });
         }
     });

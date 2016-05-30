@@ -87,8 +87,9 @@
                         <ul class="messages firechat-list scrollbar-inner"></ul>
                         <? if ($user) { ?>
                             <input class="messageInput firechat-text" type="text" placeholder="Type a message...">
+                            <div class="firechat-send-message button"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
                         <? } else {
-                            echo "Please log in first.";
+                            echo "<h3 class='login-header'>Please log in first!</h3>";
                         } ?>
                     </div>
                 </div>
@@ -141,7 +142,8 @@
                         '<h2 class="firechat-header">'+selectedUser+'</h2>'+
                         '<div class="firechat-container">'+
                             '<ul class="messages firechat-list scrollbar-inner"></ul>'+
-                            '<input class="messageInput firechat-text" type="text" placeholder="Type a message...">'+ 
+                            '<input class="messageInput firechat-text" type="text" placeholder="Type a message...">'+
+                            '<div class="firechat-send-message button"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>'+ 
                         '</div>'+
                     '</div>');
 
@@ -160,7 +162,7 @@
                     //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
                     var messageBlock = $('<li class="firechat-message">');
                     var messageElement = $('<span class="firechat-message"></span>');
-                    var nameElement = $('<div class="user-icon-container chat-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
+                    var nameElement = $('<div class="user-icon-container chat-icon"><span class="user-icon-helper"></span><img alt="User icon" class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
                     nameElement.attr('title',username + ', ' + date);
                     messageElement.text(message);
 
@@ -173,6 +175,15 @@
                 $('.scrollbar-inner').scrollbar();
             }
 
+        }).on('click', '.firechat-send-message.button', function(){
+            var chatKey = $(this).parent().parent().data('id');
+
+            var username = '<?= $user['username']; ?>';
+            var message = $(this).parent().find('.messageInput').val();
+            var curDate = new Date().toLocaleString();
+
+            firebaseRef.child(chatKey).push({name: username, text: message, date: curDate});
+            $(this).parent().find('.messageInput').val('');
         }).on('keypress', '.messageInput', function(e){
             if(e.keyCode == 13) {
                 var chatKey = $(this).parent().parent().data('id');
@@ -201,7 +212,7 @@
             //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
             var messageBlock = $('<li class="firechat-message">');
             var messageElement = $('<span class="firechat-message"></span>');
-            var nameElement = $('<div class="user-icon-container chat-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>');
+            var nameElement = $('<div class="user-icon-container chat-icon"><span class="user-icon-helper"></span><img alt="User icon" class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>');
             nameElement.attr('title',username + ', ' + date);
             messageElement.text(message);
 

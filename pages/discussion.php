@@ -22,7 +22,7 @@
                 <div class="discussion-comment-block">
                 <? if($user) { ?>
                     <div class="new-discussion-comment">
-                        <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;"></div>
+                        <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;" alt="User icon"></div>
                         <textarea class="discussion-message-input" placeholder="Leave a comment..."></textarea>
                         <div class="discussion-comment-post button"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
                     </div>
@@ -72,7 +72,7 @@
                         var messageElement = $('<div class="discussion-comment-text"></div>');
                         var userElement = $('<div class="discussion-comment-username user-link"></div>')
                         var dateElement = $('<div class="discussion-comment-date"></div>');
-                        var iconElement = $('<div class="user-icon-container discussion-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
+                        var iconElement = $('<div class="user-icon-container discussion-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;" alt="User icon">');
                         iconElement.attr('title',comment_author + ', ' + date);
 
                         messageElement.text(comment_message);
@@ -139,7 +139,7 @@
     while ($discussion = $sql->fetch_assoc() ) { ?>
         <div class="discussion-container">
             <? if (!empty($discussion['file_name'])) { ?>
-                <img class="discussion-image" src="<?= $discussion['file_name']; ?>" rel="Discussion image">
+                <img class="discussion-image" src="<?= $discussion['file_name']; ?>" alt="Discussion image">
             <? } ?>
 
             <div class="discussion-header">

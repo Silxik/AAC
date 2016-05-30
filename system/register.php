@@ -5,11 +5,11 @@ if (isset($_POST['un'])) {
     $pw = $db->real_escape_string($_POST['pw']);
     $cap = strtoupper($_POST['cap']);
     if (empty($un) || empty($pw) || empty($cap)) {
-        exit('Please fill all fields!');
+        exit('Please fill all fields to continue.');
     } else if (strlen($un) > 20) {
-        exit('That username is too long!');
+        exit('Please user a shorter username to continue.');
     } else if (strlen($pw) < 6) {
-        exit('Password needs to be at least 6 characters!');
+        exit('Password needs to be at least 6 characters.');
     } else if ($cap != $_SESSION['cap']) {
         exit('Wrong captcha code! ' . $_SESSION['cap']);
     }
@@ -24,7 +24,7 @@ if (isset($_POST['un'])) {
         if ($result) {
             $db->query("UPDATE user SET online = '1' WHERE username='$un'");
             $_SESSION['user'] = $result;
-            exit('Ok');
+            exit('1');
         } else {
             exit('Invalid Username or Password');
         }

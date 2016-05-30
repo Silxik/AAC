@@ -17,6 +17,7 @@ if(explode('?', $path)[0] === "profile"){
 
         $query = $db->query("SELECT * FROM user_code WHERE user_id = (SELECT user_id FROM user WHERE username = '$username')");
         $user_profile = $query->fetch_assoc();
+
         // If page is visited by owner, create admin panel, else show design
         if($username === $user["username"]) {
             ?>
@@ -50,7 +51,7 @@ if(explode('?', $path)[0] === "profile"){
                                     </form>
                                 </div>
                             </li>
-                            
+
                             <li class="admin-nav-item">
                                 <a class="admin-nav-link">Change layout color</a>
                                 <div class="admin-editable">
@@ -62,8 +63,6 @@ if(explode('?', $path)[0] === "profile"){
                                             <ul class="theme-list scrollbar-inner">
                                                 <li class="theme-item">Default (Dark)</li>
                                                 <li class="theme-item">Light</li>
-                                                <li class="theme-item">Lightblue</li>
-                                                <li class="theme-item">Orange</li>
                                             </ul>
                                         </div>
 
@@ -119,7 +118,7 @@ if(explode('?', $path)[0] === "profile"){
             <style id="user-style-editor-code"><?= (!empty($user_profile['css_editor'])) ? $user_profile['css_editor'] : ''; ?></style>
             <style><?= (!empty($user_profile['bg_img'])) ? 'body { background-image: url("'.$user_profile['bg_img'].'"); }' : ''; ?></style>
         <? }else{ ?>
-            <style id="user-style-editor-code">
+            <style media="screen" type="text/css" id="user-style-editor-code">
                 <?= (!empty($user_profile['css_editor'])) ? $user_profile['css_editor'] : ''; ?>
             </style>
             <style><?= (!empty($user_profile['bg_img'])) ? 'body { background-image: url("'.$user_profile['bg_img'].'"); }' : ''; ?></style>
@@ -130,5 +129,43 @@ if(explode('?', $path)[0] === "profile"){
     } else {
         header("location:". BASE_URL);
     }
+} else if ($path == "about") {
+    if($user && $user['username'] == "Kurikutsu" || $user && $user['username'] == "Komision") { 
+        $sql = $db->query("SELECT code FROM view WHERE name = 'about_us'");
+        $pageview = $sql->fetch_assoc();
+        ?>
+        <div class="sidebar-toggle button show">Show panel</div>
+        <div class="admin-block">
+            <div class="admin-container">
+                <div class="sidebar-toggle button hide">Hide panel</div>
+                <div class="admin-panel-error-log"></div>
+                <div class="admin-header">
+                    <h3 class="header-h3">Profile editor</h3>
+                </div>
+                <div class="admin-nav">
+                    <ul class="admin-nav-list">
+                        <li class="admin-nav-item">
+                            <a class="admin-nav-link">Code editor</a>
+                            <div class="admin-editable">
+                                <form id="aboutPageView" action="" method="post" >
+                                    <input name="page-view-update" type="hidden" value="">
+                                    <label>HTML editor:</label>
+                                    <textarea id="markup-editor" name="markup-editor"><?= !empty($pageview['code']) ? $pageview['code'] : ''; ?></textarea>
+                                    <div class="button admin-return hidden">Back</div>
+                                    <input class="button userUI-submit" type="submit" value="Save">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin-panel-drag">
+                <span class="full-vertical-align"></span>
+                <div class="line-drag"></div>
+                <div class="line-drag"></div>
+                <div class="line-drag"></div>
+            </div>
+        </div>
+    <? }
 }
 ?>

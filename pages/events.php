@@ -16,6 +16,7 @@
                     </div>
                     <p class="event-container-text"><?= htmlspecialchars($result['description']); ?></p>
 
+                    <? if($user) { ?>
                     <div class="event-participation-container">
                     	<form id="newParticipant" method="post" action="system/update.php">
                     		<div>
@@ -41,6 +42,7 @@
 			                </div>
                     	</form>
                     </div>
+                    <? } ?>
 
                     <div class="clearfix"></div>
                 </div>
@@ -64,7 +66,7 @@
 
                 			<div class="event-participant">
                 				<div class="participant-image-container"><img class="participant-image" title="<?=$work;?>" src="<?=$r['file'];?>" alt="<?=$work;?>"></div>
-                				<div class="participant-name user-link">Posted by <?=$r['username'];?></div>
+                				<div class="participant-name">Posted by <a class="user-link"><?=$r['username'];?></a></div>
                 				<div class="participant-date"><?=$date;?></div>
                 			</div>
             			<? }
@@ -79,7 +81,7 @@
 
 	    <h1 class="header-h1">Active events</h1>
 
-		<? if($user && $user['username'] == "Kurikutsu" || $user && $user['username'] == "Komision" ) { ?>
+		<? if($user && $user['username'] == "Kurikutsu" || $user && $user['username'] == "Komision") { ?>
 	    <div class="new-event-block">
 	    	<form action="system/upload.php" id="newEventForm" method="post" autocomplete="off">
 	    		<div>

@@ -23,7 +23,7 @@
     <div class="profile-container">
         <? if ($user) { ?>
         <form id="userPost" class="profile-form" method="POST" action="system/update" enctype="multipart/form-data">
-            <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;"></div>
+            <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;" alt="User icon"></div>
             <textarea class="new-post-textarea" name="text" placeholder="What's on your mind?"></textarea>
             <div class="new-post-image-selection button" title="Choose attachment..."><i class="fa fa-paperclip" aria-hidden="true"></i></div>
             <input class="button new-post-submit" type="submit" name="newPost" value="Post">
@@ -79,7 +79,7 @@
         while ($r = $q->fetch_assoc()) { ?>
             <div class="post-container">
                 <div class="post-header">
-                    <div class="user-icon-container small"><span class="user-icon-helper"></span><img class="user-icon" src="<?=$r["profile_image"];?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;"></div>
+                    <div class="user-icon-container small"><span class="user-icon-helper"></span><img class="user-icon" src="<?=$r["profile_image"];?>" onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;" alt="User icon"></div>
                     <div class="post-auth-block">
                         <a class="user-link post-username"><?=$r["username"]; ?></a>
                         <small class="post-date"><?=$r["post_date"]; ?></small>
@@ -90,12 +90,12 @@
                 </div>
                 <pre class="post-text"><?=$r["text"]; ?></pre>
             <? if( !empty($r['file_name']) ) { ?>
-                <img class="post-image" src="<?=$r['file_name'];?>">
+                <img class="post-image" src="<?=$r['file_name'];?>" alt="Post image">
             <? } ?>
                 <div class="post-comments-block">
                 <? if($user) { ?>
                     <div class="new-post-comment-block">
-                        <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;"></div>
+                        <div class="user-icon-container user-item-icon small new-discussion-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="<?= $user["profile_image"]; ?>" onerror="this.onerror=null;this.src=&#39;uploads/avatars/default.jpg&#39;;" alt="User icon"></div>
                         <textarea class="new-post-comment-textarea" name="text" placeholder="Leave a comment..."></textarea>
                         <input class="button new-post-comment-submit" data-id="<?=$r['post_id'];?>" type="submit" name="newPost" value="Post">
                     </div>
@@ -138,7 +138,7 @@
                 var messageElement = $('<div class="post-comment-text"></div>');
                 var userElement = $('<div class="post-comment-username user-link"></div>')
                 var dateElement = $('<div class="post-comment-date"></div>');
-                var iconElement = $('<div class="user-icon-container user-item-icon small post-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
+                var iconElement = $('<div class="user-icon-container user-item-icon small post-comment-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;" alt="User icon">');
                 var mediumIcon = $('<div class="user-icon-container comment-infobox-icon"><span class="user-icon-helper"></span><img class="user-icon" src="'+ uImages[pos] +'"  onerror="this.onerror=null;this.src=&#34;uploads/avatars/default.jpg&#34;;">');
                 iconElement.attr('title',comment_author + ', ' + date);
 

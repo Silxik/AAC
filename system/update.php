@@ -112,6 +112,27 @@ if(isset($_POST['admin-editor-submit'])) {
 	}
 }
 
+/* USER UI VIEW UPDATE
+** ========================================================================== */
+if(isset($_POST['page-view-update'])) {
+	if (!empty($id)) {
+		$code = $db->real_escape_string($_POST['markup-editor']);
+	
+		$query = $db->query("SELECT * FROM view WHERE name = 'about_us'");
+	    if (mysqli_num_rows($query) > 0) {
+	    	$db->query("UPDATE view SET code = '$code' WHERE name = 'about_us'");
+	    	echo '1';
+	    	$db->close();
+	    } else {
+	    	$db->query("INSERT INTO view (name, code) VALUES ('about_us','$code') ");
+	    	echo '1';
+	    	$db->close();
+	    }
+    } else {
+		exit('Please login first to continue.');
+	}
+}
+
 /* USER UI BACKGROUND IMAGE UPDATE
 ** ========================================================================== */
 if(isset($_POST['user-background-edit'])) {
@@ -121,66 +142,86 @@ if(isset($_POST['user-background-edit'])) {
 		$query = $db->query("SELECT * FROM user_code WHERE user_id = '$id'");
 	    if (mysqli_num_rows($query) > 0) {
 	    	$target_dir = "../avatars/files/";
-	        $target_file = $target_dir . $image["name"];
+	    	
+	    	if(!empty($image['name'])) {
+		        $target_file = $target_dir . $image["name"];
+		
+		        $check = getimagesize($image["tmp_name"]);
+		        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
+		
+		        if ($image["size"] > 1000000) {
+		            exit("Sorry, your file is too large. Max image size is 1MB. *Tip for optimizing large image - <a class='warning-message-link' href='https://tinypng.com/' target='_blank'>https://tinypng.com/</a>");
+		        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif") {
+		            exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
+		        } else {
+		        	$temp = explode(".", $image["name"]);
+		            $file_path = $target_dir . $username . "_bg" . '.' . end($temp);
 	
-	        $check = getimagesize($image["tmp_name"]);
-	        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
+		            $query = $db->query("SELECT * FROM user_code WHERE user_id = '$id'");
+		            $result = $query->fetch_assoc();
+		            $version = strrchr($result['bg_img'], '?') === false ? '?1' : '?'.(explode('?', $result['bg_img'])[1] + 1);
 	
-	        if ($image["size"] > 1000000) {
-	            exit("Sorry, your file is too large. Max image size is 1MB. *Tip for optimizing large image - <a class='warning-message-link' href='https://tinypng.com/' target='_blank'>https://tinypng.com/</a>");
-	        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif") {
-	            exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
-	        } else {
-	        	$temp = explode(".", $image["name"]);
-	            $file_path = $target_dir . $username . "_bg" . '.' . end($temp);
-
-	            $query = $db->query("SELECT * FROM user_code WHERE user_id = '$id'");
-	            $result = $query->fetch_assoc();
-	            $version = strrchr($result['bg_img'], '?') === false ? '?1' : '?'.(explode('?', $result['bg_img'])[1] + 1);
-
-	            $target_path = "uploads/avatars/" . $username . "_bg" . '.' . end($temp);
-	            $new_file_target_file = "../". $target_path;
-	            foreach (glob($target_dir . $username . '_bg.*') as $p_image) {
+		            $target_path = "uploads/avatars/" . $username . "_bg" . '.' . end($temp);
+		            $new_file_target_file = "../". $target_path;
+		            foreach (glob($target_dir . $username . '_bg.*') as $p_image) {
+		                unlink($p_image);
+		            }
+	
+		            if (move_uploaded_file($image["tmp_name"], $new_file_target_file)) {
+		            	$target_path = "uploads/avatars/" . $username . "_bg" . '.' . end($temp).$version;
+		                $db->query("UPDATE user_code SET bg_img = '$target_path' WHERE user_id = '$id'");
+				    	echo '1';
+				    	$db->close();
+		            } else {
+		                exit('Something went wrong: ' . $db->error);
+		            }
+		        }
+		    } else {
+		    	foreach (glob($target_dir . $username . '_bg.*') as $p_image) {
 	                unlink($p_image);
 	            }
-
-	            if (move_uploaded_file($image["tmp_name"], $new_file_target_file)) {
-	            	$target_path = "uploads/avatars/" . $username . "_bg" . '.' . end($temp).$version;
-	                $db->query("UPDATE user_code SET bg_img = '$target_path' WHERE user_id = '$id'");
-			    	echo '1';
-			    	$db->close();
-	            } else {
-	                exit('Something went wrong: ' . $db->error);
-	            }
-	        }
+		    	$db->query("UPDATE user_code SET bg_img = '' WHERE user_id = '$id'");
+		    	echo '1';
+		    	$db->close();
+		    }
 	    } else {
 	    	$target_dir = "../uploads/files/";
-	        $target_file = $target_dir . $image["name"];
+	    	
+	    	if(!empty($image['name'])) {
+		        $target_file = $target_dir . $image["name"];
+		
+		        $check = getimagesize($image["tmp_name"]);
+		        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
+		
+		        if ($image["size"] > 1000000) {
+		            exit("Sorry, your file is too large. Max image size is 1MB. *Tip for optimizing large image - <a class='warning-message-link' href='https://tinypng.com/' target='_blank'>https://tinypng.com/</a>");
+		        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif") {
+		            exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
+		        } else {
+		        	$temp = explode(".", $image["name"]);
+		            $file_path = $target_dir . $username . "_bg" . '.' . end($temp);
+		            $target_path = "uploads/avatars/" . $username . "_bg" . '.' . end($temp);
+		            $new_file_target_file = "../". $target_path;
+		            foreach (glob($target_dir . $username . '_bg.*') as $p_image) {
+		                unlink($p_image);
+		            }
 	
-	        $check = getimagesize($image["tmp_name"]);
-	        $imgType = pathinfo($target_file, PATHINFO_EXTENSION);
-	
-	        if ($image["size"] > 1000000) {
-	            exit("Sorry, your file is too large. Max image size is 1MB. *Tip for optimizing large image - <a class='warning-message-link' href='https://tinypng.com/' target='_blank'>https://tinypng.com/</a>");
-	        } elseif ($check == false && $imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif") {
-	            exit('File is not an image file! ' . $check) . '. ' . $imgType . '.';
-	        } else {
-	        	$temp = explode(".", $image["name"]);
-	            $file_path = $target_dir . $username . "_bg" . '.' . end($temp);
-	            $target_path = "uploads/avatars/" . $username . "_bg" . '.' . end($temp);
-	            $new_file_target_file = "../". $target_path;
-	            foreach (glob($target_dir . $username . '_bg.*') as $p_image) {
+		            if (move_uploaded_file($image["tmp_name"], $new_file_target_file)) {
+		                $db->query("INSERT INTO user_code (user_id, bg_img) VALUES ('$id','$target_path') ");
+				    	echo '1';
+				    	$db->close();
+		            } else {
+		                exit('Something went wrong: ' . $db->error);
+		            }
+		        }
+		    } else {
+		    	foreach (glob($target_dir . $username . '_bg.*') as $p_image) {
 	                unlink($p_image);
 	            }
-
-	            if (move_uploaded_file($image["tmp_name"], $new_file_target_file)) {
-	                $db->query("INSERT INTO user_code (user_id, bg_img) VALUES ('$id','$target_path') ");
-			    	echo '1';
-			    	$db->close();
-	            } else {
-	                exit('Something went wrong: ' . $db->error);
-	            }
-	        }
+		    	$db->query("INSERT INTO user_code (user_id, bg_img) VALUES ('$id','') ");
+		    	echo '1';
+		    	$db->close();
+		    }
 	    }
 	} else {
 		exit('Please login first to continue.');
@@ -420,8 +461,8 @@ if(isset($_POST['postDelete'])) {
     }
 }
 
-if(isset($_POST['about'])){
-	$username = $_POST['username'];
+if(isset($_POST['about'])) {
+	$username = $db->real_escape_string($_POST['username']);
 
 	$sql = $db->query("SELECT * FROM user WHERE username = '$username' ");
 	if(mysqli_num_rows($sql) > 0) {
@@ -476,5 +517,30 @@ if(isset($_POST['about'])){
 		$db->close();
 	}
 	
+}
+
+if(isset($_POST['photos'])) {
+	$selected_user = $db->real_escape_string($_POST['username']);
+
+	$sql = $db->query("SELECT UP.file_name, UP.post_date FROM userpost UP INNER JOIN user U ON UP.user_id = U.user_id WHERE U.username = '$selected_user' AND UP.file_name != ''");
+	if(mysqli_num_rows($sql) > 0) {
+		$monthNames = [
+    		"January", "February", "March", 
+    		"April", "May", "June", 
+    		"July", "August", "September", 
+    		"October", "November", "December"
+		];
+		
+		while($r = $sql->fetch_assoc()) {
+			$date = explode("-" ,explode(" ", $r["post_date"])[0])[2] . " " . $monthNames[explode("-" ,explode(" ", $r["post_date"])[0])[1] - 1] . " " . explode("-" ,explode(" ", $r["post_date"])[0])[0];
+			?>
+
+			<div class="user-photo-container">
+				<img class="user-photo" src="<?=$r['file_name'];?>" alt="User post image" title="<?=$date;?>">
+			</div>
+		<? }
+	} else {
+		echo '<h3>There are currently no photos uploaded by this user.</h3>';
+	}
 }
 ?>

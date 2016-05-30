@@ -77,13 +77,14 @@ $(document).on('ready', function(){
     }
 }).on('click', '.theme-item', function(){
 
-    // Select theme
+    // Select theme for layout color change
     $(this).parent().parent().parent().find('.selected-theme').text( $(this).text() );
     $(this).parent().removeClass('active');
     $(this).parent().parent().removeClass('active');
 
     var themeName = $(this).text();
 
+    // Layout colors
     if ( themeName == 'Default (Dark)' ) {
         var colorCode = '#FFF';
         var bgColorCode = 'rgba(0, 0, 0, 0.7)';
@@ -93,23 +94,15 @@ $(document).on('ready', function(){
         var colorCode = '#000';
         var bgColorCode = 'rgba(255, 255, 255, 0.7)';
         var bgTrueColor = '#FFF';
-        var borderColor = '#000';
-    } else if ( themeName == 'Lightblue' ) {
-        var colorCode = '#ADD8E6';
-        var bgColorCode = 'rgba(173, 216, 230, 0.7)';
-        var bgTrueColor = '#ADD8E6';
-        var borderColor = '#FFF';
-    } else if ( themeName == 'Orange' ) {
-        var colorCode = '#000';
-        var bgColorCode = 'rgba(255, 192, 203, 0.7)';
-        var bgTrueColor = '#FFC0CB';
-        var borderColor = '#FFF';
+        var borderColor = '#A9A9A9';
     } else {
         var colorCode = '#FFF';
         var bgColorCode = 'rgba(0, 0, 0, 0.7)';
         var bgTrueColor = '#000';
         var borderColor = '#FFF';
     }
+
+    // Layout CSS replaced at Code editor
     var themeStyle = '/* USING '+themeName.toUpperCase()+' THEME\n'+
         '** ======================== */\n'+
         '\n'+
@@ -122,7 +115,10 @@ $(document).on('ready', function(){
         'body {\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
-        '* {\n'+
+        '\n'+
+        '/* BORDER COLOR\n'+
+        ' -------------------------- */\n'+
+        '.login-button, .register-button, .userUI-submit, .user-photo-container, .admin-return, .selected-theme, .success-header, .admin-panel-success-header, .profile-nav-line, .new-post-image-selection, .new-post-submit, .post-comment-text, .post-comment-text:before, .userUI-custom-image-selection, .theme-list.active, .sidebar-toggle, .header-nav-list, .profile-nav-block, #profile, .users-block-toggle, .users-block, .post-container, .post-delete, .user-icon-container, .infobox, .new-post-comment-submit, .firechat-block {\n'+
         '   border-color:'+borderColor+';\n'+
         '}\n'+
         '\n'+
@@ -162,12 +158,12 @@ $(document).on('ready', function(){
         '   color:'+colorCode+';\n'+
         '}\n'+
         '.user-link {\n'+
-        '   background-color:'+bgColorCode+';\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
         '#logout a {\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
+        '\n'+
         '/* MAIN BLOCK\n'+
         ' -------------------------- */\n'+
         '#divWrapper {\n'+
@@ -175,6 +171,15 @@ $(document).on('ready', function(){
         '}\n'+
         '.button {\n'+
         '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.user-header-name:before {\n'+
+        '   background-color:'+colorCode+';\n'+
+        '}\n'+
+        '.header-subnav-list {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '}\n'+
+        '.header-subnav-link {\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
         '\n'+
@@ -194,6 +199,11 @@ $(document).on('ready', function(){
         '   background-color:'+bgColorCode+';\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
+        '.post-comment-text {\n'+
+        '   background-color:'+bgColorCode+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '\n'+
         '/* FIRECHAT\n'+
         ' -------------------------- */\n'+
         '.firechat-block {\n'+
@@ -204,11 +214,17 @@ $(document).on('ready', function(){
         '   background-color:'+bgColorCode+';\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
+        '.users-block {\n'+
+        '   background-color:'+bgTrueColor+';\n'+
+        '   color:'+colorCode+';\n'+
+        '}\n'+
+        '\n'+
         '/* USERS DROPDOWN\n'+
         ' -------------------------- */\n'+
         '.users-block-toggle {\n'+
         '   background-color:'+bgTrueColor+';\n'+
         '}\n'+
+        '\n'+
         '/* FOOTER\n'+
         ' -------------------------- */\n'+
         '#footer {\n'+
@@ -217,11 +233,15 @@ $(document).on('ready', function(){
         '.footer-text-container {\n'+
         '   color:'+colorCode+';\n'+
         '}\n'+
+        '\n'+
         '/* ADMIN BLOCK\n'+
         ' -------------------------- */\n'+
         '.admin-block {\n'+
         '   background-color:'+bgTrueColor+';\n'+
         '   color:'+colorCode+';\n'+
+        '}\n'+
+        '.line-drag {\n'+
+        '   background-color:'+colorCode+';\n'+
         '}\n'+
         '.selected-theme {\n'+
         '   background-color:'+bgTrueColor+';\n'+
@@ -278,8 +298,15 @@ $(document).on('ready', function(){
     reader.readAsDataURL(file);
 });
 
-// Admin panel real-time CSS editor
-$(document).on('keyup', '#admin-style-editor', function(e){
+// Admin panel real-time editor
+$(document).on('keyup', '#markup-editor', function(e){
+    $('.about-block').html( $(this).val() );
+
+    var Code = $(this).val();
+    ( Code.search('<script>') > -1 ) ?
+        $('.admin-panel-error-log').html('<h3 class="admin-panel-error-header">Please remove script tags to continue.</h3>') : 
+        $('.admin-panel-error-log').html('');
+}).on('keyup', '#admin-style-editor', function(e){
     $('#user-style-editor-code').html( $(this).val() );
 
     var CSSCode = $(this).val();
@@ -289,7 +316,24 @@ $(document).on('keyup', '#admin-style-editor', function(e){
 });
 
 // textarea tab override for space  
-$(document).delegate('#admin-style-editor', 'keydown', function(e) {
+$(document).delegate('#markup-editor', 'keydown', function(e) {
+    var keyCode = e.keyCode || e.which;
+
+    if (keyCode == 9) {
+        e.preventDefault();
+        var start = $(this).get(0).selectionStart;
+        var end = $(this).get(0).selectionEnd;
+
+        // set textarea value to: text before caret + tab + text after caret
+        $(this).val($(this).val().substring(0, start)
+        + "\t"
+        + $(this).val().substring(end));
+
+        // put caret at right position again
+        $(this).get(0).selectionStart =
+        $(this).get(0).selectionEnd = start + 1;
+    }
+}).delegate('#admin-style-editor', 'keydown', function(e) {
     var keyCode = e.keyCode || e.which;
 
     if (keyCode == 9) {
@@ -316,6 +360,11 @@ $(window).scroll(function(){
     $('.users-block.active').css('max-height', (windowHeight - navHeight + scrollHeight) + "px");
     $('.users-list').css('max-height', (windowHeight - navHeight + scrollHeight) + "px");
 });
+
+$(document).on('click', '.events > a', function(e){
+    e.preventDefault();
+});
+
 /** Todo focused string to span element
  *
  */

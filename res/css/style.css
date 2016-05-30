@@ -208,7 +208,7 @@
  --------------------------------------------------------------------------- */
     .header-subnav-list {
         position: absolute;
-        right: calc(50% - 60px);
+        right: calc(50% - 55px);
         height: 0;
         opacity: 0;
         background: #000;
@@ -224,7 +224,7 @@
     }
 
     .events:hover > .header-subnav-list {
-        height: 108px;
+        height: 92px;
         border: 2px inset #FFF;
         opacity: 1;
     }
@@ -232,7 +232,7 @@
     .header-subnav-link {
         display: inline-block;
         font-weight: bold;
-        font-size: 17px;
+        font-size: 15px;
         text-decoration: none;
         text-transform: uppercase;
         padding: 3px 15px;
@@ -327,8 +327,8 @@
         padding: 20px;
         margin-bottom:20px;
         background-color: #000000;
-        border-left: 3px inset silver;
-        border-bottom: 3px inset silver;
+        border-left: 2px inset silver;
+        border-bottom: 2px inset silver;
         text-align: center;
     }
 
@@ -366,6 +366,12 @@
         -o-border-bottom-right-radius: 20px;
         border-bottom-right-radius: 20px;
         vertical-align: middle;
+    }
+
+    #registerForm {
+        background: #000;
+        text-align: center;
+        padding: 10px;
     }
 
     #password {
@@ -475,6 +481,10 @@
     }
 
     @media screen and (max-width: 1000px) {
+        #newEventForm >div {
+            margin: 0 20px;
+        }
+
         .new-event-description {
             max-width: calc(100% - 20px);
         }
@@ -601,7 +611,7 @@
         position: relative;
         display: block;
         padding:5px 10px;
-        margin:0 243px 10px 0;
+        margin:0 241px 10px 0;
         background-image: url(../img/dim.png);
         border-bottom:2px inset silver;
     }
@@ -869,7 +879,7 @@
         right: 15px;
         top: 15px;
         display: inline-block;
-        padding: 4px;
+        padding: 3px 4px 4px;
         border: 3px inset #FFF;
         border-radius: 50%;
         line-height: 1;
@@ -939,8 +949,8 @@
         position: absolute;
         bottom: -15px;
         left: 2px;
-        border-right: 15px solid transparent;
-        border-left: 15px solid transparent;
+        border-right: 15px solid transparent !important;
+        border-left: 15px solid transparent !important;
         border-top: 15px solid #000;
         z-index: 1;
     }
@@ -991,8 +1001,8 @@
         position: absolute;
         left: -11px;
         bottom: calc(100% - 27px);
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
+        border-top: 10px solid transparent !important;
+        border-bottom: 10px solid transparent !important;
         border-right: 10px solid #FFF;
     }
 
@@ -1002,6 +1012,19 @@
  --------------------------------------------------------------------------- */
     .about-block {
         margin: 0 20px 20px;
+    }
+
+/* About admin panel
+ --------------------------------------------------------------------------- */
+    #markup-editor {
+        max-width: calc(100% - 25px);
+        height: auto;
+        background-color: #505050;
+        color: #FFF;
+        z-index: 1;
+        -moz-tab-size: 2;
+        -o-tab-size: 2;
+        tab-size: 2;
     }
 
 /* ABOUT USER
@@ -1058,6 +1081,59 @@
         margin-right: 10px;
     }
 
+    .user-description {
+        margin: 20px;
+    }
+
+    @media screen and (max-width: 1450px) {
+        .user-about {
+            margin: 0 20px;
+        }
+
+        .user-info-container {
+            width: calc(100% - 470px);
+            margin: 0 20px;
+        }
+
+        .main-page-block.move #divWrapper .user-info-container {
+            width: auto;
+            margin: 0 20px;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .user-about {
+            text-align: center;
+        }
+
+        .user-header-avatar {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .user-info-container {
+            display: block;
+            width: auto;
+            margin: 0 20px;
+        }
+    }
+
+/* User photos
+ --------------------------------------------------------------------------- */
+    .user-photo-container {
+        display: inline-block;
+        margin: 15px;
+        max-width: 300px;
+        max-height: 400px;
+        border: 1px inset #FFF;
+    }
+    
+    .user-photo {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+    }
+    
 /* ADMIN
 ** ========================================================================== */
 /* Admin block
@@ -1958,14 +2034,14 @@
  --------------------------------------------------------------------------- */
     .firechat-block {
         position: absolute;
-        right: 0;
+        right: 1px;
         bottom: calc(100% + 9px);
         display: inline-block;
         width: 230px;
         padding: 5px 5px 0;
         background-color: #000000;
-        border-top: 3px inset silver;
-        border-left: 3px inset silver;
+        border-top: 2px inset silver;
+        border-left: 2px inset silver;
     }
 
     .firechat-header {
@@ -2067,6 +2143,20 @@
         cursor: pointer;
     }
 
+    @media screen and (max-height: 400px) {
+        .firechat-block {
+            width: 200px;
+        }
+
+        .firechat-container.active {
+            height: 195px;
+        }
+
+        .messages {
+            max-height: 160px !important;
+        }
+    }
+
 /* FOOTER
 ** ========================================================================== */
 /* Footer
@@ -2110,6 +2200,11 @@
         border-top: 1px solid #FFF;
         border-bottom: 1px solid #FFF;
         background-color: rgba(162, 23, 19, 0.7);
+    }
+
+    .login-header {
+        margin: 5px 0;
+        text-align: center;
     }
 
 /* Success-block

@@ -1,7 +1,7 @@
 <div id="mail-error"></div>
 <div class="contact-block">
     <h1 class="header-h1">Contact</h1>
-    <form action="" target="_self" method="" id="contact-form">
+    <form action="system/send.php" target="_self" method="post" id="contact-form">
         
         <div>
             <label class="form-label in-line" for="from">Email: </label>
